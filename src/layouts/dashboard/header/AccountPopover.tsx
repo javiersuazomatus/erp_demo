@@ -1,8 +1,18 @@
+import { useSnackbar } from 'notistack';
 import { useState } from 'react';
+// next
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 // @mui
 import { alpha } from '@mui/material/styles';
-import { Box, Divider, Typography, Stack, MenuItem, Avatar } from '@mui/material';
+import { Box, Divider, Typography, Stack, MenuItem } from '@mui/material';
+// routes
+import { PATH_DASHBOARD, PATH_AUTH } from '../../../routes/paths';
+// hooks
+import useAuth from '../../../hooks/useAuth';
+import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
+import MyAvatar from '../../../components/MyAvatar';
 import MenuPopover from '../../../components/MenuPopover';
 import { IconButtonAnimate } from '../../../components/animate';
 
@@ -15,17 +25,25 @@ const MENU_OPTIONS = [
   },
   {
     label: 'Profile',
-    linkTo: '/',
+    linkTo: PATH_DASHBOARD.user.profile,
   },
   {
     label: 'Settings',
-    linkTo: '/',
+    linkTo: PATH_DASHBOARD.user.account,
   },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const router = useRouter();
+
+  const { user, logout } = useAuth();
+
+  const isMountedRef = useIsMountedRef();
+
+  const { enqueueSnackbar } = useSnackbar();
+
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,6 +52,20 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.replace(PATH_AUTH.login);
+
+      if (isMountedRef.current) {
+        handleClose();
+      }
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Unable to logout!', { variant: 'error' });
+    }
   };
 
   return (
@@ -55,10 +87,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar
-          src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_5.jpg"
-          alt="Rayan Moran"
-        />
+        <MyAvatar />
       </IconButtonAnimate>
 
       <MenuPopover
@@ -77,10 +106,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            Rayan Moran
+            {user?.displayName}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            rayan.moran@gmail.com
+            {user?.email}
           </Typography>
         </Box>
 
@@ -88,15 +117,19 @@ export default function AccountPopover() {
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
-              {option.label}
-            </MenuItem>
+            <NextLink key={option.label} href={option.linkTo} passHref>
+              <MenuItem key={option.label} onClick={handleClose}>
+                {option.label}
+              </MenuItem>
+            </NextLink>
           ))}
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem sx={{ m: 1 }}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
+          Logout
+        </MenuItem>
       </MenuPopover>
     </>
   );

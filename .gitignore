@@ -33,9 +33,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Jetbrains
-.idea
-
 # Local Netlify folder
 .netlify
 
