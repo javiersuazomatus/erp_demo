@@ -6,6 +6,10 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithPopup,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
 } from 'firebase/auth';
 import { getFirestore, collection, doc, getDoc, setDoc, DocumentData } from 'firebase/firestore';
 // @types
@@ -92,11 +96,21 @@ function AuthProvider({ children }: AuthProviderProps) {
           });
         }
       }),
-    [dispatch]
+    [dispatch],
   );
+
+  const facebookProvider = new FacebookAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const twitterProvider = new TwitterAuthProvider();
 
   const login = (email: string, password: string) =>
     signInWithEmailAndPassword(AUTH, email, password);
+
+  const loginWithGoogle = () => signInWithPopup(AUTH, googleProvider);
+
+  const loginWithFacebook = () => signInWithPopup(AUTH, facebookProvider);
+
+  const loginWithTwitter = () => signInWithPopup(AUTH, twitterProvider);
 
   const register = (email: string, password: string, firstName: string, lastName: string) =>
     createUserWithEmailAndPassword(AUTH, email, password).then(async (res) => {
@@ -132,6 +146,9 @@ function AuthProvider({ children }: AuthProviderProps) {
           isPublic: profile?.isPublic || false,
         },
         login,
+        loginWithGoogle,
+        loginWithFacebook,
+        loginWithTwitter,
         register,
         logout,
       }}

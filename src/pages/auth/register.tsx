@@ -15,6 +15,8 @@ import GuestGuard from '../../guards/GuestGuard';
 import Page from '../../components/Page';
 import Logo from '../../components/Logo';
 import Image from '../../components/Image';
+import AuthFirebaseSocials from '../../sections/auth/AuthFirebaseSocial';
+
 // sections
 import { RegisterForm } from '../../sections/auth/register';
 
@@ -119,6 +121,8 @@ export default function Register() {
                   </>
                 </Tooltip>
               </Box>
+
+              <AuthFirebaseSocials />
 
               <RegisterForm />
 

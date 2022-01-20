@@ -15,6 +15,7 @@ import GuestGuard from '../../guards/GuestGuard';
 import Page from '../../components/Page';
 import Logo from '../../components/Logo';
 import Image from '../../components/Image';
+import AuthFirebaseSocials from '../../sections/auth/AuthFirebaseSocial';
 // sections
 import { LoginForm } from '../../sections/auth/login';
 
@@ -120,6 +121,8 @@ export default function Login() {
                   </>
                 </Tooltip>
               </Stack>
+
+              <AuthFirebaseSocials />
 
               <Alert severity="info" sx={{ mb: 3 }}>
                 Use email : <strong>demo@minimals.cc</strong> / password :<strong> demo1234</strong>
