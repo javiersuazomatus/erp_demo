@@ -41,6 +41,7 @@ export type FirebaseContextType = {
   loginWithFacebook: () => Promise<UserCredential>;
   loginWithTwitter: () => Promise<UserCredential>;
   register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>;
+  update: (user: AuthUser) => void;
   logout: () => Promise<void>;
 };
 

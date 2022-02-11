@@ -41,7 +41,7 @@ type FormValuesProps = {
 export default function AccountGeneral() {
   const { enqueueSnackbar } = useSnackbar();
 
-  const { user } = useAuth();
+  const { user, update } = useAuth();
 
   const UpdateUserSchema = Yup.object().shape({
     displayName: Yup.string().required('Name is required'),
@@ -50,6 +50,7 @@ export default function AccountGeneral() {
   const defaultValues = {
     displayName: user?.displayName || '',
     email: user?.email || '',
+    company: user?.company || '',
     photoURL: user?.photoURL || '',
     phoneNumber: user?.phoneNumber || '',
     country: user?.country || '',
@@ -74,10 +75,11 @@ export default function AccountGeneral() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // await new Promise((resolve) => setTimeout(resolve, 500));
+      await update(data)
       enqueueSnackbar('Update success!');
     } catch (error) {
-      console.error(error);
+      enqueueSnackbar('Update failed!', { variant: 'error' });
     }
   };
 
@@ -146,6 +148,8 @@ export default function AccountGeneral() {
               <RHFTextField name="displayName" label="Name" />
               <RHFTextField name="email" label="Email Address" />
 
+              <RHFTextField name="company" label="Company" />
+
               <RHFTextField name="phoneNumber" label="Phone Number" />
               <RHFTextField name="address" label="Address" />
 
@@ -161,7 +165,6 @@ export default function AccountGeneral() {
               <RHFTextField name="state" label="State/Region" />
 
               <RHFTextField name="city" label="City" />
-              <RHFTextField name="zipCode" label="Zip/Code" />
             </Box>
 
             <Stack spacing={3} alignItems="flex-end" sx={{ mt: 3 }}>

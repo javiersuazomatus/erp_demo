@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
   FacebookAuthProvider,
   GoogleAuthProvider,
   TwitterAuthProvider,
@@ -22,9 +23,7 @@ import { FIREBASE_API } from '../config';
 const ADMIN_EMAILS = ['demo@minimals.cc'];
 
 const firebaseApp = initializeApp(FIREBASE_API);
-
 const AUTH = getAuth(firebaseApp);
-
 const DB = getFirestore(firebaseApp);
 
 const initialState: AuthState = {
@@ -78,7 +77,6 @@ function AuthProvider({ children }: AuthProviderProps) {
       onAuthStateChanged(AUTH, async (user) => {
         if (user) {
           const userRef = doc(DB, 'users', user.uid);
-
           const docSnap = await getDoc(userRef);
 
           if (docSnap.exists()) {
@@ -113,15 +111,30 @@ function AuthProvider({ children }: AuthProviderProps) {
   const loginWithTwitter = () => signInWithPopup(AUTH, twitterProvider);
 
   const register = (email: string, password: string, firstName: string, lastName: string) =>
-    createUserWithEmailAndPassword(AUTH, email, password).then(async (res) => {
-      const userRef = doc(collection(DB, 'users'), res.user?.uid);
+    createUserWithEmailAndPassword(AUTH, email, password)
+      .then(async (res) => {
+        const userRef = doc(collection(DB, 'users'), res.user?.uid);
 
-      await setDoc(userRef, {
-        uid: res.user?.uid,
-        email,
-        displayName: `${firstName} ${lastName}`,
+        await setDoc(userRef, {
+          uid: res.user?.uid,
+          email,
+          displayName: `${firstName} ${lastName}`,
+        });
       });
-    });
+
+  const update = async (user: AuthUser) => {
+    console.log({ currentUserBefore: AUTH.currentUser });
+    if (AUTH.currentUser) {
+      await updateProfile(AUTH.currentUser, {
+        displayName: user?.displayName,
+      });
+
+      dispatch({
+        type: Types.Initial,
+        payload: { isAuthenticated: true, user: { ...state?.user, ...user } },
+      });
+    }
+  };
 
   const logout = () => signOut(AUTH);
 
@@ -133,6 +146,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         user: {
           id: state?.user?.uid,
           email: state?.user?.email,
+          company: state?.user?.company || '',
           photoURL: state?.user?.photoURL || profile?.photoURL,
           displayName: state?.user?.displayName || profile?.displayName,
           role: ADMIN_EMAILS.includes(state?.user?.email) ? 'admin' : 'user',
@@ -150,6 +164,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         loginWithFacebook,
         loginWithTwitter,
         register,
+        update,
         logout,
       }}
     >
