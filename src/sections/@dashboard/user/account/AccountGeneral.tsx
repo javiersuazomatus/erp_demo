@@ -45,6 +45,7 @@ export default function AccountGeneral() {
 
   const UpdateUserSchema = Yup.object().shape({
     displayName: Yup.string().required('Name is required'),
+    company: Yup.string().required('Company is required'),
   });
 
   const defaultValues = {
@@ -79,6 +80,7 @@ export default function AccountGeneral() {
       await update(data)
       enqueueSnackbar('Update success!');
     } catch (error) {
+      console.log({ error })
       enqueueSnackbar('Update failed!', { variant: 'error' });
     }
   };

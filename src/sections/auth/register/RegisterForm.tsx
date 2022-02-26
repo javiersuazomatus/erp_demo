@@ -21,6 +21,7 @@ type FormValuesProps = {
   firstName: string;
   lastName: string;
   afterSubmit?: string;
+  company: string;
 };
 
 export default function RegisterForm() {
@@ -35,6 +36,7 @@ export default function RegisterForm() {
     lastName: Yup.string().required('Last name required'),
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
+    company: Yup.string().required('Company is required'),
   });
 
   const defaultValues = {
@@ -42,6 +44,7 @@ export default function RegisterForm() {
     lastName: '',
     email: '',
     password: '',
+    company: '',
   };
 
   const methods = useForm<FormValuesProps>({
@@ -59,7 +62,7 @@ export default function RegisterForm() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await register(data.email, data.password, data.firstName, data.lastName);
+      await register(data.email, data.password, data.firstName, data.lastName, data.company);
     } catch (error) {
       console.error(error);
       reset();
@@ -95,6 +98,7 @@ export default function RegisterForm() {
             ),
           }}
         />
+        <RHFTextField name="company" label="Company" />
 
         <LoadingButton
           fullWidth
