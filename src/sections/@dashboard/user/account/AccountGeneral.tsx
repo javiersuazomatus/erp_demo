@@ -21,12 +21,16 @@ import {
   RHFTextField,
   RHFUploadAvatar,
 } from '../../../../components/hook-form';
+// lodash
+import pickBy from 'lodash/pickBy'
+import isEmpty from 'lodash/isEmpty'
 
 // ----------------------------------------------------------------------
 
 type FormValuesProps = {
   displayName: string;
   email: string;
+  company: string | null;
   photoURL: File | any;
   phoneNumber: string | null;
   country: string | null;
@@ -49,18 +53,18 @@ export default function AccountGeneral() {
   });
 
   const defaultValues = {
-    displayName: user?.displayName || '',
-    email: user?.email || '',
-    company: user?.company || '',
-    photoURL: user?.photoURL || '',
-    phoneNumber: user?.phoneNumber || '',
-    country: user?.country || '',
-    address: user?.address || '',
-    state: user?.state || '',
-    city: user?.city || '',
-    zipCode: user?.zipCode || '',
-    about: user?.about || '',
-    isPublic: user?.isPublic || '',
+    displayName: user?.displayName,
+    email: user?.email,
+    company: user?.company,
+    photoURL: user?.photoURL,
+    phoneNumber: user?.phoneNumber,
+    country: user?.country,
+    address: user?.address,
+    state: user?.state,
+    city: user?.city,
+    zipCode: user?.zipCode,
+    about: user?.about,
+    isPublic: user?.isPublic,
   };
 
   const methods = useForm<FormValuesProps>({
@@ -77,7 +81,9 @@ export default function AccountGeneral() {
   const onSubmit = async (data: FormValuesProps) => {
     try {
       // await new Promise((resolve) => setTimeout(resolve, 500));
-      await update(data)
+      const dataCleaned = pickBy(data, attr => !isEmpty(attr));
+      console.log({ dataCleaned })
+      await update(dataCleaned)
       enqueueSnackbar('Update success!');
     } catch (error) {
       console.log({ error })

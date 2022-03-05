@@ -118,16 +118,18 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   const loginWithGoogle = () => signInWithPopup(AUTH, googleProvider)
     .then(async (result) => {
-      console.log({result})
       const userRef = doc(collection(DB, 'users'), result.user?.uid);
-      await setDoc(userRef, {
-        uid: result.user?.uid,
-        email: result.user?.email,
-        displayName: result.user?.displayName,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-      });
-      console.log('fuck yeah');
+      const docSnap = await getDoc(userRef);
+
+      if (!docSnap.exists()) {
+        await setDoc(userRef, {
+          uid: result.user?.uid,
+          email: result.user?.email,
+          displayName: result.user?.displayName,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+        });
+      }
     });
 
   const loginWithFacebook = () => signInWithPopup(AUTH, facebookProvider);
@@ -175,11 +177,13 @@ function AuthProvider({ children }: AuthProviderProps) {
           user: { ...state?.user, ...user },
         },
       });
+
+      setProfile({ profile, ...user });
     }
   };
 
 
-  const logout = () => signOut(AUTH);
+  const logout = () => signOut(AUTH).then(() => setProfile({}))
 
   return (
     <AuthContext.Provider
