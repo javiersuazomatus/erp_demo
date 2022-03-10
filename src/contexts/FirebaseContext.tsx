@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from 'react';
-import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
   signOut,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -14,7 +12,6 @@ import {
   TwitterAuthProvider,
 } from 'firebase/auth';
 import {
-  getFirestore,
   collection,
   doc,
   getDoc,
@@ -25,16 +22,12 @@ import {
 } from 'firebase/firestore';
 // @types
 import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/auth';
-//
-import { FIREBASE_API } from '../config';
+// Firebase
+import {AUTH, DB} from '../datasources/firebase'
 
 // ----------------------------------------------------------------------
 
 const ADMIN_EMAILS = ['demo@minimals.cc'];
-
-const firebaseApp = initializeApp(FIREBASE_API);
-const AUTH = getAuth(firebaseApp);
-const DB = getFirestore(firebaseApp);
 
 const initialState: AuthState = {
   isAuthenticated: false,
@@ -85,7 +78,6 @@ function AuthProvider({ children }: AuthProviderProps) {
   useEffect(
     () =>
       onAuthStateChanged(AUTH, async (user) => {
-        console.log(' +++++++++++++++++ onAuthStateChanged +++++++++++++++++');
         console.log({ user });
         if (user) {
           const userRef = doc(DB, 'users', user.uid);

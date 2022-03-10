@@ -5,10 +5,16 @@ import { styled } from '@mui/material/styles';
 import { Box, Link, Typography } from '@mui/material';
 // hooks
 import useAuth from '../../../hooks/useAuth';
+// redux
+import { useDispatch, useSelector } from '../../../redux/store';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // components
 import MyAvatar from '../../../components/MyAvatar';
+// hooks
+import { useEffect } from 'react';
+// redux
+import { getCompanies } from '../../../redux/slices/company';
 
 // ----------------------------------------------------------------------
 
@@ -31,6 +37,14 @@ type Props = {
 
 export default function NavbarAccount({ isCollapse }: Props) {
   const { user } = useAuth();
+
+  const dispatch = useDispatch();
+  const { companies } = useSelector((state) => state.company);
+
+  useEffect(() => {
+    console.log('dispatch(getCompanies());')
+    dispatch(getCompanies());
+  }, [dispatch]);
 
   return (
     <NextLink href={PATH_DASHBOARD.user.account} passHref>
@@ -61,7 +75,7 @@ export default function NavbarAccount({ isCollapse }: Props) {
               {user?.displayName}
             </Typography>
             <Typography variant="body2" noWrap sx={{ color: 'text.secondary' }}>
-              {user?.company}
+              {companies[0]?.name}
             </Typography>
           </Box>
         </RootStyle>

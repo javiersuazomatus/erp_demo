@@ -80,9 +80,7 @@ export default function AccountGeneral() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      // await new Promise((resolve) => setTimeout(resolve, 500));
       const dataCleaned = pickBy(data, attr => !isEmpty(attr));
-      console.log({ dataCleaned })
       await update(dataCleaned)
       enqueueSnackbar('Update success!');
     } catch (error) {

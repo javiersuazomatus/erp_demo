@@ -99,8 +99,7 @@ const slice = createSlice({
 
     // GET PARTICIPANTS
     getParticipantsSuccess(state, action) {
-      const participants = action.payload;
-      state.participants = participants;
+      state.participants = action.payload;
     },
 
     // RESET ACTIVE CONVERSATION
@@ -109,8 +108,7 @@ const slice = createSlice({
     },
 
     addRecipients(state, action) {
-      const recipients = action.payload;
-      state.recipients = recipients;
+      state.recipients = action.payload;
     },
   },
 });
