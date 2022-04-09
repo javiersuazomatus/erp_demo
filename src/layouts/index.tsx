@@ -5,6 +5,7 @@ import AuthGuard from '../guards/AuthGuard';
 import MainLayout from './main';
 import DashboardLayout from './dashboard';
 import LogoOnlyLayout from './LogoOnlyLayout';
+import CompanyGuard from '../guards/CompanyGuard';
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +25,9 @@ export default function Layout({ variant = 'dashboard', children }: Props) {
 
   return (
     <AuthGuard>
-      <DashboardLayout> {children} </DashboardLayout>
+      <CompanyGuard>
+        <DashboardLayout> {children} </DashboardLayout>
+      </CompanyGuard>
     </AuthGuard>
   );
 }

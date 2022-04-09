@@ -14,6 +14,7 @@ type Props = {
 };
 
 export default function AuthGuard({ children }: Props) {
+  console.log('AuthGuard')
   const { isAuthenticated, isInitialized } = useAuth();
 
   const { pathname, push } = useRouter();

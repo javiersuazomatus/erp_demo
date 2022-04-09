@@ -23,7 +23,11 @@ import {
 // @types
 import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/auth';
 // Firebase
-import {AUTH, DB} from '../datasources/firebase'
+import { AUTH, DB } from '../datasources/firebase';
+//redux
+import { useDispatch } from '../redux/store';
+import { rootCleanAction } from '../redux/rootReducer';
+import { loadCompanies } from '../redux/slices/company';
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +53,7 @@ type FirebaseAuthPayload = {
 type FirebaseActions = ActionMap<FirebaseAuthPayload>[keyof ActionMap<FirebaseAuthPayload>];
 
 const reducer = (state: AuthState, action: FirebaseActions) => {
-  if (action.type === 'INITIALISE') {
+  if (action.type === Types.Initial) {
     const { isAuthenticated, user } = action.payload;
     return {
       ...state,
@@ -75,9 +79,12 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   const [profile, setProfile] = useState<DocumentData | undefined>();
 
+  const reduxDispatch = useDispatch();
+
   useEffect(
     () =>
       onAuthStateChanged(AUTH, async (user) => {
+        console.log('onAuthStateChanged()');
         console.log({ user });
         if (user) {
           const userRef = doc(DB, 'users', user.uid);
@@ -87,11 +94,14 @@ function AuthProvider({ children }: AuthProviderProps) {
             setProfile(docSnap.data());
           }
 
+          reduxDispatch(loadCompanies(user.uid))
           dispatch({
             type: Types.Initial,
             payload: { isAuthenticated: true, user },
           });
         } else {
+          setProfile({});
+          reduxDispatch(rootCleanAction());
           dispatch({
             type: Types.Initial,
             payload: { isAuthenticated: false, user: null },
@@ -124,8 +134,10 @@ function AuthProvider({ children }: AuthProviderProps) {
       }
     });
 
+  // TODO: implement
   const loginWithFacebook = () => signInWithPopup(AUTH, facebookProvider);
 
+  // TODO: implement
   const loginWithTwitter = () => signInWithPopup(AUTH, twitterProvider);
 
   const register = (email: string, password: string, firstName: string, lastName: string, company: string) =>
@@ -175,7 +187,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   };
 
 
-  const logout = () => signOut(AUTH).then(() => setProfile({}))
+  const logout = () => signOut(AUTH)
 
   return (
     <AuthContext.Provider

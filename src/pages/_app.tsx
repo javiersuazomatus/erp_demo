@@ -88,12 +88,11 @@ export default function MyApp(props: MyAppProps) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name='viewport' content='initial-scale=1, width=device-width' />
         <title>ERP Demo</title>
       </Head>
-
-      <AuthProvider>
-        <ReduxProvider store={store}>
+      <ReduxProvider store={store}>
+        <AuthProvider>
           <PersistGate loading={null} persistor={persistor}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <CollapseDrawerProvider>
@@ -118,8 +117,8 @@ export default function MyApp(props: MyAppProps) {
               </CollapseDrawerProvider>
             </LocalizationProvider>
           </PersistGate>
-        </ReduxProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ReduxProvider>
     </>
   );
 }
@@ -130,7 +129,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
   const appProps = await App.getInitialProps(context);
 
   const cookies = cookie.parse(
-    context.ctx.req ? context.ctx.req.headers.cookie || '' : document.cookie
+    context.ctx.req ? context.ctx.req.headers.cookie || '' : document.cookie,
   );
 
   const settings = getSettings(cookies);

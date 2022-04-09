@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { AnyAction, combineReducers, Reducer } from 'redux';
 import { persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // slices
@@ -8,8 +8,11 @@ import chatReducer from './slices/chat';
 import productReducer from './slices/product';
 import calendarReducer from './slices/calendar';
 import kanbanReducer from './slices/kanban';
+import { createAction } from '@reduxjs/toolkit';
 
 // ----------------------------------------------------------------------
+
+const rootCleanAction = createAction('root/clean')
 
 const createNoopStorage = () => ({
   getItem(_key: string) {
@@ -39,7 +42,15 @@ const productPersistConfig = {
   whitelist: ['sortBy', 'checkout'],
 };
 
-const rootReducer = combineReducers({
+// const companyPersistConfig = {
+//   key: 'companies',
+//   storage,
+//   keyPrefix: 'redux-',
+//   whitelist: ['companies'],
+// };
+
+const appReducer = combineReducers({
+  // companies: persistReducer(companyPersistConfig, companyReducer),
   company: companyReducer,
   mail: mailReducer,
   chat: chatReducer,
@@ -48,4 +59,14 @@ const rootReducer = combineReducers({
   product: persistReducer(productPersistConfig, productReducer),
 });
 
-export { rootPersistConfig, rootReducer };
+const rootReducer: Reducer = (
+  state: ReturnType<typeof appReducer> | undefined,
+  action: AnyAction
+) => {
+  if (action.type === 'root/clean') {
+    state = undefined;
+  }
+  return appReducer(state, action);
+};
+
+export { rootPersistConfig, rootReducer, rootCleanAction};

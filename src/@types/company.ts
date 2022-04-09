@@ -2,8 +2,11 @@
 
 export type Company = {
   id: string;
+  default: boolean;
   name: string;
+  occupation: string
   photoURL: string;
+  role: string;
 }
 
 export type CompanyState = {

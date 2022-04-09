@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 // firebase
-import {DB} from '../../datasources/firebase'
+import { DB } from '../../datasources/firebase';
 import {
   collection,
+  doc,
+  query,
+  where,
   getDocs,
   getDoc,
 } from 'firebase/firestore';
@@ -10,7 +13,7 @@ import {
 // @types
 import { Company, CompanyState } from '../../@types/company';
 //
-import { dispatch } from '../store';
+import { store, dispatch } from '../store';
 
 
 const initialState: CompanyState = {
@@ -18,7 +21,7 @@ const initialState: CompanyState = {
   error: null,
   companies: [],
   company: null,
-}
+};
 
 const slice = createSlice({
   name: 'company',
@@ -31,21 +34,25 @@ const slice = createSlice({
 
     // HAS ERROR
     hasError(state, action) {
-      state.isLoading = false;
+      console.log(action.payload);
       state.error = action.payload;
+      state.isLoading = false;
     },
 
     // GET COMPANIES
-    getCompaniesSuccess(state, action) {
-      console.log({ action })
+    loadCompaniesSuccess(state, action) {
+      console.log('loadCompaniesSuccess');
+      console.log({ action });
+      state.companies = action.payload.companies;
+      state.company = action.payload.company;
       state.isLoading = false;
-      state.companies = action.payload;
     },
 
     // GET COMPANY
-    getCompanySuccess(state, action) {
-      state.isLoading = false;
+    loadCompanySuccess(state, action) {
+      console.log('loadCompanySuccess');
       state.company = action.payload;
+      state.isLoading = false;
     },
   },
 });
@@ -55,24 +62,83 @@ export default slice.reducer;
 
 // ----------------------------------------------------------------------
 
-export function getCompanies() {
+export function loadCompanies(userId: string) {
   return async () => {
+    console.log('loadCompanies');
     dispatch(slice.actions.startLoading());
     try {
-      const querySnapshot = await getDocs(collection(DB, "companies"));
-      const companiesFromDB: Company[] = querySnapshot.docs.map(doc =>  {
-        const data = doc.data();
-        return {
-          id: doc.id,
-          name: data.name,
-          photoURL: data.photoURL
-        }
-      });
-      console.log({companiesFromDB});
-      dispatch(slice.actions.getCompaniesSuccess(companiesFromDB));
+      const companies: Company[] | null = await getCompanies(userId);
+      console.log({ companies });
+
+      const defaultCompany: Company | undefined = companies.find(company => company.default);
+
+      const companyDetail: Company | null = defaultCompany
+        ? await getCompany(defaultCompany.id)
+        : null;
+
+      dispatch(slice.actions.loadCompaniesSuccess({
+        companies,
+        company: { ...defaultCompany, ...companyDetail },
+      }));
     } catch (error) {
-      console.log(error)
       dispatch(slice.actions.hasError(error));
     }
   };
 }
+
+export function loadDefaultCompany() {
+  console.log('loadDefaultCompany');
+  return async () => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const defaultCompany: Company = store.getState().company.companies
+        .find((company: Company) => company.default);
+      if (defaultCompany) {
+        const companyDetail = await getCompany(defaultCompany.id);
+        dispatch(slice.actions.loadCompanySuccess({ ...defaultCompany, ...companyDetail }));
+      } else {
+        dispatch(slice.actions.loadCompanySuccess(null));
+      }
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+
+async function getCompanies(userId: string): Promise<Company[] | []> {
+  const q = query(
+    collection(DB, 'junction_user_company'),
+    where('userId', '==', userId));
+  const junctions = await getDocs(q);
+  return junctions.docs
+    .filter(junction => junction.exists)
+    .map(doc => {
+      const data = doc.data();
+      return {
+        id: data?.companyId,
+        default: data?.default,
+        name: data?.name,
+        occupation: data?.occupatio,
+        photoURL: data?.photoURL,
+        role: data?.role,
+      };
+    });
+}
+
+async function getCompany(companyId: string): Promise<Company | null> {
+  const companyRef = doc(DB, 'companies', companyId);
+  const docSnap = await getDoc(companyRef);
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    return {
+      id: data?.id,
+      default: data?.default,
+      name: data?.name,
+      occupation: data?.occupatio,
+      photoURL: data?.photoURL,
+      role: data?.role,
+    };
+  }
+  return null;
+}
+

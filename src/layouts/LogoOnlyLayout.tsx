@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
+import { Box, Stack, Button, Container, Toolbar, Typography } from '@mui/material';
 // components
 import Logo from '../components/Logo';
+import AccountPopover from './dashboard/header/AccountPopover';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +30,16 @@ export default function LogoOnlyLayout({ children }: Props) {
   return (
     <>
       <HeaderStyle>
-        <Logo />
+        <Toolbar
+          sx={{
+            minHeight: '100% !important',
+            px: { lg: 5 },
+          }}
+        >
+          <Logo />
+          <Box sx={{ flexGrow: 1 }} />
+          <AccountPopover />
+        </Toolbar>
       </HeaderStyle>
       {children}
     </>

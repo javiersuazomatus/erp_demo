@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
             content="The starting point for your next project with Minimal UI Kit, built on the newest version of Material-UI ©, ready to be customized to your style"
           />
           <meta name="keywords" content="react,material,kit,application,dashboard,admin,template" />
-          <meta name="author" content="Minimal UI Kit" />
+          <meta name="author" content="Javier Suazo Matus. Software Developer" />
         </Head>
 
         <body>
