@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 // @mui
-import { List, Collapse } from '@mui/material';
+import { Collapse, List } from '@mui/material';
 // type
 import { NavListProps } from '../type';
 //

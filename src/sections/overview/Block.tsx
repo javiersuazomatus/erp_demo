@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 // @mui
-import { Theme, alpha } from '@mui/material/styles';
-import { Paper, CardHeader, Box, Typography, SxProps } from '@mui/material';
+import { alpha, Theme } from '@mui/material/styles';
+import { Box, CardHeader, Paper, SxProps, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

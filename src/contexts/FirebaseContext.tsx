@@ -1,25 +1,18 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from 'react';
 import {
-  signOut,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
+  AuthErrorCodes,
   createUserWithEmailAndPassword,
-  signInWithPopup,
-  updateProfile,
-  updateEmail,
   FacebookAuthProvider,
   GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
   TwitterAuthProvider,
+  updateEmail,
+  updateProfile,
 } from 'firebase/auth';
-import {
-  collection,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  serverTimestamp,
-  DocumentData,
-} from 'firebase/firestore';
+import { collection, doc, DocumentData, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 // @types
 import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/auth';
 // Firebase
@@ -116,7 +109,15 @@ function AuthProvider({ children }: AuthProviderProps) {
   const twitterProvider = new TwitterAuthProvider();
 
   const login = (email: string, password: string) =>
-    signInWithEmailAndPassword(AUTH, email, password);
+    signInWithEmailAndPassword(AUTH, email, password)
+      .catch(error => {
+        switch (error.code) {
+          case AuthErrorCodes.INVALID_PASSWORD:
+            throw 'Invalid credentials';
+          default:
+            throw error.message || 'Unknown error';
+        }
+      });
 
   const loginWithGoogle = () => signInWithPopup(AUTH, googleProvider)
     .then(async (result) => {

@@ -1,7 +1,7 @@
 // next
 import { NextApiRequestCookies } from 'next/dist/server/api-utils';
 // config
-import { defaultSettings, cookiesKey } from '../config';
+import { cookiesKey, defaultSettings } from '../config';
 
 // ----------------------------------------------------------------------
 

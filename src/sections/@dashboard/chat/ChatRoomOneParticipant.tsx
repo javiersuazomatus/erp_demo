@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Avatar, Button, Divider, Collapse, Typography } from '@mui/material';
+import { Avatar, Box, Button, Collapse, Divider, Typography } from '@mui/material';
 // @types
 import { Participant } from '../../../@types/chat';
 // components

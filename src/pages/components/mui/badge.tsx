@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Container, Typography, Badge } from '@mui/material';
+import { Badge, Box, Container, Typography } from '@mui/material';
 import { Masonry } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';

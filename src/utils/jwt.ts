@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { verify, sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 //
 import axios from './axios';
 

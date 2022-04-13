@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import { useRef } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Stack, Avatar, Typography, Paper, CardHeader } from '@mui/material';
+import { Avatar, Box, CardHeader, Paper, Stack, Typography } from '@mui/material';
 // utils
 import { fDateTime } from '../../../../utils/formatTime';
 // _mock_

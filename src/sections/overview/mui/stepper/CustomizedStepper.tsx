@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import {
   Box,
-  Step,
-  Paper,
   Button,
-  Stepper,
-  StepLabel,
-  Typography,
+  Paper,
+  Step,
   StepConnector,
   stepConnectorClasses,
+  StepLabel,
+  Stepper,
+  Typography,
 } from '@mui/material';
 import { StepIconProps } from '@mui/material/StepIcon';
 // components

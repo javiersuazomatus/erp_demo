@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Card, Button, Typography, Box, Stack } from '@mui/material';
+import { Box, Button, Card, Stack, Typography } from '@mui/material';
 // components
 import Label from '../../components/Label';
 import Iconify from '../../components/Iconify';

@@ -1,15 +1,9 @@
 // form
-import { useFormContext, Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 // @mui
 import { FormHelperText } from '@mui/material';
 // type
-import {
-  UploadAvatar,
-  UploadMultiFile,
-  UploadSingleFile,
-  UploadProps,
-  UploadMultiFileProps,
-} from '../upload';
+import { UploadAvatar, UploadMultiFile, UploadMultiFileProps, UploadProps, UploadSingleFile } from '../upload';
 
 // ----------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import { useState } from 'react';
 // @mui
-import { Card, CardHeader, Box, TextField } from '@mui/material';
+import { Box, Card, CardHeader, TextField } from '@mui/material';
 // components
 import ReactApexChart, { BaseOptionChart } from '../../../../components/chart';
 

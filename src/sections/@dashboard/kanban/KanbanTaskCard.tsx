@@ -1,7 +1,7 @@
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 // @mui
-import { Paper, Typography, Box, Checkbox } from '@mui/material';
+import { Box, Checkbox, Paper, Typography } from '@mui/material';
 // @types
 import { KanbanCard } from '../../../@types/kanban';
 // components

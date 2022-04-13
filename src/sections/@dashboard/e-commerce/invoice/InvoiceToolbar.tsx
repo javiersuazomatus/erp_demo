@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Tooltip, IconButton, DialogActions, Button } from '@mui/material';
+import { Box, Button, DialogActions, IconButton, Tooltip } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // @types
 import { Invoice } from '../../../../@types/product';

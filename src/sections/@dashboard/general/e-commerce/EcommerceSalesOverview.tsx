@@ -1,7 +1,7 @@
 // @mui
-import { Card, CardHeader, Typography, Stack, LinearProgress } from '@mui/material';
+import { Card, CardHeader, LinearProgress, Stack, Typography } from '@mui/material';
 // utils
-import { fPercent, fCurrency } from '../../../../utils/formatNumber';
+import { fCurrency, fPercent } from '../../../../utils/formatNumber';
 // _mock_
 import { _ecommerceSalesOverview } from '../../../../_mock';
 

@@ -1,13 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Link,
-  Stack,
-  Container,
-  Typography,
-  Breadcrumbs as MBreadcrumbs,
-} from '@mui/material';
+import { Box, Breadcrumbs as MBreadcrumbs, Container, Link, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

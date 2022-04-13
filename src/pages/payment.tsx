@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Grid, Container, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // layouts
@@ -8,7 +8,7 @@ import Layout from '../layouts';
 // components
 import Page from '../components/Page';
 // sections
-import { PaymentSummary, PaymentMethods, PaymentBillingAddress } from '../sections/payment';
+import { PaymentBillingAddress, PaymentMethods, PaymentSummary } from '../sections/payment';
 
 // ----------------------------------------------------------------------
 

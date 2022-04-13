@@ -6,12 +6,7 @@ import Layout from '../../layouts';
 // components
 import Page from '../../components/Page';
 // sections
-import {
-  ComponentMUI,
-  ComponentHero,
-  ComponentExtra,
-  ComponentFoundation,
-} from '../../sections/overview';
+import { ComponentExtra, ComponentFoundation, ComponentHero, ComponentMUI } from '../../sections/overview';
 
 // ----------------------------------------------------------------------
 

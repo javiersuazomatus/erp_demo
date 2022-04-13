@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import MapGL, { Source, Layer, MapEvent, MapRef, LayerProps } from 'react-map-gl';
+import { useRef, useState } from 'react';
+import MapGL, { Layer, LayerProps, MapEvent, MapRef, Source } from 'react-map-gl';
 
 // ----------------------------------------------------------------------
 

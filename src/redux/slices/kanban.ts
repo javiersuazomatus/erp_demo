@@ -3,7 +3,7 @@ import omit from 'lodash/omit';
 // utils
 import axios from '../../utils/axios';
 // @types
-import { KanbanState, KanbanCard, KanbanColumn } from '../../@types/kanban';
+import { KanbanCard, KanbanColumn, KanbanState } from '../../@types/kanban';
 //
 import { dispatch } from '../store';
 

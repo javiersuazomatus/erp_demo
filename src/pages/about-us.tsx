@@ -6,7 +6,7 @@ import Layout from '../layouts';
 // components
 import Page from '../components/Page';
 // sections
-import { AboutHero, AboutWhat, AboutTeam, AboutVision, AboutTestimonials } from '../sections/about';
+import { AboutHero, AboutTeam, AboutTestimonials, AboutVision, AboutWhat } from '../sections/about';
 
 // ----------------------------------------------------------------------
 

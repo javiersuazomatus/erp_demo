@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 // @mui
-import { Box, Grid, Card, Stack, Typography } from '@mui/material';
+import { Box, Card, Grid, Stack, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
 import useAuth from '../../../../hooks/useAuth';
@@ -14,16 +14,10 @@ import { fData } from '../../../../utils/formatNumber';
 // _mock
 import { countries } from '../../../../_mock';
 // components
-import {
-  FormProvider,
-  RHFSwitch,
-  RHFSelect,
-  RHFTextField,
-  RHFUploadAvatar,
-} from '../../../../components/hook-form';
+import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../../components/hook-form';
 // lodash
-import pickBy from 'lodash/pickBy'
-import isEmpty from 'lodash/isEmpty'
+import pickBy from 'lodash/pickBy';
+import isEmpty from 'lodash/isEmpty';
 
 // ----------------------------------------------------------------------
 

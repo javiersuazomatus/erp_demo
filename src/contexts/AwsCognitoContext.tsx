@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useCallback, useEffect, useReducer } from 'react';
 import {
-  CognitoUser,
-  CognitoUserPool,
   AuthenticationDetails,
-  CognitoUserSession,
+  CognitoUser,
   CognitoUserAttribute,
+  CognitoUserPool,
+  CognitoUserSession,
 } from 'amazon-cognito-identity-js';
 // utils
 import axios from '../utils/axios';

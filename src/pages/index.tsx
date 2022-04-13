@@ -6,15 +6,15 @@ import Layout from '../layouts';
 import Page from '../components/Page';
 // sections
 import {
-  HomeHero,
-  HomeMinimal,
-  HomeDarkMode,
-  HomeLookingFor,
-  HomeColorPresets,
-  HomePricingPlans,
   HomeAdvertisement,
   HomeCleanInterfaces,
+  HomeColorPresets,
+  HomeDarkMode,
+  HomeHero,
   HomeHugePackElements,
+  HomeLookingFor,
+  HomeMinimal,
+  HomePricingPlans,
 } from '../sections/home';
 
 // ----------------------------------------------------------------------

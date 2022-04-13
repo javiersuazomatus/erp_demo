@@ -1,9 +1,8 @@
-import { capitalCase } from 'change-case';
 // next
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Stack, Link, Alert, Tooltip, Container, Typography } from '@mui/material';
+import { Alert, Box, Card, Container, Link, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
@@ -103,17 +102,6 @@ export default function Login() {
                 </Typography>
                 <Typography sx={{ color: 'text.secondary' }}>Enter your details below.</Typography>
               </Box>
-
-              <Tooltip title={capitalCase(method)} placement="right">
-                <>
-                  <Image
-                    disabledEffect
-                    alt={method}
-                    src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
-                    sx={{ width: 32, height: 32 }}
-                  />
-                </>
-              </Tooltip>
             </Stack>
 
             <Alert severity="info" sx={{ mb: 3 }}>

@@ -1,12 +1,5 @@
 // @mui
-import {
-  Paper,
-  Button,
-  DialogTitle,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-} from '@mui/material';
+import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper } from '@mui/material';
 // components
 import { DialogAnimate } from '../../../../../components/animate';
 //

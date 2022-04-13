@@ -1,12 +1,12 @@
 import isString from 'lodash/isString';
-import { m, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 // @mui
 import { alpha } from '@mui/material/styles';
-import { List, Stack, Button, IconButton, ListItemText, ListItem } from '@mui/material';
+import { Button, IconButton, List, ListItem, ListItemText, Stack } from '@mui/material';
 // utils
 import { fData } from '../../utils/formatNumber';
 // type
-import { UploadMultiFileProps, CustomFile } from './type';
+import { CustomFile, UploadMultiFileProps } from './type';
 //
 import Image from '../Image';
 import Iconify from '../Iconify';

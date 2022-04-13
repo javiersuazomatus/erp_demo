@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
 // utils
 import { fNumber } from '../../../../utils/formatNumber';

@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { List, Box, ListSubheader } from '@mui/material';
+import { Box, List, ListSubheader } from '@mui/material';
 // type
 import { NavSectionProps } from '../type';
 //

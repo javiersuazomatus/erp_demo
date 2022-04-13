@@ -1,7 +1,7 @@
 // @mui
 import Masonry from '@mui/lab/Masonry';
 import { styled } from '@mui/material/styles';
-import { Box, Card, CardHeader, Container, CardContent } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Container } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

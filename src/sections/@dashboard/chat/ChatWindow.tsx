@@ -8,10 +8,10 @@ import { Box, Divider } from '@mui/material';
 import { RootState, useDispatch, useSelector } from '../../../redux/store';
 import {
   addRecipients,
-  onSendMessage,
   getConversation,
   getParticipants,
   markConversationAsRead,
+  onSendMessage,
   resetActiveConversation,
 } from '../../../redux/slices/chat';
 // routes

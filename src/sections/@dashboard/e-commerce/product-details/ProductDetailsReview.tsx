@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // @mui
-import { Divider, Collapse } from '@mui/material';
+import { Collapse, Divider } from '@mui/material';
 //
 import ProductDetailsReviewForm from './ProductDetailsReviewForm';
 import ProductDetailsReviewList from './ProductDetailsReviewList';

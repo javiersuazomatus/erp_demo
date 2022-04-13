@@ -1,5 +1,5 @@
 // @mui
-import { Card, Stack, Typography, Divider } from '@mui/material';
+import { Card, Divider, Stack, Typography } from '@mui/material';
 // utils
 import { fNumber } from '../../../../utils/formatNumber';
 // @types

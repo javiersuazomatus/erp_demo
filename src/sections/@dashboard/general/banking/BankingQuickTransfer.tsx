@@ -1,25 +1,25 @@
 import Slider from 'react-slick';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
 import {
-  Box,
-  Card,
-  Link,
-  Stack,
-  Input,
-  Button,
   Avatar,
-  Dialog,
-  Tooltip,
-  TextField,
-  Typography,
+  Box,
+  Button,
+  Card,
   CardHeader,
-  InputProps,
-  DialogTitle,
-  DialogProps,
+  Dialog,
   DialogActions,
+  DialogProps,
+  DialogTitle,
+  Input,
+  InputProps,
+  Link,
   Slider as MuiSlider,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
 } from '@mui/material';
 // utils
 import { fCurrency } from '../../../../utils/formatNumber';

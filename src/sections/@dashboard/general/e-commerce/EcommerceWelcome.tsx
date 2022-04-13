@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Typography, Button, Card, CardContent } from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 //
 import { MotivationIllustration } from '../../../../assets';
 

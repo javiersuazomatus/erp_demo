@@ -1,14 +1,14 @@
 import { AnimatePresence, m } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Backdrop, Divider, Typography, Stack, FormControlLabel, Radio } from '@mui/material';
+import { Backdrop, Divider, FormControlLabel, Radio, Stack, Typography } from '@mui/material';
 // hooks
 import useSettings from '../../hooks/useSettings';
 // utils
 import cssStyles from '../../utils/cssStyles';
 // config
-import { NAVBAR, defaultSettings } from '../../config';
+import { defaultSettings, NAVBAR } from '../../config';
 //
 import Iconify from '../Iconify';
 import Scrollbar from '../Scrollbar';

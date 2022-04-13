@@ -1,5 +1,5 @@
 // @mui
-import { Card, CardHeader, Typography, Stack, LinearProgress, Box } from '@mui/material';
+import { Box, Card, CardHeader, LinearProgress, Stack, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../../utils/formatNumber';
 // _mock_

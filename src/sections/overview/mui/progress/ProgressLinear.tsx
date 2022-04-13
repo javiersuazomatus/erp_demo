@@ -1,5 +1,5 @@
 // @mui
-import { Box, Paper, LinearProgress } from '@mui/material';
+import { Box, LinearProgress, Paper } from '@mui/material';
 import { Masonry } from '@mui/lab';
 //
 import { Label } from '../../Block';

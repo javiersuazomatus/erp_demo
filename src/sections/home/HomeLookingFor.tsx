@@ -1,7 +1,7 @@
 import { m } from 'framer-motion';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Button, Container, Typography, Grid } from '@mui/material';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
 // components
 import Image from '../../components/Image';
 import Iconify from '../../components/Iconify';

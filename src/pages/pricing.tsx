@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Grid, Switch, Container, Typography, Stack } from '@mui/material';
+import { Box, Container, Grid, Stack, Switch, Typography } from '@mui/material';
 // _mock_
 import { _pricingPlans } from '../_mock';
 // layouts

@@ -1,5 +1,5 @@
 // @mui
-import { Box, Link, Card, CardHeader, Typography, Stack } from '@mui/material';
+import { Box, Card, CardHeader, Link, Stack, Typography } from '@mui/material';
 // utils
 import { fCurrency } from '../../../../utils/formatNumber';
 // _mock_

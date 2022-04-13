@@ -2,15 +2,15 @@ import { useState } from 'react';
 // @mui
 import {
   Box,
-  Table,
-  Switch,
   Checkbox,
-  TableRow,
+  FormControlLabel,
+  Switch,
+  Table,
   TableBody,
   TableCell,
   TableContainer,
   TablePagination,
-  FormControlLabel,
+  TableRow,
 } from '@mui/material';
 // components
 import Scrollbar from '../../../../../components/Scrollbar';

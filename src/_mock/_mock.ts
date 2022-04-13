@@ -5,10 +5,10 @@ import { email } from './email';
 import { boolean } from './boolean';
 import { company } from './company';
 import { phoneNumber } from './phoneNumber';
-import { fullAddress, country } from './address';
-import { firstName, lastName, fullName } from './name';
-import { title, sentence, description } from './text';
-import { price, rating, age, percent } from './number';
+import { country, fullAddress } from './address';
+import { firstName, fullName, lastName } from './name';
+import { description, sentence, title } from './text';
+import { age, percent, price, rating } from './number';
 
 // ----------------------------------------------------------------------
 

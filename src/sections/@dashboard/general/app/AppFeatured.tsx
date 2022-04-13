@@ -1,15 +1,15 @@
 import Slider from 'react-slick';
 import { m } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { CardContent, Box, Card, Typography, Link } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, Card, CardContent, Link, Typography } from '@mui/material';
 // _mock_
 import { _appFeatured } from '../../../../_mock';
 // components
 import Image from '../../../../components/Image';
 import { MotionContainer, varFade } from '../../../../components/animate';
-import { CarouselDots, CarouselArrows } from '../../../../components/carousel';
+import { CarouselArrows, CarouselDots } from '../../../../components/carousel';
 
 // ----------------------------------------------------------------------
 

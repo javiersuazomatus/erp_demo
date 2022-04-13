@@ -1,5 +1,5 @@
 // @mui
-import { Grid, Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 // hooks
 import useSettings from '../../hooks/useSettings';
 // layouts
@@ -8,15 +8,15 @@ import Layout from '../../layouts';
 import Page from '../../components/Page';
 // sections
 import {
-  BookingDetails,
   BookingBookedRoom,
-  BookingTotalIncomes,
-  BookingRoomAvailable,
-  BookingNewestBooking,
-  BookingWidgetSummary,
   BookingCheckInWidgets,
   BookingCustomerReviews,
+  BookingDetails,
+  BookingNewestBooking,
   BookingReservationStats,
+  BookingRoomAvailable,
+  BookingTotalIncomes,
+  BookingWidgetSummary,
 } from '../../sections/@dashboard/general/booking';
 // assets
 import { BookingIllustration, CheckInIllustration, CheckOutIllustration } from '../../assets';

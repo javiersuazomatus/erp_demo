@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Card, Typography, Box } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../../utils/formatNumber';
 

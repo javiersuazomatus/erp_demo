@@ -2,7 +2,7 @@ import isString from 'lodash/isString';
 // @mui
 import { LoadingButton } from '@mui/lab';
 import { alpha } from '@mui/material/styles';
-import { Box, Button, Container, Typography, DialogActions } from '@mui/material';
+import { Box, Button, Container, DialogActions, Typography } from '@mui/material';
 // @types
 import { NewPostFormValues } from '../../../@types/blog';
 // components

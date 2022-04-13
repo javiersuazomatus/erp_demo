@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Container, CardContent } from '@mui/material';
+import { Box, Card, CardContent, Container } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

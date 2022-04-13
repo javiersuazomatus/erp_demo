@@ -1,5 +1,5 @@
 // @mui
-import { Container, Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks

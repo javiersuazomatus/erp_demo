@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, IconButton, Typography, CardContent } from '@mui/material';
+import { Box, Card, CardContent, IconButton, Typography } from '@mui/material';
 // utils
 import { fDate } from '../../../../utils/formatTime';
 import cssStyles from '../../../../utils/cssStyles';

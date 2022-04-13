@@ -1,6 +1,6 @@
 import { m } from 'framer-motion';
 // @mui
-import { Link, Paper, Typography, CardActionArea } from '@mui/material';
+import { CardActionArea, Link, Paper, Typography } from '@mui/material';
 // components
 import Image from '../../components/Image';
 import { varHover, varTranHover } from '../../components/animate';

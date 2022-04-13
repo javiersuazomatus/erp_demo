@@ -5,32 +5,17 @@ import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
 // form
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 // @mui
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
-import {
-  Grid,
-  Card,
-  Chip,
-  Stack,
-  Button,
-  TextField,
-  Typography,
-  Autocomplete,
-} from '@mui/material';
+import { Autocomplete, Button, Card, Chip, Grid, Stack, TextField, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // @types
 import { NewPostFormValues } from '../../../@types/blog';
 //components
-import {
-  RHFSwitch,
-  RHFEditor,
-  FormProvider,
-  RHFTextField,
-  RHFUploadSingleFile,
-} from '../../../components/hook-form';
+import { FormProvider, RHFEditor, RHFSwitch, RHFTextField, RHFUploadSingleFile } from '../../../components/hook-form';
 //
 import BlogNewPostPreview from './BlogNewPostPreview';
 

@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Switch, Divider, Typography, Stack } from '@mui/material';
+import { Divider, Stack, Switch, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Label from '../../components/Label';

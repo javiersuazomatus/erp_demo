@@ -6,7 +6,7 @@ import match from 'autosuggest-highlight/match';
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Typography, Autocomplete, InputAdornment, Popper, PopperProps } from '@mui/material';
+import { Autocomplete, InputAdornment, Link, Popper, PopperProps, Typography } from '@mui/material';
 // hooks
 import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 // utils

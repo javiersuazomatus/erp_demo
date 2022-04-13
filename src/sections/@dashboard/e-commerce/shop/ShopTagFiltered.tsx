@@ -1,7 +1,7 @@
 import { sentenceCase } from 'change-case';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import { Chip, Typography, Stack, Button } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Button, Chip, Stack, Typography } from '@mui/material';
 // utils
 import getColorName from '../../../../utils/getColorName';
 // @type

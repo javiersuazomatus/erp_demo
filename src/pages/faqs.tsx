@@ -1,12 +1,12 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Grid, Container, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 // layouts
 import Layout from '../layouts';
 // components
 import Page from '../components/Page';
 // sections
-import { FaqsHero, FaqsCategory, FaqsList, FaqsForm } from '../sections/faqs';
+import { FaqsCategory, FaqsForm, FaqsHero, FaqsList } from '../sections/faqs';
 
 // ----------------------------------------------------------------------
 

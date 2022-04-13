@@ -2,8 +2,8 @@ import 'emoji-mart/css/emoji-mart.css';
 import { BaseEmoji, Picker } from 'emoji-mart';
 import { useState } from 'react';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import { Box, IconButton, ClickAwayListener, BoxProps } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Box, BoxProps, ClickAwayListener, IconButton } from '@mui/material';
 // utils
 import cssStyles from '../utils/cssStyles';
 //

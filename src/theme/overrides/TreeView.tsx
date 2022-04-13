@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material/styles';
 //
-import { TreeViewCollapseIcon, TreeViewExpandIcon, TreeViewEndIcon } from './CustomIcons';
+import { TreeViewCollapseIcon, TreeViewEndIcon, TreeViewExpandIcon } from './CustomIcons';
 
 // ----------------------------------------------------------------------
 

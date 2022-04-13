@@ -1,15 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  List,
-  Avatar,
-  Button,
-  Collapse,
-  ListItemText,
-  ListItemAvatar,
-  ListItemButton,
-} from '@mui/material';
+import { Avatar, Box, Button, Collapse, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 // @types
 import { Participant as TParticipant } from '../../../@types/chat';
 // components

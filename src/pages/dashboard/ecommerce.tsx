@@ -9,15 +9,15 @@ import Layout from '../../layouts';
 import Page from '../../components/Page';
 // sections
 import {
-  EcommerceWelcome,
-  EcommerceNewProducts,
-  EcommerceYearlySales,
   EcommerceBestSalesman,
-  EcommerceSaleByGender,
-  EcommerceWidgetSummary,
-  EcommerceSalesOverview,
-  EcommerceLatestProducts,
   EcommerceCurrentBalance,
+  EcommerceLatestProducts,
+  EcommerceNewProducts,
+  EcommerceSaleByGender,
+  EcommerceSalesOverview,
+  EcommerceWelcome,
+  EcommerceWidgetSummary,
+  EcommerceYearlySales,
 } from '../../sections/@dashboard/general/e-commerce';
 
 // ----------------------------------------------------------------------

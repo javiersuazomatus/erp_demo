@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Divider, Box } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../redux/store';
 import { getMails } from '../../../redux/slices/mail';

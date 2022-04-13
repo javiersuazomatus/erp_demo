@@ -1,13 +1,6 @@
 // @mui
-import { Card, Typography, CardHeader, CardContent } from '@mui/material';
-import {
-  Timeline,
-  TimelineDot,
-  TimelineItem,
-  TimelineContent,
-  TimelineSeparator,
-  TimelineConnector,
-} from '@mui/lab';
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineSeparator } from '@mui/lab';
 // utils
 import { fDateTime } from '../../../../utils/formatTime';
 // _mock_

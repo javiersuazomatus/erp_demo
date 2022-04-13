@@ -34,7 +34,7 @@ import { ReactElement, ReactNode } from 'react';
 // next
 import { NextPage } from 'next';
 import Head from 'next/head';
-import App, { AppProps, AppContext } from 'next/app';
+import App, { AppContext, AppProps } from 'next/app';
 //
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -42,7 +42,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 // redux
-import { store, persistor } from '../redux/store';
+import { persistor, store } from '../redux/store';
 // utils
 import { getSettings } from '../utils/settings';
 import { SettingsValueProps } from '../components/settings/type';
@@ -63,7 +63,6 @@ import MotionLazyContainer from '../components/animate/MotionLazyContainer';
 
 // Check our docs
 // https://docs-minimals.vercel.app/authentication/ts-version
-
 // import { AuthProvider } from '../contexts/JWTContext';
 // import { AuthProvider } from '../contexts/AwsCognitoContext';
 // import { AuthProvider } from '../contexts/Auth0Context';

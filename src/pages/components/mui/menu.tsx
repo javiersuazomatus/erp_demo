@@ -1,17 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  List,
-  Menu,
-  Button,
-  MenuItem,
-  Container,
-  IconButton,
-  ListItemText,
-  ListItemButton,
-} from '@mui/material';
+import { Box, Button, Container, IconButton, List, ListItemButton, ListItemText, Menu, MenuItem } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

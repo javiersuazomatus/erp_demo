@@ -2,14 +2,14 @@ import { capitalCase } from 'change-case';
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Tab, Box, Card, Tabs, Container } from '@mui/material';
+import { Box, Card, Container, Tab, Tabs } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
 import useAuth from '../../../hooks/useAuth';
 import useSettings from '../../../hooks/useSettings';
 // _mock_
-import { _userAbout, _userFeeds, _userFriends, _userGallery, _userFollowers } from '../../../_mock';
+import { _userAbout, _userFeeds, _userFollowers, _userFriends, _userGallery } from '../../../_mock';
 // layouts
 import Layout from '../../../layouts';
 // components
@@ -20,9 +20,9 @@ import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import {
   Profile,
   ProfileCover,
+  ProfileFollowers,
   ProfileFriends,
   ProfileGallery,
-  ProfileFollowers,
 } from '../../../sections/@dashboard/user/profile';
 
 // ----------------------------------------------------------------------

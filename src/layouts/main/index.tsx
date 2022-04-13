@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Box, Link, Container, Typography, Stack } from '@mui/material';
+import { Box, Container, Link, Stack, Typography } from '@mui/material';
 // components
 import Logo from '../../components/Logo';
 //

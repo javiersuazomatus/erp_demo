@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Checkbox, FormGroup, Container, FormControl, FormControlLabel } from '@mui/material';
+import { Box, Checkbox, Container, FormControl, FormControlLabel, FormGroup } from '@mui/material';
 import { Masonry } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';

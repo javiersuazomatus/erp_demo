@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Typography, Stack, MenuItem, IconButton } from '@mui/material';
+import { Box, IconButton, MenuItem, Stack, Typography } from '@mui/material';
 // utils
 import { fCurrency } from '../../../../utils/formatNumber';
 // _mock_

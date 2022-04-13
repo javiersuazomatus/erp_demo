@@ -1,6 +1,6 @@
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import { Stack, Box, Paper, Container, Typography, PaperProps } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Box, Container, Paper, PaperProps, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

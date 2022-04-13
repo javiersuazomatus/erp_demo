@@ -3,7 +3,7 @@ import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Avatar, TextField, Typography, Autocomplete, Chip } from '@mui/material';
+import { Autocomplete, Avatar, Box, Chip, TextField, Typography } from '@mui/material';
 // @types
 import { Participant } from '../../../@types/chat';
 // components

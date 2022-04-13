@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // @mui
-import { OutlinedInput, Paper, Button, ClickAwayListener } from '@mui/material';
+import { Button, ClickAwayListener, OutlinedInput, Paper } from '@mui/material';
 // redux
 import { useDispatch } from '../../../redux/store';
 import { createColumn } from '../../../redux/slices/kanban';

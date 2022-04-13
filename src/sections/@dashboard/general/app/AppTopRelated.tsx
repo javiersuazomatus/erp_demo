@@ -1,6 +1,6 @@
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Card, Rating, CardHeader, Typography, Stack } from '@mui/material';
+import { Box, Card, CardHeader, Rating, Stack, Typography } from '@mui/material';
 // utils
 import { fCurrency, fShortenNumber } from '../../../../utils/formatNumber';
 // _mock_

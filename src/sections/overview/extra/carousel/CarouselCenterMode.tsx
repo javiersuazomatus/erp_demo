@@ -1,8 +1,8 @@
 import Slider from 'react-slick';
 import { useRef } from 'react';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Paper, Link, CardContent } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, CardContent, Link, Paper } from '@mui/material';
 // _mock_
 import { _carouselsExample } from '../../../../_mock';
 // components

@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Tab, Card, Grid, Divider, Container, Typography } from '@mui/material';
+import { Box, Card, Container, Divider, Grid, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 // redux
 import { useDispatch, useSelector } from '../../../../redux/store';
-import { getProduct, addCart, onGotoStep } from '../../../../redux/slices/product';
+import { addCart, getProduct, onGotoStep } from '../../../../redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // @types
@@ -25,9 +25,9 @@ import { SkeletonProduct } from '../../../../components/skeleton';
 import HeaderBreadcrumbs from '../../../../components/HeaderBreadcrumbs';
 // sections
 import {
-  ProductDetailsSummary,
-  ProductDetailsReview,
   ProductDetailsCarousel,
+  ProductDetailsReview,
+  ProductDetailsSummary,
 } from '../../../../sections/@dashboard/e-commerce/product-details';
 import CartWidget from '../../../../sections/@dashboard/e-commerce/CartWidget';
 

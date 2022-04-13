@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import sum from 'lodash/sum';
-import { Page, View, Text, Image, Document } from '@react-pdf/renderer';
+import { Document, Image, Page, Text, View } from '@react-pdf/renderer';
 // utils
 import { fCurrency } from '../../../../utils/formatNumber';
 // @types

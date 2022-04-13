@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // @mui
-import { Box, Grid, Card, Button, Avatar, Typography } from '@mui/material'; // @types
+import { Avatar, Box, Button, Card, Grid, Typography } from '@mui/material'; // @types
 // @types
 import { Follower } from '../../../../@types/user';
 // components

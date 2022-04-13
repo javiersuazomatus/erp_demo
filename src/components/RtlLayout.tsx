@@ -1,4 +1,4 @@
-import { useEffect, ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 // rtl
 import rtlPlugin from 'stylis-plugin-rtl';
 // emotion

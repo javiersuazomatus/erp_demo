@@ -1,11 +1,11 @@
-import MapGL, { Source, Layer, LayerProps } from 'react-map-gl';
-import { useEffect, useState, useMemo } from 'react';
+import MapGL, { Layer, LayerProps, Source } from 'react-map-gl';
+import { useEffect, useMemo, useState } from 'react';
 // components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../../components/map';
 //
 import ControlPanel from './ControlPanel';

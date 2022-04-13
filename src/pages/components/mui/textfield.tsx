@@ -2,7 +2,7 @@ import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Container, Tab } from '@mui/material';
-import { TabPanel, TabContext, TabList } from '@mui/lab';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

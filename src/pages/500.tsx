@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Button, Typography, Container } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 // layouts
 import Layout from '../layouts';
 // components

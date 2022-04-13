@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Button, Popover, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Popover, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

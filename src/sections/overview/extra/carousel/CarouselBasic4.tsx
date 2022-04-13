@@ -1,8 +1,8 @@
 import Slider from 'react-slick';
 import { useRef } from 'react';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Card, Typography, IconButton } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, Card, IconButton, Typography } from '@mui/material';
 // utils
 import cssStyles from '../../../../utils/cssStyles';
 // _mock_

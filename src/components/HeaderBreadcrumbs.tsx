@@ -1,7 +1,7 @@
 import isString from 'lodash/isString';
 import { ReactNode } from 'react';
 // @mui
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 //
 import Breadcrumbs, { Props as BreadcrumbsProps } from './Breadcrumbs';
 

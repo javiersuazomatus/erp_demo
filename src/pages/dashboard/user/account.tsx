@@ -1,13 +1,13 @@
 import { capitalCase } from 'change-case';
 import { useState } from 'react';
 // @mui
-import { Container, Tab, Box, Tabs } from '@mui/material';
+import { Box, Container, Tab, Tabs } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
 import useSettings from '../../../hooks/useSettings';
 // _mock_
-import { _userPayment, _userAddressBook, _userInvoices, _userAbout } from '../../../_mock';
+import { _userAbout, _userAddressBook, _userInvoices, _userPayment } from '../../../_mock';
 // layouts
 import Layout from '../../../layouts';
 // components
@@ -16,11 +16,11 @@ import Iconify from '../../../components/Iconify';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
 import {
-  AccountGeneral,
   AccountBilling,
-  AccountSocialLinks,
-  AccountNotifications,
   AccountChangePassword,
+  AccountGeneral,
+  AccountNotifications,
+  AccountSocialLinks,
 } from '../../../sections/@dashboard/user/account';
 
 // ----------------------------------------------------------------------

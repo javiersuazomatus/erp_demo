@@ -4,21 +4,12 @@ import { useCallback, useEffect, useMemo } from 'react';
 // next
 import { useRouter } from 'next/router';
 // form
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 // @mui
 import { styled } from '@mui/material/styles';
 import { LoadingButton } from '@mui/lab';
-import {
-  Card,
-  Chip,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-  Autocomplete,
-  InputAdornment,
-} from '@mui/material';
+import { Autocomplete, Card, Chip, Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // @types
@@ -26,11 +17,11 @@ import { Product } from '../../../@types/product';
 // components
 import {
   FormProvider,
-  RHFSwitch,
-  RHFSelect,
   RHFEditor,
-  RHFTextField,
   RHFRadioGroup,
+  RHFSelect,
+  RHFSwitch,
+  RHFTextField,
   RHFUploadMultiFile,
 } from '../../../components/hook-form';
 

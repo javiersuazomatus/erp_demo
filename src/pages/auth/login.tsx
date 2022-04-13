@@ -1,9 +1,8 @@
-import { capitalCase } from 'change-case';
 // next
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Stack, Link, Tooltip, Container, Typography } from '@mui/material';
+import { Box, Card, Container, Link, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // hooks
@@ -92,7 +91,7 @@ export default function Login() {
                 Hi, Welcome Back
               </Typography>
               <Image
-                src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_login.png"
+                src="https://minimals.cc/assets/illustrations/illustration_login.png"
                 alt="login"
               />
             </SectionStyle>
@@ -109,17 +108,6 @@ export default function Login() {
                     Enter your details below.
                   </Typography>
                 </Box>
-
-                <Tooltip title={capitalCase(method)} placement="right">
-                  <>
-                    <Image
-                      disabledEffect
-                      alt={method}
-                      src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
-                      sx={{ width: 32, height: 32 }}
-                    />
-                  </>
-                </Tooltip>
               </Stack>
 
               <AuthFirebaseSocials />

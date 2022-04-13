@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Grid, RadioGroup, CardActionArea } from '@mui/material';
+import { CardActionArea, Grid, RadioGroup } from '@mui/material';
 // hooks
 import useSettings from '../../hooks/useSettings';
 //

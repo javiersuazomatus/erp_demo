@@ -4,11 +4,11 @@ import { useSnackbar } from 'notistack';
 // next
 import { useRouter } from 'next/router';
 // form
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel } from '@mui/material';
+import { Box, Card, FormControlLabel, Grid, Stack, Switch, Typography } from '@mui/material';
 // utils
 import { fData } from '../../../utils/formatNumber';
 // routes
@@ -19,13 +19,7 @@ import { UserManager } from '../../../@types/user';
 import { countries } from '../../../_mock';
 // components
 import Label from '../../../components/Label';
-import {
-  FormProvider,
-  RHFSelect,
-  RHFSwitch,
-  RHFTextField,
-  RHFUploadAvatar,
-} from '../../../components/hook-form';
+import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../components/hook-form';
 
 // ----------------------------------------------------------------------
 

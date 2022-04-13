@@ -1,5 +1,5 @@
 // @mui
-import { Box, Radio, RadioGroup, BoxProps, RadioGroupProps } from '@mui/material';
+import { Box, BoxProps, Radio, RadioGroup, RadioGroupProps } from '@mui/material';
 // components
 import Iconify from '../Iconify';
 

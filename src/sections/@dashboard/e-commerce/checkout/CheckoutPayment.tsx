@@ -3,18 +3,13 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 // @mui
-import { Grid, Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // @types
-import { CardOption, PaymentOption, DeliveryOption } from '../../../../@types/product';
+import { CardOption, DeliveryOption, PaymentOption } from '../../../../@types/product';
 // redux
 import { useDispatch, useSelector } from '../../../../redux/store';
-import {
-  onGotoStep,
-  onBackStep,
-  onNextStep,
-  applyShipping,
-} from '../../../../redux/slices/product';
+import { applyShipping, onBackStep, onGotoStep, onNextStep } from '../../../../redux/slices/product';
 // components
 import Iconify from '../../../../components/Iconify';
 import { FormProvider } from '../../../../components/hook-form';

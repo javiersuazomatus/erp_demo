@@ -3,9 +3,9 @@ import NextLink from 'next/link';
 // @mui
 import Masonry from '@mui/lab/Masonry';
 import { alpha, Theme } from '@mui/material/styles';
-import { Link, List, Paper, ListItem, Typography, Divider, Stack } from '@mui/material';
+import { Divider, Link, List, ListItem, Paper, Stack, Typography } from '@mui/material';
 // @types
-import { ParentItemProps, MegaMenuItemProps } from './type';
+import { MegaMenuItemProps, ParentItemProps } from './type';
 // config
 import { NAVBAR } from '../../config';
 // components

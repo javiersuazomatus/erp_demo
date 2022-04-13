@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode } from 'react';
 // @mui
 import { Variant } from '@mui/material/styles/createTypography';
-import { Typography, TypographyProps, LinkProps, Link } from '@mui/material';
+import { Link, LinkProps, Typography, TypographyProps } from '@mui/material';
 // utils
 import GetFontValue from '../utils/getFontValue';
 

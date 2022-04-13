@@ -1,5 +1,5 @@
 // @mui
-import { Grid, Container, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 // hooks
 import useSettings from '../../hooks/useSettings';
 // layouts
@@ -8,15 +8,15 @@ import Layout from '../../layouts';
 import Page from '../../components/Page';
 // sections
 import {
-  AnalyticsTasks,
+  AnalyticsConversionRates,
+  AnalyticsCurrentSubject,
+  AnalyticsCurrentVisits,
   AnalyticsNewsUpdate,
   AnalyticsOrderTimeline,
-  AnalyticsCurrentVisits,
-  AnalyticsWebsiteVisits,
+  AnalyticsTasks,
   AnalyticsTrafficBySite,
+  AnalyticsWebsiteVisits,
   AnalyticsWidgetSummary,
-  AnalyticsCurrentSubject,
-  AnalyticsConversionRates,
 } from '../../sections/@dashboard/general/analytics';
 
 // ----------------------------------------------------------------------

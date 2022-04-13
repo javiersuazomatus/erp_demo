@@ -1,20 +1,20 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 // @mui
 import {
-  Box,
-  Link,
-  Card,
-  Stack,
-  Paper,
   Avatar,
+  AvatarGroup,
+  Box,
+  Card,
+  CardHeader,
   Checkbox,
+  FormControlLabel,
+  IconButton,
+  InputAdornment,
+  Link,
+  Paper,
+  Stack,
   TextField,
   Typography,
-  CardHeader,
-  IconButton,
-  AvatarGroup,
-  InputAdornment,
-  FormControlLabel,
 } from '@mui/material';
 // @types
 import { UserPost } from '../../../../@types/user';

@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Tooltip, IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 // components
 import Iconify from '../../../components/Iconify';
 

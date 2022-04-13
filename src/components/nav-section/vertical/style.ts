@@ -1,13 +1,7 @@
 import { ReactNode } from 'react';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import {
-  LinkProps,
-  ListItemText,
-  ListItemButton,
-  ListItemIcon,
-  ListItemButtonProps,
-} from '@mui/material';
+import { LinkProps, ListItemButton, ListItemButtonProps, ListItemIcon, ListItemText } from '@mui/material';
 // config
 import { ICON, NAVBAR } from '../../../config';
 

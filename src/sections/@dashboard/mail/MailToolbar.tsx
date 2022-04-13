@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Tooltip, Checkbox, Typography, IconButton, InputAdornment } from '@mui/material';
+import { Box, Checkbox, IconButton, InputAdornment, Tooltip, Typography } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components

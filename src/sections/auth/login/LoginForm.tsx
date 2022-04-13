@@ -6,7 +6,7 @@ import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 // @mui
-import { Link, Stack, Alert, IconButton, InputAdornment } from '@mui/material';
+import { Alert, IconButton, InputAdornment, Link, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // routes
 import { PATH_AUTH } from '../../../routes/paths';
@@ -15,7 +15,7 @@ import useAuth from '../../../hooks/useAuth';
 import useIsMountedRef from '../../../hooks/useIsMountedRef';
 // components
 import Iconify from '../../../components/Iconify';
-import { FormProvider, RHFTextField, RHFCheckbox } from '../../../components/hook-form';
+import { FormProvider, RHFCheckbox, RHFTextField } from '../../../components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -62,9 +62,9 @@ export default function LoginForm() {
     } catch (error) {
       console.error(error);
       reset();
-      if (isMountedRef.current) {
-        setError('afterSubmit', error);
-      }
+      setError('afterSubmit', {
+        message: error
+      });
     }
   };
 

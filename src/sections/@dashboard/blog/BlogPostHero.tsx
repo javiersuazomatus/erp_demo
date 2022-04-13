@@ -1,6 +1,6 @@
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Avatar, SpeedDial, Typography, SpeedDialAction } from '@mui/material';
+import { Avatar, Box, SpeedDial, SpeedDialAction, Typography } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // utils

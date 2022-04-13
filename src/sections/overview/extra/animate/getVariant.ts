@@ -1,14 +1,14 @@
 import {
-  varFade,
-  varZoom,
-  varFlip,
-  varSlide,
-  varScale,
-  varBgPan,
-  varBounce,
-  varRotate,
   varBgColor,
   varBgKenburns,
+  varBgPan,
+  varBounce,
+  varFade,
+  varFlip,
+  varRotate,
+  varScale,
+  varSlide,
+  varZoom,
 } from '../../../../components/animate';
 
 // ----------------------------------------------------------------------

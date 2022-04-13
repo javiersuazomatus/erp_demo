@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Link, Tooltip, Typography, IconButton } from '@mui/material';
+import { Box, IconButton, Link, Tooltip, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks

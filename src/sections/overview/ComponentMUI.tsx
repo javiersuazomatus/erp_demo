@@ -1,5 +1,5 @@
 // @mui
-import { Typography, Grid, Box, Link } from '@mui/material';
+import { Box, Grid, Link, Typography } from '@mui/material';
 //
 import ComponentCard from './ComponentCard';
 import { MUI_LIST } from './PathConfig';

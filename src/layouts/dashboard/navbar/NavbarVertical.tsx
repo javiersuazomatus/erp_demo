@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Stack, Drawer } from '@mui/material';
+import { Box, Drawer, Stack } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 import useCollapseDrawer from '../../../hooks/useCollapseDrawer';

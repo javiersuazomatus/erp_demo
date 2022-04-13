@@ -1,7 +1,7 @@
 import { m } from 'framer-motion';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Grid, Button, Container, Typography, LinearProgress } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, Button, Container, Grid, LinearProgress, Typography } from '@mui/material';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // utils

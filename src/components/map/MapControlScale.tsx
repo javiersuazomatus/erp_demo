@@ -1,7 +1,7 @@
 import { ScaleControl } from 'react-map-gl';
 import { ScaleControlProps } from 'react-map-gl/src/components/scale-control';
 // @mui
-import { styled, Theme, SxProps } from '@mui/material/styles';
+import { styled, SxProps, Theme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 

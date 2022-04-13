@@ -1,7 +1,7 @@
 import { IconifyIcon } from '@iconify/react';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Typography, Box, BoxProps, IconButton } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, BoxProps, IconButton, Typography } from '@mui/material';
 //
 import Iconify from '../Iconify';
 

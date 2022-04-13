@@ -1,16 +1,16 @@
 import { ReactElement } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Paper, Container, Typography } from '@mui/material';
+import { Box, Container, Paper, Typography } from '@mui/material';
 import {
   Masonry,
   Timeline,
+  TimelineConnector,
+  TimelineContent,
   TimelineDot,
   TimelineItem,
-  TimelineContent,
-  TimelineSeparator,
-  TimelineConnector,
   TimelineOppositeContent,
+  TimelineSeparator,
 } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';

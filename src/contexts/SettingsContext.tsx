@@ -1,18 +1,18 @@
 import Cookies from 'js-cookie';
-import { ReactNode, createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 // utils
 import getColorPresets, { colorPresets, defaultPreset } from '../utils/getColorPresets';
 // @type
 import {
-  ThemeMode,
-  ThemeLayout,
-  ThemeDirection,
-  ThemeColorPresets,
   SettingsContextProps,
   SettingsValueProps,
+  ThemeColorPresets,
+  ThemeDirection,
+  ThemeLayout,
+  ThemeMode,
 } from '../components/settings/type';
 // config
-import { defaultSettings, cookiesKey, cookiesExpires } from '../config';
+import { cookiesExpires, cookiesKey, defaultSettings } from '../config';
 
 // ----------------------------------------------------------------------
 

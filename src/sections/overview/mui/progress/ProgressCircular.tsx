@@ -1,5 +1,5 @@
 // @mui
-import { Paper, CircularProgress } from '@mui/material';
+import { CircularProgress, Paper } from '@mui/material';
 import { Masonry } from '@mui/lab';
 //
 import { Label } from '../../Block';

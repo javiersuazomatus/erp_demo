@@ -6,7 +6,7 @@ import { Box, Link, ListItemText } from '@mui/material';
 import { NavItemProps } from '../type';
 //
 import Iconify from '../../Iconify';
-import { ListItemStyle, ListItemTextStyle, ListItemIconStyle } from './style';
+import { ListItemIconStyle, ListItemStyle, ListItemTextStyle } from './style';
 import { isExternalLink } from '..';
 
 // ----------------------------------------------------------------------

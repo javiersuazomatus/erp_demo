@@ -3,10 +3,10 @@ import orderBy from 'lodash/orderBy';
 // form
 import { useForm } from 'react-hook-form';
 // @mui
-import { Container, Typography, Stack } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../redux/store';
-import { getProducts, filterProducts } from '../../../redux/slices/product';
+import { filterProducts, getProducts } from '../../../redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // @types
@@ -21,11 +21,11 @@ import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import { FormProvider } from '../../../components/hook-form';
 // sections
 import {
-  ShopTagFiltered,
-  ShopProductSort,
-  ShopProductList,
   ShopFilterSidebar,
+  ShopProductList,
   ShopProductSearch,
+  ShopProductSort,
+  ShopTagFiltered,
 } from '../../../sections/@dashboard/e-commerce/shop';
 import CartWidget from '../../../sections/@dashboard/e-commerce/CartWidget';
 

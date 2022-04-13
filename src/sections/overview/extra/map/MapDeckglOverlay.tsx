@@ -4,10 +4,10 @@ import DeckGL, { ArcLayer } from 'deck.gl';
 import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
 // components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../components/map';
 
 // ----------------------------------------------------------------------

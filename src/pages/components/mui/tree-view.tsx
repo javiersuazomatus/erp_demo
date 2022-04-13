@@ -1,7 +1,7 @@
 // @mui
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Container } from '@mui/material';
-import { TreeView, TreeItem, TreeItemProps, treeItemClasses } from '@mui/lab';
+import { TreeItem, treeItemClasses, TreeItemProps, TreeView } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

@@ -1,15 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Stack,
-  Container,
-  Accordion,
-  Typography,
-  AccordionSummary,
-  AccordionDetails,
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Container, Stack, Typography } from '@mui/material';
 // _mock_
 import { _accordions } from '../../../_mock';
 // layouts

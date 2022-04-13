@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 // @mui
-import { styled, alpha, Theme } from '@mui/material/styles';
-import { Box, Container, Stack, Paper, CardHeader, SxProps } from '@mui/material';
+import { alpha, styled, Theme } from '@mui/material/styles';
+import { Box, CardHeader, Container, Paper, Stack, SxProps } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

@@ -1,4 +1,4 @@
-import { useSnackbar, VariantType, SnackbarOrigin } from 'notistack';
+import { SnackbarOrigin, useSnackbar, VariantType } from 'notistack';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Button, Container } from '@mui/material';

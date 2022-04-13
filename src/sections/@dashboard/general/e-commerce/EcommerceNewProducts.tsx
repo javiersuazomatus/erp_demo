@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Card, Button, CardContent, Typography } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 // _mock_
 import { _ecommerceNewProducts } from '../../../../_mock';
 // components

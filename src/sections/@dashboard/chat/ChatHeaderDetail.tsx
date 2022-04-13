@@ -1,7 +1,7 @@
 import { capitalCase } from 'change-case';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Link, Avatar, Typography, AvatarGroup, IconButton } from '@mui/material';
+import { Avatar, AvatarGroup, Box, IconButton, Link, Typography } from '@mui/material';
 // utils
 import { fToNow } from '../../../utils/formatTime';
 // @types

@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Card, CardHeader, Typography, Stack, StackProps } from '@mui/material';
+import { Card, CardHeader, Stack, StackProps, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../../utils/formatNumber';
 // _mock_

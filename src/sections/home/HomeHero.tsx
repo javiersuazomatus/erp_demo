@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Button, Box, Link, Container, Typography, Stack, StackProps } from '@mui/material';
+import { Box, Button, Container, Link, Stack, StackProps, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // components

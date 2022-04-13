@@ -1,13 +1,13 @@
 import Slider from 'react-slick';
 import { useRef } from 'react';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 // _mock_
 import { _carouselsExample } from '../../../../_mock';
 // components
 import Image from '../../../../components/Image';
-import { CarouselDots, CarouselArrows } from '../../../../components/carousel';
+import { CarouselArrows, CarouselDots } from '../../../../components/carousel';
 
 // ----------------------------------------------------------------------
 

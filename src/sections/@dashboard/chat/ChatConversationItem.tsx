@@ -1,7 +1,7 @@
 import { formatDistanceToNowStrict } from 'date-fns';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Avatar, ListItemButton, ListItemText, ListItemAvatar } from '@mui/material';
+import { Avatar, Box, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 // @types
 import { Conversation } from '../../../@types/chat';
 //

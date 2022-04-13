@@ -3,7 +3,7 @@ import { useState } from 'react';
 // next
 import NextLink from 'next/link';
 // @mui
-import { MenuItem, IconButton } from '@mui/material';
+import { IconButton, MenuItem } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // components

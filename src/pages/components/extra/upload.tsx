@@ -1,16 +1,16 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
 import {
   Box,
   Card,
+  CardContent,
+  CardHeader,
+  Container,
+  FormControlLabel,
   Stack,
   Switch,
-  Container,
-  CardHeader,
   Typography,
-  CardContent,
-  FormControlLabel,
 } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';

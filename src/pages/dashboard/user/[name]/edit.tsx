@@ -1,4 +1,4 @@
-import { paramCase, capitalCase } from 'change-case';
+import { capitalCase, paramCase } from 'change-case';
 // next
 import { useRouter } from 'next/router';
 // @mui

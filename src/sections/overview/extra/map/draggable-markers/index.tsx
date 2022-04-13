@@ -1,13 +1,13 @@
 import MapGL from 'react-map-gl';
-import { useState, useCallback } from 'react';
-import { Coordinate, CallbackEvent } from 'react-map-gl/src/components/draggable-control';
+import { useCallback, useState } from 'react';
+import { CallbackEvent, Coordinate } from 'react-map-gl/src/components/draggable-control';
 // components
 import {
-  MapControlMarker,
-  MapControlScale,
-  MapControlGeolocate,
-  MapControlNavigation,
   MapControlFullscreen,
+  MapControlGeolocate,
+  MapControlMarker,
+  MapControlNavigation,
+  MapControlScale,
 } from '../../../../../components/map';
 //
 import ControlPanel from './ControlPanel';

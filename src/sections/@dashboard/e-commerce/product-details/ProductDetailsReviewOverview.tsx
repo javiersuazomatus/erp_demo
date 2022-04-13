@@ -1,7 +1,7 @@
 import sumBy from 'lodash/sumBy';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Grid, Rating, Button, Typography, LinearProgress, Stack, Link } from '@mui/material';
+import { Button, Grid, LinearProgress, Link, Rating, Stack, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../../utils/formatNumber';
 // @types

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Grid, Step, Stepper, Container, StepLabel, StepConnector } from '@mui/material';
+import { Box, Container, Grid, Step, StepConnector, StepLabel, Stepper } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../redux/store';
-import { getCart, createBilling } from '../../../redux/slices/product';
+import { createBilling, getCart } from '../../../redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
@@ -18,10 +18,10 @@ import Iconify from '../../../components/Iconify';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
 import {
-  CheckoutCart,
-  CheckoutPayment,
-  CheckoutOrderComplete,
   CheckoutBillingAddress,
+  CheckoutCart,
+  CheckoutOrderComplete,
+  CheckoutPayment,
 } from '../../../sections/@dashboard/e-commerce/checkout';
 
 // ----------------------------------------------------------------------

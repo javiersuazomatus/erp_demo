@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // @mui
-import { Grid, Card } from '@mui/material';
+import { Card, Grid } from '@mui/material';
 //
 import Toolbar from './Toolbar';
 import ControlPanel from '../ControlPanel';

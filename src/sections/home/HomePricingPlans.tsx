@@ -1,23 +1,13 @@
 import { m } from 'framer-motion';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import {
-  Box,
-  Grid,
-  Card,
-  Link,
-  Stack,
-  Button,
-  Divider,
-  Container,
-  Typography,
-} from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Box, Button, Card, Container, Divider, Grid, Link, Stack, Typography } from '@mui/material';
 // _mock_
 import { _homePlans } from '../../_mock';
 // components
 import Image from '../../components/Image';
 import Iconify from '../../components/Iconify';
-import { varFade, MotionViewport } from '../../components/animate';
+import { MotionViewport, varFade } from '../../components/animate';
 
 // ----------------------------------------------------------------------
 

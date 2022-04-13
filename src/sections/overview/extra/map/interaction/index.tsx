@@ -1,11 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import MapGL from 'react-map-gl';
 // components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../../components/map';
 //
 import ControlPanel from './ControlPanel';

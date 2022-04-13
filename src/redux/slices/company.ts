@@ -1,19 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 // firebase
 import { DB } from '../../datasources/firebase';
-import {
-  collection,
-  doc,
-  query,
-  where,
-  getDocs,
-  getDoc,
-} from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 
 // @types
 import { Company, CompanyState } from '../../@types/company';
 //
-import { store, dispatch } from '../store';
+import { dispatch, store } from '../store';
 
 
 const initialState: CompanyState = {
@@ -142,3 +135,6 @@ async function getCompany(companyId: string): Promise<Company | null> {
   return null;
 }
 
+async function newCompany(company: Company) {
+
+}

@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Link, Button, Divider, Typography, Stack, DialogProps } from '@mui/material';
+import { Box, Button, DialogProps, Divider, Link, Stack, Typography } from '@mui/material';
 // redux
 import { useDispatch } from '../../../../redux/store';
 import { resetCart } from '../../../../redux/slices/product';

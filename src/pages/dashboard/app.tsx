@@ -10,16 +10,16 @@ import Layout from '../../layouts';
 import Page from '../../components/Page';
 // sections
 import {
-  AppWidget,
-  AppWelcome,
+  AppAreaInstalled,
+  AppCurrentDownload,
   AppFeatured,
   AppNewInvoice,
   AppTopAuthors,
-  AppTopRelated,
-  AppAreaInstalled,
-  AppWidgetSummary,
-  AppCurrentDownload,
   AppTopInstalledCountries,
+  AppTopRelated,
+  AppWelcome,
+  AppWidget,
+  AppWidgetSummary,
 } from '../../sections/@dashboard/general/app';
 
 // ----------------------------------------------------------------------

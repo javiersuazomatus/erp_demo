@@ -1,7 +1,7 @@
 import { memo } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Switch, InputBase, Typography } from '@mui/material';
+import { Box, InputBase, Switch, Typography } from '@mui/material';
 // @types
 import { MapSettingKeys, MapSettings } from '../../../../../components/map/type';
 // utils

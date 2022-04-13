@@ -2,7 +2,7 @@
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 // @mui
-import { Typography, ListItemText, ListItemButton } from '@mui/material';
+import { ListItemButton, ListItemText, Typography } from '@mui/material';
 // @types
 import { ICON } from '../../../config';
 // @types

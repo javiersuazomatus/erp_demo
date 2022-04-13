@@ -1,5 +1,5 @@
 // @mui
-import { Box, Grid, Card, Paper, Typography, CardHeader, CardContent } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Grid, Paper, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../../utils/formatNumber';
 // _mock_

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import MapGL, { Layer, LayerProps, MapEvent, Source } from 'react-map-gl';
 import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
 // @mui
@@ -6,11 +6,11 @@ import { useTheme } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 // components
 import {
-  MapControlPopup,
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlPopup,
+  MapControlScale,
 } from '../../../../components/map';
 
 // ----------------------------------------------------------------------

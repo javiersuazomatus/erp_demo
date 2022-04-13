@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Button, Stack, Container, Typography, InputAdornment } from '@mui/material';
+import { Box, Button, Container, InputAdornment, Stack, Typography } from '@mui/material';
 // hooks
 import useCountdown from '../hooks/useCountdown';
 // layouts

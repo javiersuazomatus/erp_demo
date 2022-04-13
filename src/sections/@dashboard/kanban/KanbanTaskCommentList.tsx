@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // @mui
-import { Stack, Avatar, Typography } from '@mui/material';
+import { Avatar, Stack, Typography } from '@mui/material';
 // utils
 import { fToNow } from '../../../utils/formatTime';
 // @types

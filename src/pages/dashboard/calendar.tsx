@@ -5,19 +5,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import timelinePlugin from '@fullcalendar/timeline';
 import interactionPlugin, { EventResizeDoneArg } from '@fullcalendar/interaction';
 //
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // @mui
-import { Card, Button, Container, DialogTitle } from '@mui/material';
+import { Button, Card, Container, DialogTitle } from '@mui/material';
 // redux
 import { RootState, useDispatch, useSelector } from '../../redux/store';
-import {
-  getEvents,
-  openModal,
-  closeModal,
-  updateEvent,
-  selectEvent,
-  selectRange,
-} from '../../redux/slices/calendar';
+import { closeModal, getEvents, openModal, selectEvent, selectRange, updateEvent } from '../../redux/slices/calendar';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks

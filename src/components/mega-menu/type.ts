@@ -1,4 +1,4 @@
-import { ReactNode, ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/material';
 

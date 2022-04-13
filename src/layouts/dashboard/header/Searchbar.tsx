@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Input, Slide, Button, InputAdornment, ClickAwayListener } from '@mui/material';
+import { Button, ClickAwayListener, Input, InputAdornment, Slide } from '@mui/material';
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // components

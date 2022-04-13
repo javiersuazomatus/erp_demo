@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Container, Card } from '@mui/material';
+import { Card, Container } from '@mui/material';
 // redux
 import { useDispatch } from '../../../redux/store';
 import { getLabels } from '../../../redux/slices/mail';
@@ -16,7 +16,7 @@ import Layout from '../../../layouts';
 import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
-import { MailList, MailDetails, MailSidebar, MailCompose } from '../../../sections/@dashboard/mail';
+import { MailCompose, MailDetails, MailList, MailSidebar } from '../../../sections/@dashboard/mail';
 
 // ----------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Container, Typography, CardHeader } from '@mui/material';
+import { Box, Card, CardHeader, Container, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // _mock

@@ -4,22 +4,22 @@ import { sentenceCase } from 'change-case';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import {
+  Avatar,
   Box,
+  Button,
   Card,
+  CardHeader,
+  Divider,
+  IconButton,
+  MenuItem,
   Stack,
   Table,
-  Avatar,
-  Button,
-  Divider,
-  MenuItem,
-  TableRow,
   TableBody,
   TableCell,
-  IconButton,
-  TableHead,
-  CardHeader,
-  Typography,
   TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from '@mui/material';
 // _mock_
 import { _bookings } from '../../../../_mock';

@@ -1,16 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Card,
-  Grid,
-  Stack,
-  Container,
-  CardHeader,
-  Typography,
-  CardContent,
-} from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Container, Grid, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

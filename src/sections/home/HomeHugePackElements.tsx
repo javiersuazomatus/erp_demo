@@ -2,8 +2,8 @@ import { m } from 'framer-motion';
 // next
 import NextLink from 'next/link';
 // @mui
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Grid, Button, Container, Typography } from '@mui/material';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../routes/paths';
 // components

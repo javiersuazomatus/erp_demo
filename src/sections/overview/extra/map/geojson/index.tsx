@@ -1,17 +1,17 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { range } from 'd3-array';
 import { scaleQuantile } from 'd3-scale';
-import MapGL, { Source, Layer, LayerProps } from 'react-map-gl';
-import { MapEvent, InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
+import MapGL, { Layer, LayerProps, Source } from 'react-map-gl';
+import { InteractiveMapProps, MapEvent } from 'react-map-gl/src/components/interactive-map';
 // @mui
-import { useTheme, alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 //components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../../components/map';
 //
 import ControlPanel from './ControlPanel';

@@ -1,17 +1,7 @@
 import { useState } from 'react';
 import { capitalCase } from 'change-case';
 // @mui
-import {
-  Box,
-  List,
-  Stack,
-  Select,
-  Divider,
-  Tooltip,
-  MenuItem,
-  Typography,
-  IconButton,
-} from '@mui/material';
+import { Box, Divider, IconButton, List, MenuItem, Select, Stack, Tooltip, Typography } from '@mui/material';
 // hooks
 import useAuth from '../../../hooks/useAuth';
 // components

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Point } from 'geojson';
 import MapGL, { Layer, LayerProps, Source } from 'react-map-gl';
 import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
@@ -6,10 +6,10 @@ import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map
 import { useTheme } from '@mui/material/styles';
 // components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../components/map';
 
 // ----------------------------------------------------------------------

@@ -1,5 +1,5 @@
 // @mui
-import { Avatar, Typography, ListItemButton } from '@mui/material';
+import { Avatar, ListItemButton, Typography } from '@mui/material';
 // @types
 import { Contact } from '../../../@types/chat';
 //

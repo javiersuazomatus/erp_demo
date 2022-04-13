@@ -1,14 +1,6 @@
-import { forwardRef, useState, ReactElement, Ref } from 'react';
+import { forwardRef, ReactElement, Ref, useState } from 'react';
 // @mui
-import {
-  Slide,
-  Dialog,
-  Button,
-  DialogTitle,
-  DialogActions,
-  DialogContent,
-  DialogContentText
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 
 // ----------------------------------------------------------------------

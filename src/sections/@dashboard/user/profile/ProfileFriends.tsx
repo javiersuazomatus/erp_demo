@@ -1,14 +1,5 @@
 // @mui
-import {
-  Box,
-  Grid,
-  Card,
-  Link,
-  Avatar,
-  IconButton,
-  Typography,
-  InputAdornment,
-} from '@mui/material';
+import { Avatar, Box, Card, Grid, IconButton, InputAdornment, Link, Typography } from '@mui/material';
 // @types
 import { Friend } from '../../../../@types/user';
 // components

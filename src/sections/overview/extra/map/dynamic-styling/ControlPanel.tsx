@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
 import { fromJS } from 'immutable';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Box, Switch, Typography } from '@mui/material';
 // _mock_
 import MAP_STYLE from '../../../../../_mock/map/map-style-basic-v8.json';

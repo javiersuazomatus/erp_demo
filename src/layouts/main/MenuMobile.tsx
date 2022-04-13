@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 // next
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,15 +6,15 @@ import { useRouter } from 'next/router';
 import { alpha, styled } from '@mui/material/styles';
 import {
   Box,
-  List,
-  Link,
-  Drawer,
   Collapse,
+  Drawer,
+  Link,
   LinkProps,
-  ListItemText,
-  ListItemIcon,
+  List,
   ListItemButton,
   ListItemButtonProps,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 // config
 import { NAVBAR } from '../../config';
@@ -25,7 +25,7 @@ import Scrollbar from '../../components/Scrollbar';
 import { IconButtonAnimate } from '../../components/animate';
 import { NavSectionVertical } from '../../components/nav-section';
 //
-import { MenuProps, MenuItemProps } from './type';
+import { MenuItemProps, MenuProps } from './type';
 
 // ----------------------------------------------------------------------
 

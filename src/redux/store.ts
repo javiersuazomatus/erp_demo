@@ -1,10 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import {
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-  TypedUseSelectorHook,
-} from 'react-redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import { TypedUseSelectorHook, useDispatch as useAppDispatch, useSelector as useAppSelector } from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import { rootPersistConfig, rootReducer } from './rootReducer';
 
 // ----------------------------------------------------------------------

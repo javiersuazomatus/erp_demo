@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // next
 import { useRouter } from 'next/router';
 // @mui
-import { Box, List, Drawer, Button, Divider } from '@mui/material';
+import { Box, Button, Divider, Drawer, List } from '@mui/material';
 // redux
 import { useSelector } from '../../../redux/store';
 // hooks

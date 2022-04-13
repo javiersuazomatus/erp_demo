@@ -2,7 +2,7 @@
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Button, Link, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Link, Typography } from '@mui/material';
 // routes
 import { PATH_AUTH } from '../../routes/paths';
 // layouts

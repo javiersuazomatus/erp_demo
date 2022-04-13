@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Card, Typography, CardHeader, Stack } from '@mui/material';
+import { Card, CardHeader, Link, Stack, Typography } from '@mui/material';
 // @types
 import { Profile } from '../../../../@types/user';
 // components

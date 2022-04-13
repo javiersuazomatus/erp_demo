@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Button, Popover, ButtonProps, LinkProps } from '@mui/material';
+import { Button, ButtonProps, LinkProps, Popover } from '@mui/material';
 // config
 import { NAVBAR } from '../../../config';
 

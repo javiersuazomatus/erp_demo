@@ -1,6 +1,6 @@
 import { Theme } from '@mui/material/styles';
 //
-import { CheckboxIcon, CheckboxCheckedIcon, CheckboxIndeterminateIcon } from './CustomIcons';
+import { CheckboxCheckedIcon, CheckboxIcon, CheckboxIndeterminateIcon } from './CustomIcons';
 
 // ----------------------------------------------------------------------
 

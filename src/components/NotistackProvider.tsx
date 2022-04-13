@@ -1,6 +1,6 @@
 import { ReactNode, useRef } from 'react';
 import { IconifyIcon } from '@iconify/react';
-import { SnackbarProvider, SnackbarKey } from 'notistack';
+import { SnackbarKey, SnackbarProvider } from 'notistack';
 // @mui
 import { alpha, useTheme } from '@mui/material/styles';
 import { Box, GlobalStyles } from '@mui/material';

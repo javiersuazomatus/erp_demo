@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Card, Typography, Stack } from '@mui/material';
+import { Box, Card, Stack, Typography } from '@mui/material';
 // utils
 import { fNumber, fPercent } from '../../../../utils/formatNumber';
 // components

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // @mui
-import { Box, List, Button, Rating, Avatar, ListItem, Pagination, Typography } from '@mui/material';
+import { Avatar, Box, Button, List, ListItem, Pagination, Rating, Typography } from '@mui/material';
 // utils
 import { fDate } from '../../../../utils/formatTime';
 import { fShortenNumber } from '../../../../utils/formatNumber';

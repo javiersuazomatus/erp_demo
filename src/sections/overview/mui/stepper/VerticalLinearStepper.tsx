@@ -1,15 +1,6 @@
 import { useState } from 'react';
 // @mui
-import {
-  Box,
-  Step,
-  Paper,
-  Button,
-  Stepper,
-  StepLabel,
-  Typography,
-  StepContent
-} from '@mui/material';
+import { Box, Button, Paper, Step, StepContent, StepLabel, Stepper, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

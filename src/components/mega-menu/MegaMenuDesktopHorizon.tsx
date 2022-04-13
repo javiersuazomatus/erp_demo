@@ -2,9 +2,9 @@ import { useState } from 'react';
 import NextLink from 'next/link';
 // @mui
 import { Masonry } from '@mui/lab';
-import { Link, Paper, Typography, Divider, Stack } from '@mui/material';
+import { Divider, Link, Paper, Stack, Typography } from '@mui/material';
 // @types
-import { ParentItemProps, MegaMenuItemProps } from './type';
+import { MegaMenuItemProps, ParentItemProps } from './type';
 // components
 import Iconify from '../Iconify';
 //

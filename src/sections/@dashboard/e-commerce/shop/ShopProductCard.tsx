@@ -2,7 +2,7 @@ import { paramCase } from 'change-case';
 // next
 import NextLink from 'next/link';
 // @mui
-import { Box, Card, Link, Typography, Stack } from '@mui/material';
+import { Box, Card, Link, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // utils

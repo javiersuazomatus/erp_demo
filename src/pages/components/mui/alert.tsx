@@ -1,6 +1,6 @@
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Alert, Button, Container, AlertTitle, Stack } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, Container, Stack } from '@mui/material';
 import { Masonry } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';

@@ -1,7 +1,7 @@
 import { m } from 'framer-motion';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import { Link, Container, Typography, Stack } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Container, Link, Stack, Typography } from '@mui/material';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components

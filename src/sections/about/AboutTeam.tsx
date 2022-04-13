@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import Slider from 'react-slick';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Stack, Card, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Card, Container, Stack, Typography } from '@mui/material';
 // _mock_
 import { _carouselsMembers } from '../../_mock';
 // components

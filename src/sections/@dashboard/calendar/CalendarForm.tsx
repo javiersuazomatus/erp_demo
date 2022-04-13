@@ -4,18 +4,18 @@ import { isBefore } from 'date-fns';
 import { useSnackbar } from 'notistack';
 import { EventInput } from '@fullcalendar/common';
 // form
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 // @mui
-import { Box, Stack, Button, Tooltip, TextField, IconButton, DialogActions } from '@mui/material';
+import { Box, Button, DialogActions, IconButton, Stack, TextField, Tooltip } from '@mui/material';
 import { LoadingButton, MobileDateTimePicker } from '@mui/lab';
 // redux
 import { useDispatch } from '../../../redux/store';
-import { createEvent, updateEvent, deleteEvent } from '../../../redux/slices/calendar';
+import { createEvent, deleteEvent, updateEvent } from '../../../redux/slices/calendar';
 // components
 import Iconify from '../../../components/Iconify';
 import { ColorSinglePicker } from '../../../components/color-utils';
-import { FormProvider, RHFTextField, RHFSwitch } from '../../../components/hook-form';
+import { FormProvider, RHFSwitch, RHFTextField } from '../../../components/hook-form';
 
 // ----------------------------------------------------------------------
 

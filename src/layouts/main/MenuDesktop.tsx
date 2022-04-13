@@ -1,24 +1,15 @@
 import { m } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // next
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Link,
-  Grid,
-  List,
-  Stack,
-  Popover,
-  ListSubheader,
-  CardActionArea,
-} from '@mui/material';
+import { Box, CardActionArea, Grid, Link, List, ListSubheader, Popover, Stack } from '@mui/material';
 // components
 import Iconify from '../../components/Iconify';
 //
-import { MenuProps, MenuItemProps } from './type';
+import { MenuItemProps, MenuProps } from './type';
 
 // ----------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 // @mui
 import { Variant } from '@mui/material/styles/createTypography';
 import { styled } from '@mui/material/styles';
-import { Box, Container, Grid, Typography, Stack, Paper } from '@mui/material';
+import { Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // utils

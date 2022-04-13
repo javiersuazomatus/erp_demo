@@ -1,13 +1,5 @@
 // @mui
-import {
-  Box,
-  Radio,
-  Paper,
-  Typography,
-  RadioGroup,
-  PaperProps,
-  FormControlLabel,
-} from '@mui/material';
+import { Box, FormControlLabel, Paper, PaperProps, Radio, RadioGroup, Typography } from '@mui/material';
 // components
 import Scrollbar from '../../../../components/Scrollbar';
 

@@ -6,12 +6,9 @@ import { MotionContainer, varBounce } from '../../components/animate';
 import { m } from 'framer-motion';
 import { PageNotFoundIllustration } from '../../assets';
 import NextLink from 'next/link';
-import { useDispatch, useSelector } from '../../redux/store';
-import { loadCompanies } from '../../redux/slices/company';
+import { useSelector } from '../../redux/store';
 import LoadingScreen from '../../components/LoadingScreen';
 import New from './new';
-import Page404 from '../404';
-import DemoEditor from '../components/extra/editor';
 
 const RootStyle = styled('div')(({ theme }) => ({
   display: 'flex',

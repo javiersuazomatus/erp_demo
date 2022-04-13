@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Link, Tooltip, Typography, Checkbox, LinkProps } from '@mui/material';
+import { Box, Checkbox, Link, LinkProps, Tooltip, Typography } from '@mui/material';
 // redux
 import { useSelector } from '../../../redux/store';
 // hooks

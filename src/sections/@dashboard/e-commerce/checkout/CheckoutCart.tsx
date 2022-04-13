@@ -2,15 +2,15 @@ import sum from 'lodash/sum';
 // next
 import NextLink from 'next/link';
 // @mui
-import { Grid, Card, Button, CardHeader, Typography } from '@mui/material';
+import { Button, Card, CardHeader, Grid, Typography } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../../redux/store';
 import {
-  deleteCart,
-  onNextStep,
   applyDiscount,
-  increaseQuantity,
   decreaseQuantity,
+  deleteCart,
+  increaseQuantity,
+  onNextStep,
 } from '../../../../redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';

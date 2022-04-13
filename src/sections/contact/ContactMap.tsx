@@ -1,7 +1,7 @@
 import MapGL from 'react-map-gl';
 import { useState } from 'react';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 // _mock
 import { _mapContact } from '../../_mock';
@@ -9,12 +9,7 @@ import { _mapContact } from '../../_mock';
 import { MAPBOX_API } from '../../config';
 // components
 import Iconify from '../../components/Iconify';
-import {
-  MapControlPopup,
-  MapControlMarker,
-  MapControlScale,
-  MapControlNavigation,
-} from '../../components/map';
+import { MapControlMarker, MapControlNavigation, MapControlPopup, MapControlScale } from '../../components/map';
 
 // ----------------------------------------------------------------------
 

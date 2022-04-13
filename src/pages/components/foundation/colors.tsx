@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 // @mui
-import { useTheme, hexToRgb, styled } from '@mui/material/styles';
-import { Box, Card, Stack, Tooltip, Container, Typography, IconButton } from '@mui/material';
+import { hexToRgb, styled, useTheme } from '@mui/material/styles';
+import { Box, Card, Container, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // layouts

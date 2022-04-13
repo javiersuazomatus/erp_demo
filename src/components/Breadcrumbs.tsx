@@ -2,13 +2,7 @@ import { ReactElement } from 'react';
 // next
 import NextLink from 'next/link';
 // @mui
-import {
-  Box,
-  Link,
-  Typography,
-  BreadcrumbsProps,
-  Breadcrumbs as MUIBreadcrumbs,
-} from '@mui/material';
+import { Box, Breadcrumbs as MUIBreadcrumbs, BreadcrumbsProps, Link, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

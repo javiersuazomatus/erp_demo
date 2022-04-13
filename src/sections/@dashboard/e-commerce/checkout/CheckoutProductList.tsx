@@ -2,15 +2,15 @@
 import { styled } from '@mui/material/styles';
 import {
   Box,
-  Table,
   Divider,
-  TableRow,
+  IconButton,
+  Table,
   TableBody,
   TableCell,
-  TableHead,
-  Typography,
-  IconButton,
   TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from '@mui/material';
 // utils
 import getColorName from '../../../../utils/getColorName';

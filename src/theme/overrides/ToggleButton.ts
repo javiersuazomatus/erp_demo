@@ -1,4 +1,4 @@
-import { Theme, alpha } from '@mui/material/styles';
+import { alpha, Theme } from '@mui/material/styles';
 //
 import { ColorSchema } from '../palette';
 

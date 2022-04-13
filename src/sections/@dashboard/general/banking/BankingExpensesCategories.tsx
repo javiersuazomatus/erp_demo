@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import { Box, Card, Stack, Divider, CardHeader, Typography } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Box, Card, CardHeader, Divider, Stack, Typography } from '@mui/material';
 // hooks
 import useResponsive from '../../../../hooks/useResponsive';
 // components

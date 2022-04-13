@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useSelector } from 'react-redux';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 // @mui
-import { Paper, Stack, Button } from '@mui/material';
+import { Button, Paper, Stack } from '@mui/material';
 // redux
 import { RootState, useDispatch } from '../../../redux/store';
-import { deleteColumn, updateColumn, addTask, deleteTask } from '../../../redux/slices/kanban';
+import { addTask, deleteColumn, deleteTask, updateColumn } from '../../../redux/slices/kanban';
 // @types
 import { KanbanColumn as Column } from '../../../@types/kanban';
 // components

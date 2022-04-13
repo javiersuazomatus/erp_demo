@@ -1,22 +1,22 @@
 import { sentenceCase } from 'change-case';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // next
 import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import {
   Box,
-  Card,
-  Table,
   Button,
-  TableRow,
+  Card,
   Checkbox,
+  Container,
+  Table,
   TableBody,
   TableCell,
-  Container,
-  Typography,
   TableContainer,
   TablePagination,
+  TableRow,
+  Typography,
 } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../redux/store';
@@ -42,9 +42,9 @@ import SearchNotFound from '../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
 import {
-  ProductMoreMenu,
   ProductListHead,
   ProductListToolbar,
+  ProductMoreMenu,
 } from '../../../sections/@dashboard/e-commerce/product-list';
 
 // ----------------------------------------------------------------------

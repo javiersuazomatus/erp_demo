@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Stack, Card, Container, CardHeader, CardContent } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Container, Stack } from '@mui/material';
 import { Masonry } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
@@ -11,13 +11,13 @@ import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 // sections
 import {
+  CarouselAnimation,
   CarouselBasic1,
   CarouselBasic2,
   CarouselBasic3,
   CarouselBasic4,
-  CarouselAnimation,
-  CarouselThumbnail,
   CarouselCenterMode,
+  CarouselThumbnail,
 } from '../../../sections/overview/extra/carousel';
 
 // ----------------------------------------------------------------------

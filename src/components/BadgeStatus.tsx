@@ -1,5 +1,5 @@
 // @mui
-import { Theme, useTheme, styled } from '@mui/material/styles';
+import { styled, Theme, useTheme } from '@mui/material/styles';
 import { BoxProps } from '@mui/material';
 
 // ----------------------------------------------------------------------

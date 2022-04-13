@@ -6,12 +6,12 @@ import { Box, Typography } from '@mui/material';
 // components
 import Image from '../../../../components/Image';
 import {
-  MapControlPopup,
-  MapControlMarker,
-  MapControlScale,
-  MapControlGeolocate,
-  MapControlNavigation,
   MapControlFullscreen,
+  MapControlGeolocate,
+  MapControlMarker,
+  MapControlNavigation,
+  MapControlPopup,
+  MapControlScale,
 } from '../../../../components/map';
 
 // ----------------------------------------------------------------------

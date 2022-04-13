@@ -1,6 +1,6 @@
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Switch, Container, FormGroup, FormControl, FormControlLabel } from '@mui/material';
+import { Box, Container, FormControl, FormControlLabel, FormGroup, Switch } from '@mui/material';
 import { Masonry } from '@mui/lab';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';

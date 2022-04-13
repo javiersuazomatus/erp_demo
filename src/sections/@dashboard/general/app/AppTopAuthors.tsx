@@ -1,7 +1,7 @@
 import orderBy from 'lodash/orderBy';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Stack, Card, Avatar, CardHeader, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardHeader, Stack, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../../utils/formatNumber';
 // _mock_

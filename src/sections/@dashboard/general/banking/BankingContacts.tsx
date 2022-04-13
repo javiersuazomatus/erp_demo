@@ -1,15 +1,5 @@
 // @mui
-import {
-  Box,
-  Card,
-  Stack,
-  Button,
-  Avatar,
-  Tooltip,
-  Typography,
-  CardHeader,
-  IconButton,
-} from '@mui/material';
+import { Avatar, Box, Button, Card, CardHeader, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 // _mock_
 import { _bankingContacts } from '../../../../_mock';
 // components

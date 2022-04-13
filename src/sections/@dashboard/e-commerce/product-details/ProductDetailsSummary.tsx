@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 // form
 import { Controller, useForm } from 'react-hook-form';
 // @mui
-import { useTheme, styled } from '@mui/material/styles';
-import { Box, Link, Stack, Button, Rating, Divider, IconButton, Typography } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Box, Button, Divider, IconButton, Link, Rating, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // utils
-import { fShortenNumber, fCurrency } from '../../../../utils/formatNumber';
+import { fCurrency, fShortenNumber } from '../../../../utils/formatNumber';
 // @types
-import { Product, CartItem } from '../../../../@types/product';
+import { CartItem, Product } from '../../../../@types/product';
 // components
 import Label from '../../../../components/Label';
 import Iconify from '../../../../components/Iconify';

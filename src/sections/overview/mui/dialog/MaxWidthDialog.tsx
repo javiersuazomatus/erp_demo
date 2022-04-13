@@ -4,18 +4,18 @@ import {
   Box,
   Button,
   Dialog,
-  Select,
-  Switch,
-  MenuItem,
-  InputLabel,
-  DialogTitle,
-  FormControl,
-  DialogProps,
   DialogActions,
   DialogContent,
+  DialogContentText,
+  DialogProps,
+  DialogTitle,
+  FormControl,
   FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select,
   SelectChangeEvent,
-  DialogContentText
+  Switch,
 } from '@mui/material';
 
 // ----------------------------------------------------------------------

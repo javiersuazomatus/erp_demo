@@ -1,15 +1,15 @@
 import bbox from '@turf/bbox';
 import { useState } from 'react';
-import MapGL, { MapEvent, LinearInterpolator, WebMercatorViewport } from 'react-map-gl';
+import MapGL, { LinearInterpolator, MapEvent, WebMercatorViewport } from 'react-map-gl';
 import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
 // _mock_
 import MAP_STYLE from '../../../../_mock/map/map-style-basic-v8.json';
 // components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../components/map';
 
 // ----------------------------------------------------------------------

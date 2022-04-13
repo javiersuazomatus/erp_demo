@@ -1,12 +1,12 @@
 import ReactMapGL from 'react-map-gl';
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
 // components
 import {
-  MapControlScale,
+  MapControlFullscreen,
   MapControlGeolocate,
   MapControlNavigation,
-  MapControlFullscreen,
+  MapControlScale,
 } from '../../../../../components/map';
 //
 import ControlPanel from './ControlPanel';

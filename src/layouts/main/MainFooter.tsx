@@ -2,7 +2,7 @@
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Grid, Link, Divider, Container, Typography, Stack } from '@mui/material';
+import { Container, Divider, Grid, Link, Stack, Typography } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../routes/paths';
 // components

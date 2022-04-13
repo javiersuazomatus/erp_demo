@@ -10,7 +10,7 @@ import { MenuCarouselProps } from './type';
 //
 import Image from '../Image';
 import TextMaxLine from '../TextMaxLine';
-import { CarouselDots, CarouselArrows } from '../carousel';
+import { CarouselArrows, CarouselDots } from '../carousel';
 
 // ----------------------------------------------------------------------
 

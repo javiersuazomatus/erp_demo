@@ -1,6 +1,6 @@
 import * as React from 'react';
 // next
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 // emotion
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';

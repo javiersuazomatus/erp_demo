@@ -1,5 +1,5 @@
 import Slider from 'react-slick';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
 import { Box } from '@mui/material';

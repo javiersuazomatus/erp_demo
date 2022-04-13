@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Stack, Container, CardHeader, CardContent } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Container, Stack } from '@mui/material';
 // routes
 import { PATH_PAGE } from '../../../routes/paths';
 // config

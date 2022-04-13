@@ -1,7 +1,7 @@
 import { memo } from 'react';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 // @types
 import { CityData } from '../../../../../components/map/type';
 // utils

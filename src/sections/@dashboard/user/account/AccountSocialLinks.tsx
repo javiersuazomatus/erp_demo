@@ -2,7 +2,7 @@ import { useSnackbar } from 'notistack';
 // form
 import { useForm } from 'react-hook-form';
 // @mui
-import { Stack, Card, InputAdornment } from '@mui/material';
+import { Card, InputAdornment, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // @types
 import { Profile } from '../../../../@types/user';

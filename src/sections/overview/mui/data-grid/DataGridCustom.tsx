@@ -1,14 +1,14 @@
 import { useState } from 'react';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Box, Rating, LinearProgress, IconButton } from '@mui/material';
+import { Box, IconButton, LinearProgress, Rating, Stack, Typography } from '@mui/material';
 import {
   DataGrid,
-  GridColDef,
-  GridToolbar,
-  GridSelectionModel,
-  GridFilterInputValueProps,
   getGridNumericColumnOperators,
+  GridColDef,
+  GridFilterInputValueProps,
+  GridSelectionModel,
+  GridToolbar,
 } from '@mui/x-data-grid';
 // utils
 import createAvatar from '../../../../utils/createAvatar';
