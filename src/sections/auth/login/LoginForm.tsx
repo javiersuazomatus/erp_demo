@@ -29,8 +29,6 @@ type FormValuesProps = {
 export default function LoginForm() {
   const { login } = useAuth();
 
-  const isMountedRef = useIsMountedRef();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
@@ -50,7 +48,6 @@ export default function LoginForm() {
   });
 
   const {
-    reset,
     setError,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -61,9 +58,8 @@ export default function LoginForm() {
       await login(data.email, data.password);
     } catch (error) {
       console.error(error);
-      reset();
       setError('afterSubmit', {
-        message: error
+        message: error.toString()
       });
     }
   };

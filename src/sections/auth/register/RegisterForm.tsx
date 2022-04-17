@@ -53,8 +53,6 @@ export default function RegisterForm() {
   });
 
   const {
-    reset,
-
     setError,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -65,10 +63,9 @@ export default function RegisterForm() {
       await register(data.email, data.password, data.firstName, data.lastName, data.company);
     } catch (error) {
       console.error(error);
-      reset();
-      if (isMountedRef.current) {
-        setError('afterSubmit', error);
-      }
+      setError('afterSubmit', {
+        message: error
+      });
     }
   };
 

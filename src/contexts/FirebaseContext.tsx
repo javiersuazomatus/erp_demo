@@ -19,7 +19,7 @@ import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/a
 import { AUTH, DB } from '../datasources/firebase';
 //redux
 import { useDispatch } from '../redux/store';
-import { rootCleanAction } from '../redux/rootReducer';
+import { cleanRoot } from '../redux/rootReducer';
 import { loadCompanies } from '../redux/slices/company';
 
 // ----------------------------------------------------------------------
@@ -85,16 +85,18 @@ function AuthProvider({ children }: AuthProviderProps) {
 
           if (docSnap.exists()) {
             setProfile(docSnap.data());
+            const { defaultCompanyId } = docSnap.data();
+            if(defaultCompanyId) {
+              reduxDispatch(loadCompanies(user.uid, defaultCompanyId));
+            }
           }
-
-          reduxDispatch(loadCompanies(user.uid))
           dispatch({
             type: Types.Initial,
             payload: { isAuthenticated: true, user },
           });
         } else {
           setProfile({});
-          reduxDispatch(rootCleanAction());
+          reduxDispatch(cleanRoot());
           dispatch({
             type: Types.Initial,
             payload: { isAuthenticated: false, user: null },
@@ -153,6 +155,14 @@ function AuthProvider({ children }: AuthProviderProps) {
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
         });
+      })
+      .catch(error => {
+        switch (error.code) {
+          case AuthErrorCodes.EMAIL_EXISTS:
+            throw 'Email already in use';
+          default:
+            throw error.message || 'Unknown error';
+        }
       });
 
   const update = async (user: AuthUser) => {
@@ -188,7 +198,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   };
 
 
-  const logout = () => signOut(AUTH)
+  const logout = () => signOut(AUTH);
 
   return (
     <AuthContext.Provider

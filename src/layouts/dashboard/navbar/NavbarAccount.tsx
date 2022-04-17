@@ -33,7 +33,7 @@ type Props = {
 
 export default function NavbarAccount({ isCollapse }: Props) {
   const { user } = useAuth();
-  const { companies } = useSelector((state) => state.company);
+  const { company } = useSelector((state) => state.company);
 
   return (
     <NextLink href={PATH_DASHBOARD.user.account} passHref>
@@ -61,7 +61,7 @@ export default function NavbarAccount({ isCollapse }: Props) {
             }}
           >
             <Typography variant="subtitle2" noWrap>
-              {companies[0]?.name}
+              {company?.name}
             </Typography>
           </Box>
         </RootStyle>

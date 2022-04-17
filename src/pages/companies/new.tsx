@@ -7,6 +7,7 @@ import Logo from '../../components/Logo';
 import useResponsive from '../../hooks/useResponsive';
 import { NewCompanyForm } from '../../sections/companies/new';
 import AccountPopover from '../../layouts/dashboard/header/AccountPopover';
+import useAuth from '../../hooks/useAuth';
 
 /*const RootStyle = styled('div')(({ theme }) => ({
   display: 'flex',

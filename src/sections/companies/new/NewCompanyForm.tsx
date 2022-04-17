@@ -1,11 +1,16 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
 import { Alert, Stack } from '@mui/material';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
 import { LoadingButton } from '@mui/lab';
 import slugify from '../../../utils/slugify';
+import { createCompany } from '../../../clients/company';
+import { useDispatch } from '../../../redux/store';
+import { loadCompanies } from '../../../redux/slices/company';
+import { useRouter } from 'next/router';
+import { PATH_DASHBOARD } from '../../../routes/paths';
+import useAuth from '../../../hooks/useAuth';
 
 type FormValuesProps = {
   id: string;
@@ -15,7 +20,9 @@ type FormValuesProps = {
 };
 
 export default function NewCompanyForm() {
-  const isMountedRef = useIsMountedRef();
+  const dispatch = useDispatch();
+  const { replace } = useRouter();
+  const { user } = useAuth();
 
   const defaultValues = {
     id: '',
@@ -33,7 +40,6 @@ export default function NewCompanyForm() {
   const methods = useForm<FormValuesProps>({
     resolver: yupResolver(NewCompanySchema),
     defaultValues,
-    reValidateMode: 'onChange'
   });
 
   const {
@@ -51,14 +57,22 @@ export default function NewCompanyForm() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await createCompany({
+        id: data.id,
+        name: data.name,
+        photoURL: null,
+      }, user?.id);
+      dispatch(loadCompanies(user?.id, data.id));
+      replace(PATH_DASHBOARD.general.app);
     } catch (error) {
       console.error(error);
       setError('afterSubmit', {
-        message: error
+        message: error.toString(),
       });
     }
   };
+
+  console.log({ 'errors.afterSubmit': errors.afterSubmit });
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -66,8 +80,8 @@ export default function NewCompanyForm() {
         {!!errors.afterSubmit && <Alert severity='error'>{errors.afterSubmit.message}</Alert>}
 
         <RHFTextField name='name' label='Name' onChange={onNameChange} />
-        <RHFTextField name='id' label='ID' disabled/>
-        <RHFTextField name='legalName' label='Legal Name'/>
+        <RHFTextField name='id' label='ID' disabled />
+        <RHFTextField name='legalName' label='Legal Name' />
 
         <LoadingButton
           fullWidth

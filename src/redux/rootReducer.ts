@@ -12,7 +12,7 @@ import { createAction } from '@reduxjs/toolkit';
 
 // ----------------------------------------------------------------------
 
-const rootCleanAction = createAction('root/clean')
+const cleanRoot = createAction('root/clean')
 
 const createNoopStorage = () => ({
   getItem(_key: string) {
@@ -69,4 +69,4 @@ const rootReducer: Reducer = (
   return appReducer(state, action);
 };
 
-export { rootPersistConfig, rootReducer, rootCleanAction};
+export { rootPersistConfig, rootReducer, cleanRoot};

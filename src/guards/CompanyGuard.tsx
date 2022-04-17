@@ -19,28 +19,28 @@ type Props = {
 
 export default function CompanyGuard({ children }: Props) {
   console.log('CompanyGuard');
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
-  const { companies, company, isLoading, error } = useSelector((state) => state.company);
-  console.log('companies.length === 0', companies.length === 0)
+  const { company, isLoading, error } = useSelector((state) => state.company);
+  console.log({ company, isLoading, error })
 
-  if (isLoading) {
-    return <LoadingScreen />;
+  if (!isLoading) {
+    if (error) {
+      console.log('<- return 500');
+      return <Page500 />;
+    }
+
+    if (!company) {
+      console.log('push(PATH_COMPANIES.new)');
+      replace(PATH_COMPANIES.new);
+      // } else if (!company) {
+      //   console.log('push(PATH_COMPANIES.manage)');
+      //   push(PATH_COMPANIES.manage);
+    } else {
+      console.log('<- return children');
+      return <>{children}</>;
+    }
   }
 
-  if (error) {
-    return <Page500 />;
-  }
-
-  if (companies.length === 0) {
-    console.log('push(PATH_COMPANIES.new)');
-    push(PATH_COMPANIES.new);
-  } else if (!company) {
-    console.log('push(PATH_COMPANIES.manage)');
-    push(PATH_COMPANIES.manage);
-  } else {
-    console.log('<- return children');
-    return <>{children}</>;
-  }
   return <LoadingScreen />;
 }
