@@ -1,31 +1,22 @@
 import * as Yup from 'yup';
 import { useSnackbar } from 'notistack';
 import { useCallback } from 'react';
-// form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-// @mui
 import { Box, Card, Grid, Stack, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-// hooks
 import useAuth from '../../../../hooks/useAuth';
-// utils
 import { fData } from '../../../../utils/formatNumber';
-// _mock
 import { countries } from '../../../../_mock';
-// components
 import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../../components/hook-form';
-// lodash
-import pickBy from 'lodash/pickBy';
-import isEmpty from 'lodash/isEmpty';
 
 // ----------------------------------------------------------------------
 
-type FormValuesProps = {
+export type FormValuesProps = {
   displayName: string;
   email: string;
   company: string | null;
-  photoURL: File | any;
+  photoFile: File | any;
   phoneNumber: string | null;
   country: string | null;
   address: string | null;
@@ -50,7 +41,7 @@ export default function AccountGeneral() {
     displayName: user?.displayName,
     email: user?.email,
     company: user?.company,
-    photoURL: user?.photoURL,
+    photoFile: user?.photoURL,
     phoneNumber: user?.phoneNumber,
     country: user?.country,
     address: user?.address,
@@ -74,12 +65,12 @@ export default function AccountGeneral() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      const dataCleaned = pickBy(data, attr => !isEmpty(attr));
-      await update(dataCleaned)
-      enqueueSnackbar('Update success!');
+      console.log({ data });
+      await update(data);
+      enqueueSnackbar('Account successfully updated!');
     } catch (error) {
-      console.log({ error })
-      enqueueSnackbar('Update failed!', { variant: 'error' });
+      console.log({ error });
+      enqueueSnackbar('Failed account update!', { variant: 'error' });
     }
   };
 
@@ -89,14 +80,14 @@ export default function AccountGeneral() {
 
       if (file) {
         setValue(
-          'photoURL',
+          'photoFile',
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-          })
+          }),
         );
       }
     },
-    [setValue]
+    [setValue],
   );
 
   return (
@@ -105,13 +96,13 @@ export default function AccountGeneral() {
         <Grid item xs={12} md={4}>
           <Card sx={{ py: 10, px: 3, textAlign: 'center' }}>
             <RHFUploadAvatar
-              name="photoURL"
-              accept="image/*"
+              name='photoFile'
+              accept='image/*'
               maxSize={3145728}
               onDrop={handleDrop}
               helperText={
                 <Typography
-                  variant="caption"
+                  variant='caption'
                   sx={{
                     mt: 2,
                     mx: 'auto',
@@ -127,9 +118,9 @@ export default function AccountGeneral() {
             />
 
             <RHFSwitch
-              name="isPublic"
-              labelPlacement="start"
-              label="Public Profile"
+              name='isPublic'
+              labelPlacement='start'
+              label='Public Profile'
               sx={{ mt: 5 }}
             />
           </Card>
@@ -145,16 +136,16 @@ export default function AccountGeneral() {
                 gridTemplateColumns: { xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' },
               }}
             >
-              <RHFTextField name="displayName" label="Name" />
-              <RHFTextField name="email" label="Email Address" />
+              <RHFTextField name='displayName' label='Name' />
+              <RHFTextField name='email' label='Email Address' />
 
-              <RHFTextField name="company" label="Company" />
+              <RHFTextField name='company' label='Company' />
 
-              <RHFTextField name="phoneNumber" label="Phone Number" />
-              <RHFTextField name="address" label="Address" />
+              <RHFTextField name='phoneNumber' label='Phone Number' />
+              <RHFTextField name='address' label='Address' />
 
-              <RHFSelect name="country" label="Country" placeholder="Country">
-                <option value="" />
+              <RHFSelect name='country' label='Country' placeholder='Country'>
+                <option value='' />
                 {countries.map((option) => (
                   <option key={option.code} value={option.label}>
                     {option.label}
@@ -162,15 +153,15 @@ export default function AccountGeneral() {
                 ))}
               </RHFSelect>
 
-              <RHFTextField name="state" label="State/Region" />
+              <RHFTextField name='state' label='State/Region' />
 
-              <RHFTextField name="city" label="City" />
+              <RHFTextField name='city' label='City' />
             </Box>
 
-            <Stack spacing={3} alignItems="flex-end" sx={{ mt: 3 }}>
-              <RHFTextField name="about" multiline rows={4} label="About" />
+            <Stack spacing={3} alignItems='flex-end' sx={{ mt: 3 }}>
+              <RHFTextField name='about' multiline rows={4} label='About' />
 
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              <LoadingButton type='submit' variant='contained' loading={isSubmitting}>
                 Save Changes
               </LoadingButton>
             </Stack>

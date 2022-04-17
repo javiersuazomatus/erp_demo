@@ -13,14 +13,15 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { collection, doc, DocumentData, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
-// @types
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/auth';
-// Firebase
-import { AUTH, DB } from '../datasources/firebase';
-//redux
+import { AUTH, DB, STORAGE } from '../datasources/firebase';
 import { useDispatch } from '../redux/store';
 import { cleanRoot } from '../redux/rootReducer';
 import { loadCompanies } from '../redux/slices/company';
+import { FormValuesProps } from '../sections/@dashboard/user/account/AccountGeneral';
+import pickBy from 'lodash/pickBy';
+import isEmpty from 'lodash/isEmpty';
 
 // ----------------------------------------------------------------------
 
@@ -86,7 +87,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           if (docSnap.exists()) {
             setProfile(docSnap.data());
             const { defaultCompanyId } = docSnap.data();
-            if(defaultCompanyId) {
+            if (defaultCompanyId) {
               reduxDispatch(loadCompanies(user.uid, defaultCompanyId));
             }
           }
@@ -165,13 +166,27 @@ function AuthProvider({ children }: AuthProviderProps) {
         }
       });
 
-  const update = async (user: AuthUser) => {
+  const update = async (user: FormValuesProps) => {
     console.log(' +++++++++++++++++ update +++++++++++++++++');
     console.log({ user });
+    const { photoFile, ...formValues } = user;
+    const userData = pickBy(formValues, attr => !isEmpty(attr));
+    console.log(userData);
+
     if (AUTH.currentUser) {
+      const avatarRef = ref(STORAGE, `users/${AUTH.currentUser?.uid}/avatar`);
+      let photoURL;
+
+      if (photoFile) {
+        await uploadBytes(avatarRef, photoFile);
+        photoURL = await getDownloadURL(avatarRef);
+      } else {
+        photoURL = AUTH.currentUser.photoURL;
+      }
+
       await updateProfile(AUTH.currentUser, {
-        displayName: user?.displayName,
-        photoURL: user?.photoURL,
+        displayName: user?.displayName || AUTH.currentUser.displayName,
+        photoURL: photoURL,
       });
 
       if (AUTH.currentUser.email != user?.email) {
@@ -180,7 +195,8 @@ function AuthProvider({ children }: AuthProviderProps) {
 
       const userRef = doc(collection(DB, 'users'), state.user?.uid);
       await updateDoc(userRef, {
-        ...user,
+        ...userData,
+        photoURL,
         uid: AUTH.currentUser?.uid,
         updatedAt: serverTimestamp(),
       });
@@ -189,11 +205,11 @@ function AuthProvider({ children }: AuthProviderProps) {
         type: Types.Initial,
         payload: {
           isAuthenticated: true,
-          user: { ...state?.user, ...user },
+          user: { ...state?.user, ...userData, photoURL },
         },
       });
 
-      setProfile({ profile, ...user });
+      setProfile({ profile, ...userData, photoURL });
     }
   };
 

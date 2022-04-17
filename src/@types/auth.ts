@@ -1,4 +1,5 @@
 import { UserCredential } from 'firebase/auth';
+import { FormValuesProps } from '../sections/@dashboard/user/account/AccountGeneral';
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +42,7 @@ export type FirebaseContextType = {
   loginWithFacebook: () => Promise<UserCredential>;
   loginWithTwitter: () => Promise<UserCredential>;
   register: (email: string, password: string, firstName: string, lastName: string, company: string) => Promise<void>;
-  update: (user: AuthUser) => void;
+  update: (user: FormValuesProps) => void;
   logout: () => Promise<void>;
 };
 
