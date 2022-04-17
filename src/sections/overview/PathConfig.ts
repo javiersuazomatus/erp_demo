@@ -5,7 +5,7 @@ import { paramCase } from 'change-case';
 export const FOUNDATION_LIST = ['Colors', 'Typography', 'Shadows', 'Grid', 'Icons'].map((item) => ({
   name: item,
   href: `/components/foundation/${paramCase(item)}`,
-  icon: `https://minimal-assets-api.vercel.app/assets/images/components/${paramCase(item)}.png`,
+  icon: `/images/components/${paramCase(item)}.png`,
 }));
 
 export const MUI_LIST = [
@@ -41,7 +41,7 @@ export const MUI_LIST = [
 ].map((item) => ({
   name: item,
   href: `/components/mui/${paramCase(item)}`,
-  icon: `https://minimal-assets-api.vercel.app/assets/images/components/${paramCase(item)}.png`,
+  icon: `/images/components/${paramCase(item)}.png`,
 }));
 
 export const EXTRA_LIST = [
@@ -65,5 +65,5 @@ export const EXTRA_LIST = [
 ].map((item) => ({
   name: item,
   href: `/components/extra/${paramCase(item)}`,
-  icon: `https://minimal-assets-api.vercel.app/assets/images/components/${paramCase(item)}.png`,
+  icon: `/images/components/${paramCase(item)}.png`,
 }));

@@ -76,7 +76,7 @@ export default function ComponentHero() {
           <m.div variants={varFade().inDown}>
             <Image
               alt="hero"
-              src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_components.png"
+              src="/illustrations/illustration_components.png"
               sx={{ maxWidth: 320 }}
             />
           </m.div>

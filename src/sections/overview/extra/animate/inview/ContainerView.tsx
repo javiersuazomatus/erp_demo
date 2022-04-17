@@ -11,11 +11,11 @@ import getVariant from '../getVariant';
 const TEXT = 'Minimals';
 
 const IMG = [
-  'https://minimal-assets-api.vercel.app/assets/images/feeds/feed_2.jpg',
-  'https://minimal-assets-api.vercel.app/assets/images/feeds/feed_3.jpg',
-  'https://minimal-assets-api.vercel.app/assets/images/feeds/feed_4.jpg',
-  'https://minimal-assets-api.vercel.app/assets/images/feeds/feed_5.jpg',
-  'https://minimal-assets-api.vercel.app/assets/images/feeds/feed_8.jpg',
+  '/images/feeds/feed_2.jpeg',
+  '/images/feeds/feed_3.jpeg',
+  '/images/feeds/feed_4.jpeg',
+  '/images/feeds/feed_5.jpeg',
+  '/images/feeds/feed_8.jpeg',
 ];
 
 type ContainerViewProps = {

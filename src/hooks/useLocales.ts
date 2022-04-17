@@ -9,19 +9,19 @@ const LANGS = [
     label: 'English',
     value: 'en',
     systemValue: enUS,
-    icon: 'https://minimal-assets-api.vercel.app/assets/icons/ic_flag_en.svg',
+    icon: '/icons/ic_flag_en.svg',
   },
   {
     label: 'German',
     value: 'de',
     systemValue: deDE,
-    icon: 'https://minimal-assets-api.vercel.app/assets/icons/ic_flag_de.svg',
+    icon: '/icons/ic_flag_de.svg',
   },
   {
     label: 'French',
     value: 'fr',
     systemValue: frFR,
-    icon: 'https://minimal-assets-api.vercel.app/assets/icons/ic_flag_fr.svg',
+    icon: '/icons/ic_flag_fr.svg',
   },
 ];
 

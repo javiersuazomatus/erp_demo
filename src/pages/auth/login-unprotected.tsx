@@ -61,8 +61,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Login() {
-  const { method } = useAuth();
-
   const smUp = useResponsive('up', 'sm');
   const mdUp = useResponsive('up', 'md');
 
@@ -87,7 +85,7 @@ export default function Login() {
               Hi, Welcome Back
             </Typography>
             <Image
-              src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_login.png"
+              src="/illustrations/illustration_login.png"
               alt="login"
             />
           </SectionStyle>

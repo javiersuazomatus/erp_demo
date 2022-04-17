@@ -42,7 +42,7 @@ export default function HomeAdvertisement() {
             <Image
               visibleByDefault
               alt="rocket"
-              src="https://minimal-assets-api.vercel.app/assets/images/home/rocket.png"
+              src="/images/home/rocket.png"
               disabledEffect
               sx={{ maxWidth: 460 }}
             />

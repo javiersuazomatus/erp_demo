@@ -13,7 +13,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { collection, doc, DocumentData, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/auth';
 import { AUTH, DB, STORAGE } from '../datasources/firebase';
 import { useDispatch } from '../redux/store';

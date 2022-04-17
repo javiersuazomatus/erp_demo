@@ -30,7 +30,7 @@ import { IconButtonAnimate } from '../../../components/animate';
 export default function NotificationsPopover() {
   const [notifications, setNotifications] = useState(_notifications);
 
-  const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
+  const totalUnRead = notifications.filter((item) => item.isUnRead).length;
 
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
@@ -195,7 +195,7 @@ function renderContent(notification: NotificationItemProps) {
       avatar: (
         <img
           alt={notification.title}
-          src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_package.svg"
+          src="/icons/ic_notification_package.svg"
         />
       ),
       title,
@@ -206,7 +206,7 @@ function renderContent(notification: NotificationItemProps) {
       avatar: (
         <img
           alt={notification.title}
-          src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_shipping.svg"
+          src="/icons/ic_notification_shipping.svg"
         />
       ),
       title,
@@ -217,7 +217,7 @@ function renderContent(notification: NotificationItemProps) {
       avatar: (
         <img
           alt={notification.title}
-          src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_mail.svg"
+          src="/icons/ic_notification_mail.svg"
         />
       ),
       title,
@@ -228,7 +228,7 @@ function renderContent(notification: NotificationItemProps) {
       avatar: (
         <img
           alt={notification.title}
-          src="https://minimal-assets-api.vercel.app/assets/icons/ic_notification_chat.svg"
+          src="/icons/ic_notification_chat.svg"
         />
       ),
       title,

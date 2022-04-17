@@ -58,7 +58,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   backgroundImage: `linear-gradient(to right, ${alpha(theme.palette.grey[900], 0.8)} , ${alpha(
     theme.palette.grey[900],
     0.8
-  )}), url(https://minimal-assets-api.vercel.app/assets/images/about/testimonials.jpg)`,
+  )}), url(/images/about/testimonials.jpeg)`,
   [theme.breakpoints.up('md')]: {
     textAlign: 'left',
     padding: 0,

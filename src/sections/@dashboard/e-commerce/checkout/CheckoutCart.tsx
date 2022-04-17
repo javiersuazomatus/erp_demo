@@ -21,6 +21,7 @@ import EmptyContent from '../../../../components/EmptyContent';
 //
 import CheckoutSummary from './CheckoutSummary';
 import CheckoutProductList from './CheckoutProductList';
+import { CartItem } from '../../../../@types/product';
 
 // ----------------------------------------------------------------------
 
@@ -31,7 +32,7 @@ export default function CheckoutCart() {
 
   const { cart, total, discount, subtotal } = checkout;
 
-  const totalItems = sum(cart.map((item) => item.quantity));
+  const totalItems = sum(cart.map((item: CartItem) => item.quantity));
 
   const isEmptyCart = cart.length === 0;
 
@@ -84,7 +85,7 @@ export default function CheckoutCart() {
             <EmptyContent
               title="Cart is empty"
               description="Look like you have no items in your shopping cart."
-              img="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_empty_cart.svg"
+              img="/illustrations/illustration_empty_cart.svg"
             />
           )}
         </Card>

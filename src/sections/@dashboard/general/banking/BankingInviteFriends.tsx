@@ -26,7 +26,7 @@ export default function BankingInviteFriends() {
         visibleByDefault
         disabledEffect
         alt="illustration-invite"
-        src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_invite.png"
+        src="/illustrations/illustration_invite.png"
         sx={{
           left: 40,
           zIndex: 9,

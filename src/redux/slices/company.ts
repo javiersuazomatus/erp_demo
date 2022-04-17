@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Company, UserCompany, CompanyState } from '../../@types/company';
+import { Company, CompanyState, UserCompany } from '../../@types/company';
 import { dispatch } from '../store';
-import { getUserCompanies, getCompany } from '../../clients/company'
+import { getCompany, getUserCompanies } from '../../clients/company';
 
 const initialState: CompanyState = {
   isLoading: false,
@@ -42,11 +42,6 @@ const slice = createSlice({
       console.log('loadCompanySuccess');
       state.company = action.payload;
       state.isLoading = false;
-    },
-
-    // CREATE COMPANY
-    createCompanySuccess(state, action) {
-      console.log('createCompanySuccess');
     },
   },
 });

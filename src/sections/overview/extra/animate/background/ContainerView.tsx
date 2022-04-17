@@ -26,7 +26,7 @@ export default function ContainerView({ selectVariant, ...other }: ContainerView
       {isKenburns ? (
         <Box
           component={m.img}
-          src="https://minimal-assets-api.vercel.app/assets/images/feeds/feed_8.jpg"
+          src="/images/feeds/feed_8.jpeg"
           {...getVariant(selectVariant)}
           sx={{ width: 1, height: 1, objectFit: 'cover' }}
         />

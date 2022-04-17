@@ -1,9 +1,8 @@
-import { capitalCase } from 'change-case';
 // next
 import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Card, Container, Link, Tooltip, Typography } from '@mui/material';
+import { Box, Card, Container, Link, Typography } from '@mui/material';
 // hooks
 import useAuth from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
@@ -66,8 +65,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Register() {
-  const { method } = useAuth();
-
   const smUp = useResponsive('up', 'sm');
   const mdUp = useResponsive('up', 'md');
 
@@ -94,7 +91,7 @@ export default function Register() {
               </Typography>
               <Image
                 alt="register"
-                src="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_register.png"
+                src="/illustrations/illustration_register.png"
               />
             </SectionStyle>
           )}
@@ -110,16 +107,6 @@ export default function Register() {
                     Free forever. No credit card needed.
                   </Typography>
                 </Box>
-                <Tooltip title={capitalCase(method)}>
-                  <>
-                    <Image
-                      disabledEffect
-                      alt={method}
-                      src={`https://minimal-assets-api.vercel.app/assets/icons/auth/ic_${method}.png`}
-                      sx={{ width: 32, height: 32 }}
-                    />
-                  </>
-                </Tooltip>
               </Box>
 
               <AuthFirebaseSocials />

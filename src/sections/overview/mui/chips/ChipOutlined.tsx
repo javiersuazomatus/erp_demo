@@ -45,7 +45,7 @@ export default function ChipOutlined() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/avatars/avatar_1.jpeg"
               />
             }
             label="Deletable"
@@ -102,7 +102,7 @@ export default function ChipOutlined() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/avatars/avatar_1.jpeg"
               />
             }
             onDelete={handleDelete}
@@ -116,7 +116,7 @@ export default function ChipOutlined() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/avatars/avatar_1.jpeg"
               />
             }
             onDelete={handleDelete}
@@ -129,7 +129,7 @@ export default function ChipOutlined() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/avatars/avatar_1.jpeg"
               />
             }
             color="primary"
@@ -144,7 +144,7 @@ export default function ChipOutlined() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/avatars/avatar_1.jpeg"
               />
             }
             color="primary"

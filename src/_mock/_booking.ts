@@ -38,5 +38,5 @@ export const _bookingNew = [...Array(5)].map((_, index) => ({
   roomNumber: 'A-21',
   roomType: randomInArray(['double', 'king', 'single']),
   person: '3-5',
-  cover: `https://minimal-assets-api.vercel.app/assets/images/rooms/room-${index + 1}.jpg`,
+  cover: `/images/rooms/room-${index + 1}.jpeg`,
 }));

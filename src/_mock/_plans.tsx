@@ -14,10 +14,10 @@ export const _homePlans = [...Array(3)].map((_, index) => ({
     'Commercial applications',
   ],
   icons: [
-    'https://minimal-assets-api.vercel.app/assets/images/home/ic_sketch.svg',
-    'https://minimal-assets-api.vercel.app/assets/images/home/ic_figma.svg',
-    'https://minimal-assets-api.vercel.app/assets/images/home/ic_js.svg',
-    'https://minimal-assets-api.vercel.app/assets/images/home/ic_ts.svg',
+    '/assets/images/home/ic_sketch.svg',
+    '/assets/images/home/ic_figma.svg',
+    '/assets/images/home/ic_js.svg',
+    '/assets/images/home/ic_ts.svg',
   ],
 }));
 

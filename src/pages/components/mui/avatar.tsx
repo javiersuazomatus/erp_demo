@@ -67,9 +67,9 @@ export default function MUIAvatar() {
                 <Avatar
                   key={index}
                   alt="Remy Sharp"
-                  src={`https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_${
+                  src={`/images/avatars/avatar_${
                     index + 1
-                  }.jpg`}
+                  }.jpeg`}
                 />
               ))}
             </Block>
@@ -135,28 +135,28 @@ export default function MUIAvatar() {
               <AvatarGroup max={4}>
                 <Avatar
                   alt="Remy Sharp"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_4.jpg"
+                  src="/images/avatars/avatar_4.jpeg"
                 />
                 <Avatar color="info">OP</Avatar>
                 <Avatar
                   alt="Cindy Baker"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_5.jpg"
+                  src="/images/avatars/avatar_5.jpeg"
                 />
                 <Avatar
                   alt="Agnes Walker"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_6.jpg"
+                  src="/images/avatars/avatar_6.jpeg"
                 />
                 <Avatar
                   alt="Trevor Henderson"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_7.jpg"
+                  src="/images/avatars/avatar_7.jpeg"
                 />
                 <Avatar
                   alt="Trevor Henderson"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_8.jpg"
+                  src="/images/avatars/avatar_8.jpeg"
                 />
                 <Avatar
                   alt="Trevor Henderson"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_9.jpg"
+                  src="/images/avatars/avatar_9.jpeg"
                 />
               </AvatarGroup>
             </Block>
@@ -179,7 +179,7 @@ export default function MUIAvatar() {
                 badgeContent={
                   <Avatar
                     alt="Travis Howard"
-                    src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_7.jpg"
+                    src="/images/avatars/avatar_7.jpeg"
                     sx={{
                       width: 24,
                       height: 24,
@@ -190,7 +190,7 @@ export default function MUIAvatar() {
               >
                 <Avatar
                   alt="Travis Howard"
-                  src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_8.jpg"
+                  src="/images/avatars/avatar_8.jpeg"
                 />
               </Badge>
 
@@ -198,9 +198,9 @@ export default function MUIAvatar() {
                 <Box key={status} sx={{ position: 'relative' }}>
                   <Avatar
                     alt="Travis Howard"
-                    src={`https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_${
+                    src={`/images/avatars/avatar_${
                       index + 7
-                    }.jpg`}
+                    }.jpeg`}
                   />
                   <BadgeStatus status={status} sx={{ right: 2, bottom: 2, position: 'absolute' }} />
                 </Box>
@@ -220,9 +220,9 @@ export default function MUIAvatar() {
                 <Avatar
                   key={size}
                   alt="Travis Howard"
-                  src={`https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_${
+                  src={`/images/avatars/avatar_${
                     index + 4
-                  }.jpg`}
+                  }.jpeg`}
                   sx={{ width: size, height: size }}
                 />
               ))}

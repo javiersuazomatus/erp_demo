@@ -26,7 +26,7 @@ export const _ecommerceBestSalesman = [...Array(5)].map((_, index) => ({
   email: _mock.email(index),
   avatar: _mock.image.avatar(index + 8),
   category: CATEGORY[index],
-  flag: `https://minimal-assets-api.vercel.app/assets/icons/ic_flag_${COUNTRY[index]}.svg`,
+  flag: `/icons/ic_flag_${COUNTRY[index]}.svg`,
   total: _mock.number.price(index),
   rank: `Top ${index + 1}`,
 }));

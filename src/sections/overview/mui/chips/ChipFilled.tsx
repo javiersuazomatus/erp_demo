@@ -39,7 +39,7 @@ export default function ChipFilled() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/images/avatars/avatar_1.jpeg"
               />
             }
             label="Deletable"
@@ -86,7 +86,7 @@ export default function ChipFilled() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/images/avatars/avatar_1.jpeg"
               />
             }
             onDelete={handleDelete}
@@ -99,7 +99,7 @@ export default function ChipFilled() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/images/avatars/avatar_1.jpeg"
               />
             }
             onDelete={handleDelete}
@@ -111,7 +111,7 @@ export default function ChipFilled() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/images/avatars/avatar_1.jpeg"
               />
             }
             color="primary"
@@ -125,7 +125,7 @@ export default function ChipFilled() {
             avatar={
               <Avatar
                 alt="Natacha"
-                src="https://minimal-assets-api.vercel.app/assets/images/avatars/avatar_1.jpg"
+                src="/images/avatars/avatar_1.jpeg"
               />
             }
             color="primary"

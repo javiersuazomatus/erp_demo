@@ -13,7 +13,7 @@ export const _appRelated = ['Chrome', 'Drive', 'Dropbox', 'Evernote', 'Github'].
     price: index === 0 || index === 2 || index === 4 ? 0 : _mock.number.price(index),
     rating: _mock.number.rating(index),
     review: randomNumberRange(999, 99999),
-    shortcut: `https://minimal-assets-api.vercel.app/assets/icons/ic_${noCase(appName)}.svg`,
+    shortcut: `/icons/ic_${noCase(appName)}.svg`,
   })
 );
 
@@ -23,7 +23,7 @@ export const _appInstalled = ['de', 'en', 'fr', 'kr', 'us'].map((country, index)
   android: randomNumberRange(999, 99999),
   windows: randomNumberRange(999, 99999),
   apple: randomNumberRange(999, 99999),
-  flag: `https://minimal-assets-api.vercel.app/assets/icons/ic_flag_${country}.svg`,
+  flag: `/icons/ic_flag_${country}.svg`,
 }));
 
 export const _appAuthors = [...Array(3)].map((_, index) => ({

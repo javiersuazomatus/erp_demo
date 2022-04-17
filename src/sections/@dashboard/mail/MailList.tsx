@@ -47,7 +47,7 @@ export default function MailList({ onOpenSidebar }: Props) {
   }, [dispatch, query]);
 
   const handleSelectAllMails = () => {
-    setSelectedMails(mails.allIds.map((mailId) => mailId));
+    setSelectedMails(mails.allIds.map((mailId: string) => mailId));
   };
 
   const handleToggleDense = () => {
@@ -87,7 +87,7 @@ export default function MailList({ onOpenSidebar }: Props) {
       {!isEmpty ? (
         <Scrollbar>
           <Box sx={{ minWidth: { md: 800 } }}>
-            {mails.allIds.map((mailId) => (
+            {mails.allIds.map((mailId: string) => (
               <MailItem
                 key={mailId}
                 isDense={dense}
@@ -102,7 +102,7 @@ export default function MailList({ onOpenSidebar }: Props) {
       ) : (
         <EmptyContent
           title="There is no conversation"
-          img="https://minimal-assets-api.vercel.app/assets/illustrations/illustration_empty_mail.svg"
+          img="/illustrations/illustration_empty_mail.svg"
           sx={{ flexGrow: 1, height: 'auto' }}
         />
       )}

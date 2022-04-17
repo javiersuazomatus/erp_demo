@@ -81,7 +81,7 @@ export default function DemoMegaMenu() {
 
             <Image
               alt="any photo"
-              src="https://minimal-assets-api.vercel.app/assets/images/feeds/feed_8.jpg"
+              src="/images/feeds/feed_8.jpeg"
               ratio="21/9"
               sx={{ borderRadius: 1 }}
             />
