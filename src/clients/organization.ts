@@ -1,10 +1,10 @@
-import { Company, UserCompany } from '../@types/company';
+import { Organization, OrganizationUser } from '../@types/organization';
 import { collection, doc, getDoc, getDocs, query, runTransaction, serverTimestamp, where } from 'firebase/firestore';
 import { DB } from '../datasources/firebase';
 
-export async function getCompany(companyId: string): Promise<Company | null> {
-  const companyRef = doc(DB, 'companies', companyId);
-  const docSnap = await getDoc(companyRef);
+export async function getOrganization(organizationId: string): Promise<Organization | null> {
+  const organizationRef = doc(DB, 'organizations', organizationId);
+  const docSnap = await getDoc(organizationRef);
   if (docSnap.exists()) {
     const data = docSnap.data();
     return {
@@ -16,24 +16,24 @@ export async function getCompany(companyId: string): Promise<Company | null> {
   return null;
 }
 
-export async function createCompany(company: Company, ownerId: string) {
-  const compsRef = doc(collection(DB, 'companies'), company.id);
+export async function createOrganization(organization: Organization, ownerId: string) {
+  const compsRef = doc(collection(DB, 'organizations'), organization.id);
   await runTransaction(DB, async (transaction) => {
     const docSnap = await transaction.get(compsRef);
     if (docSnap.exists()) {
-      throw 'An company with this name already exist';
+      throw 'An organization with this name already exist';
     }
 
     transaction.set(compsRef, {
-      ...company,
+      ...organization,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
 
-    const { id, name, photoURL } = company;
-    const jucRef = doc(collection(DB, 'junction_user_company'), `${ownerId}_${company.id}`);
+    const { id, name, photoURL } = organization;
+    const jucRef = doc(collection(DB, 'junction_organization_user'), `${organization.id}_${ownerId}`);
     transaction.set(jucRef, {
-      companyId: id,
+      organizationId: id,
       userId: ownerId,
       name,
       photoURL,
@@ -46,15 +46,15 @@ export async function createCompany(company: Company, ownerId: string) {
 
     const userRef = doc(collection(DB, 'users'), ownerId);
     transaction.update(userRef, {
-      defaultCompanyId: company.id,
+      defaultOrganizationId: organization.id,
       updatedAt: serverTimestamp(),
     });
   });
 }
 
-export async function getUserCompanies(userId: string): Promise<UserCompany[]> {
+export async function getOrganizationUsers(userId: string): Promise<OrganizationUser[]> {
   const q = query(
-    collection(DB, 'junction_user_company'),
+    collection(DB, 'junction_organization_user'),
     where('userId', '==', userId));
   const junctions = await getDocs(q);
   return junctions.docs
@@ -62,7 +62,7 @@ export async function getUserCompanies(userId: string): Promise<UserCompany[]> {
     .map(doc => {
       const data = doc.data();
       return {
-        id: data?.companyId,
+        id: data?.organizationId,
         name: data?.name,
         estate: data?.estate,
         occupation: data?.occupation,
@@ -72,13 +72,3 @@ export async function getUserCompanies(userId: string): Promise<UserCompany[]> {
     });
 }
 
-export async function patchUserCompany(userId: string, companyId: string, data: object) {
-  const jucRef = doc(collection(DB, 'junction_user_company'), `${userId}_${companyId}`);
-  await runTransaction(DB, async (transaction) => {
-    const docSnap = await transaction.get(jucRef);
-    if (!docSnap.exists()) {
-      throw 'User company does not exist!';
-    }
-    transaction.update(jucRef, data);
-  });
-}

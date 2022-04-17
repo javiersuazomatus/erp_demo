@@ -5,9 +5,9 @@ import { Alert, Stack } from '@mui/material';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
 import { LoadingButton } from '@mui/lab';
 import slugify from '../../../utils/slugify';
-import { createCompany } from '../../../clients/company';
+import { createOrganization } from '../../../clients/organization';
 import { useDispatch } from '../../../redux/store';
-import { loadCompanies } from '../../../redux/slices/company';
+import { loadOrganizations } from '../../../redux/slices/organization';
 import { useRouter } from 'next/router';
 import { PATH_DASHBOARD } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
@@ -19,7 +19,7 @@ type FormValuesProps = {
   afterSubmit?: string;
 };
 
-export default function NewCompanyForm() {
+export default function NewOrganizationForm() {
   const dispatch = useDispatch();
   const { replace } = useRouter();
   const { user } = useAuth();
@@ -30,7 +30,7 @@ export default function NewCompanyForm() {
     legalName: '',
   };
 
-  const NewCompanySchema = Yup.object().shape({
+  const NewOrganizationSchema = Yup.object().shape({
     id: Yup.string().required('ID required'),
     name: Yup.string().required('Name required'),
     legalName: Yup.string().required('Legal Name required'),
@@ -38,7 +38,7 @@ export default function NewCompanyForm() {
 
 
   const methods = useForm<FormValuesProps>({
-    resolver: yupResolver(NewCompanySchema),
+    resolver: yupResolver(NewOrganizationSchema),
     defaultValues,
   });
 
@@ -57,12 +57,12 @@ export default function NewCompanyForm() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await createCompany({
+      await createOrganization({
         id: data.id,
         name: data.name,
         photoURL: null,
       }, user?.id);
-      dispatch(loadCompanies(user?.id, data.id));
+      dispatch(loadOrganizations(user?.id, data.id));
       replace(PATH_DASHBOARD.general.app);
     } catch (error) {
       console.error(error);
@@ -90,7 +90,7 @@ export default function NewCompanyForm() {
           variant='contained'
           loading={isSubmitting}
         >
-          Create Company
+          Create Organization
         </LoadingButton>
       </Stack>
     </FormProvider>

@@ -23,7 +23,7 @@ type Props = {
 };
 
 export default function ProfileAbout({ profile }: Props) {
-  const { quote, country, email, role, company, school } = profile;
+  const { quote, country, email, role, organization, school } = profile;
 
   return (
     <Card>
@@ -52,7 +52,7 @@ export default function ProfileAbout({ profile }: Props) {
           <Typography variant="body2">
             {role} at &nbsp;
             <Link component="span" variant="subtitle2" color="text.primary">
-              {company}
+              {organization}
             </Link>
           </Typography>
         </Stack>

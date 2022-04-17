@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------
 
-export const company = [
+export const organization = [
   'Lueilwitz and Sons',
   'Gleichner, Mueller and Tromp',
   'Nikolaus - Leuschke',

@@ -18,7 +18,7 @@ import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/a
 import { AUTH, DB, STORAGE } from '../datasources/firebase';
 import { useDispatch } from '../redux/store';
 import { cleanRoot } from '../redux/rootReducer';
-import { loadCompanies } from '../redux/slices/company';
+import { loadOrganizations } from '../redux/slices/organization';
 import { FormValuesProps } from '../sections/@dashboard/user/account/AccountGeneral';
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
@@ -86,9 +86,9 @@ function AuthProvider({ children }: AuthProviderProps) {
 
           if (docSnap.exists()) {
             setProfile(docSnap.data());
-            const { defaultCompanyId } = docSnap.data();
-            if (defaultCompanyId) {
-              reduxDispatch(loadCompanies(user.uid, defaultCompanyId));
+            const { defaultOrganizationId } = docSnap.data();
+            if (defaultOrganizationId) {
+              reduxDispatch(loadOrganizations(user.uid, defaultOrganizationId));
             }
           }
           dispatch({
@@ -144,7 +144,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   // TODO: implement
   const loginWithTwitter = () => signInWithPopup(AUTH, twitterProvider);
 
-  const register = (email: string, password: string, firstName: string, lastName: string, company: string) =>
+  const register = (email: string, password: string, firstName: string, lastName: string) =>
     createUserWithEmailAndPassword(AUTH, email, password)
       .then(async (res) => {
         const userRef = doc(collection(DB, 'users'), res.user?.uid);
@@ -152,7 +152,6 @@ function AuthProvider({ children }: AuthProviderProps) {
           uid: res.user?.uid,
           email,
           displayName: `${firstName} ${lastName}`,
-          company,
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
         });
@@ -235,7 +234,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           zipCode: profile?.zipCode || '',
           about: profile?.about || '',
           isPublic: profile?.isPublic || false,
-          company: profile?.company || '',
+          organization: profile?.organization || '',
         },
         login,
         loginWithGoogle,

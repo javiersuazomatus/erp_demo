@@ -5,7 +5,7 @@ import SeoIllustration from '../../assets/illustration_seo';
 import AuthGuard from '../../guards/AuthGuard';
 import Logo from '../../components/Logo';
 import useResponsive from '../../hooks/useResponsive';
-import { NewCompanyForm } from '../../sections/companies/new';
+import { NewOrganizationForm } from '../../sections/organizations/new';
 import AccountPopover from '../../layouts/dashboard/header/AccountPopover';
 
 /*const RootStyle = styled('div')(({ theme }) => ({
@@ -57,13 +57,13 @@ const ContentStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(12, 0),
 }));
 
-export default function NewCompany() {
-  console.log('NewCompany');
+export default function NewOrganization() {
+  console.log('NewOrganization');
   const mdUp = useResponsive('up', 'md');
 
   return (
     <AuthGuard>
-      <Page title="New Company">
+      <Page title="New Organization">
         <RootStyle>
           <HeaderStyle>
             <Logo />
@@ -87,12 +87,12 @@ export default function NewCompany() {
                     Welcome!
                   </Typography>
                   <Typography sx={{ color: 'text.secondary' }}>
-                    Get started creating your own Company Account.
+                    Get started creating an account for you organization.
                   </Typography>
                 </Box>
               </Box>
 
-              <NewCompanyForm />
+              <NewOrganizationForm />
 
               <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
                 By creating, I agree to Minimal {' '}

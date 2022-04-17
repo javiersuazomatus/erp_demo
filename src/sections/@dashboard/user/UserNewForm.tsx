@@ -41,7 +41,7 @@ export default function UserNewForm({ isEdit = false, currentUser }: Props) {
     phoneNumber: Yup.string().required('Phone number is required'),
     address: Yup.string().required('Address is required'),
     country: Yup.string().required('country is required'),
-    company: Yup.string().required('Company is required'),
+    organization: Yup.string().required('Organization is required'),
     state: Yup.string().required('State is required'),
     city: Yup.string().required('City is required'),
     role: Yup.string().required('Role Number is required'),
@@ -61,7 +61,7 @@ export default function UserNewForm({ isEdit = false, currentUser }: Props) {
       avatarUrl: currentUser?.avatarUrl || '',
       isVerified: currentUser?.isVerified || true,
       status: currentUser?.status,
-      company: currentUser?.company || '',
+      organization: currentUser?.organization || '',
       role: currentUser?.role || '',
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -236,7 +236,6 @@ export default function UserNewForm({ isEdit = false, currentUser }: Props) {
               <RHFTextField name="city" label="City" />
               <RHFTextField name="address" label="Address" />
               <RHFTextField name="zipCode" label="Zip/Code" />
-              <RHFTextField name="company" label="Company" />
               <RHFTextField name="role" label="Role" />
             </Box>
 

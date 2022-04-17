@@ -47,7 +47,7 @@ export type Profile = {
   quote: string;
   country: string;
   email: string;
-  company: string;
+  organization: string;
   school: string;
   role: string;
   facebookLink: string;
@@ -67,7 +67,7 @@ export type UserManager = {
   state: string;
   city: string;
   zipCode: string;
-  company: string;
+  organization: string;
   isVerified: boolean;
   status: string;
   role: string;

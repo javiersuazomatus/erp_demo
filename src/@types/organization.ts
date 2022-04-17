@@ -1,10 +1,10 @@
-export type Company = {
+export type Organization = {
   id: string;
   name: string;
   photoURL: string | null;
 }
 
-export type UserCompany = {
+export type OrganizationUser = {
   id: string;
   name: string;
   estate: string;
@@ -13,11 +13,11 @@ export type UserCompany = {
   role: string;
 }
 
-export type CompanyState = {
+export type OrganizationState = {
   isLoading: boolean;
   error: Error | string | null;
-  companies: UserCompany[];
-  defaultCompany: UserCompany | null;
-  company: Company | null;
+  organizations: OrganizationUser[];
+  defaultOrganization: OrganizationUser | null;
+  organization: Organization | null;
 }
 

@@ -2,7 +2,7 @@ import { AnyAction, combineReducers, Reducer } from 'redux';
 import { persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // slices
-import companyReducer from './slices/company';
+import organizationReducer from './slices/organization';
 import mailReducer from './slices/mail';
 import chatReducer from './slices/chat';
 import productReducer from './slices/product';
@@ -42,16 +42,16 @@ const productPersistConfig = {
   whitelist: ['sortBy', 'checkout'],
 };
 
-// const companyPersistConfig = {
-//   key: 'companies',
+// const organizationPersistConfig = {
+//   key: 'organizations',
 //   storage,
 //   keyPrefix: 'redux-',
-//   whitelist: ['companies'],
+//   whitelist: ['organizations'],
 // };
 
 const appReducer = combineReducers({
-  // companies: persistReducer(companyPersistConfig, companyReducer),
-  company: companyReducer,
+  // organizations: persistReducer(organization, organizationReducer),
+  organization: organizationReducer,
   mail: mailReducer,
   chat: chatReducer,
   calendar: calendarReducer,

@@ -1,15 +1,10 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-// form
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-// @mui
 import { Alert, IconButton, InputAdornment, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-// hooks
 import useAuth from '../../../hooks/useAuth';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
-// components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField } from '../../../components/hook-form';
 
@@ -21,13 +16,10 @@ type FormValuesProps = {
   firstName: string;
   lastName: string;
   afterSubmit?: string;
-  company: string;
 };
 
 export default function RegisterForm() {
   const { register } = useAuth();
-
-  const isMountedRef = useIsMountedRef();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,7 +28,6 @@ export default function RegisterForm() {
     lastName: Yup.string().required('Last name required'),
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
-    company: Yup.string().required('Company is required'),
   });
 
   const defaultValues = {
@@ -44,7 +35,6 @@ export default function RegisterForm() {
     lastName: '',
     email: '',
     password: '',
-    company: '',
   };
 
   const methods = useForm<FormValuesProps>({
@@ -60,7 +50,7 @@ export default function RegisterForm() {
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await register(data.email, data.password, data.firstName, data.lastName, data.company);
+      await register(data.email, data.password, data.firstName, data.lastName);
     } catch (error) {
       console.error(error);
       setError('afterSubmit', {
@@ -95,7 +85,6 @@ export default function RegisterForm() {
             ),
           }}
         />
-        <RHFTextField name="company" label="Company" />
 
         <LoadingButton
           fullWidth

@@ -3,14 +3,12 @@ import NextLink from 'next/link';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Link, Typography } from '@mui/material';
-// hooks
-import useAuth from '../../../hooks/useAuth';
 // redux
 import { useSelector } from '../../../redux/store';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // components
-import CompanyAvatar from '../../../components/CompanyAvatar';
+import OrganizationAvatar from '../../../components/OrganizationAvatar';
 
 // ----------------------------------------------------------------------
 
@@ -32,8 +30,7 @@ type Props = {
 };
 
 export default function NavbarAccount({ isCollapse }: Props) {
-  const { user } = useAuth();
-  const { company } = useSelector((state) => state.company);
+  const { organization } = useSelector((state) => state.organization);
 
   return (
     <NextLink href={PATH_DASHBOARD.user.account} passHref>
@@ -45,7 +42,7 @@ export default function NavbarAccount({ isCollapse }: Props) {
             }),
           }}
         >
-          <CompanyAvatar />
+          <OrganizationAvatar />
 
           <Box
             sx={{
@@ -61,7 +58,7 @@ export default function NavbarAccount({ isCollapse }: Props) {
             }}
           >
             <Typography variant="subtitle2" noWrap>
-              {company?.name}
+              {organization?.name}
             </Typography>
           </Box>
         </RootStyle>

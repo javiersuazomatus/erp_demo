@@ -49,7 +49,7 @@ type Props = {
 export default function ProfileCover({ myProfile }: Props) {
   const { user } = useAuth();
   console.log({ user })
-  const { cover, company, position } = myProfile;
+  const { cover, organization, position } = myProfile;
 
   return (
     <RootStyle>
@@ -73,7 +73,7 @@ export default function ProfileCover({ myProfile }: Props) {
           }}
         >
           <Typography variant="h4">{user?.displayName}</Typography>
-          <Typography sx={{ opacity: 0.72 }}>{position} / {company}</Typography>
+          <Typography sx={{ opacity: 0.72 }}>{position} / {organization}</Typography>
         </Box>
       </InfoStyle>
       <Image

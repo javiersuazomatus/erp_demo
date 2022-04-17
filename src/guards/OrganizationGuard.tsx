@@ -9,7 +9,7 @@ import Page500 from '../pages/500';
 
 //routes
 import { useRouter } from 'next/router';
-import { PATH_COMPANIES } from '../routes/paths';
+import { PATH_ORGANIZATIONS } from '../routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -17,12 +17,12 @@ type Props = {
   children: ReactNode;
 };
 
-export default function CompanyGuard({ children }: Props) {
-  console.log('CompanyGuard');
+export default function OrganizationGuard({ children }: Props) {
+  console.log('OrganizationGuard');
   const { replace } = useRouter();
 
-  const { company, isLoading, error } = useSelector((state) => state.company);
-  console.log({ company, isLoading, error })
+  const { organization, isLoading, error } = useSelector((state) => state.organization);
+  console.log({ organization, isLoading, error })
 
   if (!isLoading) {
     if (error) {
@@ -30,12 +30,9 @@ export default function CompanyGuard({ children }: Props) {
       return <Page500 />;
     }
 
-    if (!company) {
-      console.log('push(PATH_COMPANIES.new)');
-      replace(PATH_COMPANIES.new);
-      // } else if (!company) {
-      //   console.log('push(PATH_COMPANIES.manage)');
-      //   push(PATH_COMPANIES.manage);
+    if (!organization) {
+      console.log('-> push(PATH_ORGANIZATIONS.new)');
+      replace(PATH_ORGANIZATIONS.new);
     } else {
       console.log('<- return children');
       return <>{children}</>;

@@ -15,7 +15,6 @@ import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } fro
 export type FormValuesProps = {
   displayName: string;
   email: string;
-  company: string | null;
   photoFile: File | any;
   phoneNumber: string | null;
   country: string | null;
@@ -34,13 +33,11 @@ export default function AccountGeneral() {
 
   const UpdateUserSchema = Yup.object().shape({
     displayName: Yup.string().required('Name is required'),
-    company: Yup.string().required('Company is required'),
   });
 
   const defaultValues = {
     displayName: user?.displayName,
     email: user?.email,
-    company: user?.company,
     photoFile: user?.photoURL,
     phoneNumber: user?.phoneNumber,
     country: user?.country,
@@ -139,7 +136,7 @@ export default function AccountGeneral() {
               <RHFTextField name='displayName' label='Name' />
               <RHFTextField name='email' label='Email Address' />
 
-              <RHFTextField name='company' label='Company' />
+              <RHFTextField name='organization' label='Organization' />
 
               <RHFTextField name='phoneNumber' label='Phone Number' />
               <RHFTextField name='address' label='Address' />

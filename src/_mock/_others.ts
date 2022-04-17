@@ -27,14 +27,14 @@ export const _invoice = {
   invoiceFrom: {
     name: _mock.name.fullName(1),
     address: _mock.address.fullAddress(1),
-    company: _mock.company(1),
+    organization: _mock.organization(1),
     email: _mock.email(1),
     phone: _mock.phoneNumber(1),
   },
   invoiceTo: {
     name: _mock.name.fullName(2),
     address: _mock.address.fullAddress(2),
-    company: _mock.company(2),
+    organization: _mock.organization(2),
     email: _mock.email(2),
     phone: _mock.phoneNumber(2),
   },
