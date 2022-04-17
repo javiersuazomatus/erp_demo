@@ -67,7 +67,7 @@ export default function AccountGeneral() {
       enqueueSnackbar('Account successfully updated!');
     } catch (error) {
       console.log({ error });
-      enqueueSnackbar('Failed account update!', { variant: 'error' });
+      enqueueSnackbar(error.toString(), { variant: 'error' });
     }
   };
 

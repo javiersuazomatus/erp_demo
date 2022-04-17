@@ -173,10 +173,11 @@ function AuthProvider({ children }: AuthProviderProps) {
     console.log(userData);
 
     if (AUTH.currentUser) {
-      const avatarRef = ref(STORAGE, `users/${AUTH.currentUser?.uid}/avatar`);
       let photoURL;
 
       if (photoFile instanceof File) {
+        const extension = photoFile.name.split('.').pop();
+        const avatarRef = ref(STORAGE, `users/${AUTH.currentUser?.uid}/avatar.${extension}`);
         await uploadBytes(avatarRef, photoFile);
         photoURL = await getDownloadURL(avatarRef);
       } else {
