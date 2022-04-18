@@ -1,7 +1,7 @@
 export type Organization = {
   id: string;
   name: string;
-  photoURL: string | null;
+  logoURL: string | null;
 }
 
 export type OrganizationUser = {
@@ -9,7 +9,7 @@ export type OrganizationUser = {
   name: string;
   estate: string;
   occupation: string
-  photoURL: string | null;
+  logoURL: string | null;
   role: string;
 }
 
@@ -21,3 +21,10 @@ export type OrganizationState = {
   organization: Organization | null;
 }
 
+export type OrganizationFormValues = {
+  id: string;
+  name: string;
+  legalName: string;
+  logo?: File;
+  afterSubmit?: string;
+};

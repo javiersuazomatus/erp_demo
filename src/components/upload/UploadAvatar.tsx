@@ -58,11 +58,13 @@ const PlaceholderStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function UploadAvatar({ error, file, helperText, sx, ...other }: UploadProps) {
+export default function UploadAvatar({ error, file, helperText, sx, labelText, ...other }: UploadProps) {
   const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
     multiple: false,
     ...other,
   });
+
+  const label = labelText || 'photo'
 
   return (
     <>
@@ -101,7 +103,7 @@ export default function UploadAvatar({ error, file, helperText, sx, ...other }: 
             }}
           >
             <Iconify icon={'ic:round-add-a-photo'} sx={{ width: 24, height: 24, mb: 1 }} />
-            <Typography variant="caption">{file ? 'Update photo' : 'Upload photo'}</Typography>
+            <Typography variant="caption">{file ? `Update ${label}` : `Upload ${label}`}</Typography>
           </PlaceholderStyle>
         </DropZoneStyle>
       </RootStyle>

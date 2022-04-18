@@ -1,6 +1,7 @@
-import { Organization, OrganizationUser } from '../@types/organization';
+import { Organization, OrganizationFormValues, OrganizationUser } from '../@types/organization';
 import { collection, doc, getDoc, getDocs, query, runTransaction, serverTimestamp, where } from 'firebase/firestore';
-import { DB } from '../datasources/firebase';
+import { DB, STORAGE } from '../datasources/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 export async function getOrganization(organizationId: string): Promise<Organization | null> {
   const organizationRef = doc(DB, 'organizations', organizationId);
@@ -10,13 +11,25 @@ export async function getOrganization(organizationId: string): Promise<Organizat
     return {
       id: data?.id,
       name: data?.name,
-      photoURL: data?.photoURL,
+      logoURL: data?.logoURL,
     };
   }
   return null;
 }
 
-export async function createOrganization(organization: Organization, ownerId: string) {
+export async function createOrganization(formValues: OrganizationFormValues, ownerId: string) {
+  console.log({ formValues })
+  const {logo, ...organization} = formValues;
+
+  let logoURL: string | null = null;
+
+  if (logo instanceof File) {
+    const extension = logo.name.split('.').pop();
+    const avatarRef = ref(STORAGE, `organizations/${organization.id}/logo.${extension}`);
+    await uploadBytes(avatarRef, logo);
+    logoURL = await getDownloadURL(avatarRef);
+  }
+
   const compsRef = doc(collection(DB, 'organizations'), organization.id);
   await runTransaction(DB, async (transaction) => {
     const docSnap = await transaction.get(compsRef);
@@ -26,17 +39,18 @@ export async function createOrganization(organization: Organization, ownerId: st
 
     transaction.set(compsRef, {
       ...organization,
+      logoURL,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
 
-    const { id, name, photoURL } = organization;
+    const { id, name } = organization;
     const jucRef = doc(collection(DB, 'junction_organization_user'), `${organization.id}_${ownerId}`);
     transaction.set(jucRef, {
       organizationId: id,
       userId: ownerId,
       name,
-      photoURL,
+      logoURL,
       estate: 'active',
       occupation: 'owner',
       rol: 'owner',
@@ -66,7 +80,7 @@ export async function getOrganizationUsers(userId: string): Promise<Organization
         name: data?.name,
         estate: data?.estate,
         occupation: data?.occupation,
-        photoURL: data?.photoURL,
+        logoURL: data?.photoURL,
         role: data?.role,
       };
     });

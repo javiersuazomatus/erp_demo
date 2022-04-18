@@ -10,8 +10,6 @@ import { fData } from '../../../../utils/formatNumber';
 import { countries } from '../../../../_mock';
 import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../../components/hook-form';
 
-// ----------------------------------------------------------------------
-
 export type FormValuesProps = {
   displayName: string;
   email: string;

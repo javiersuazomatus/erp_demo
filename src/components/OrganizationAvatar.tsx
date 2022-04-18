@@ -12,9 +12,9 @@ export default function OrganizationAvatar({ ...other }: AvatarProps) {
   const avatar = createAvatar(organization?.name);
   return (
     <Avatar
-      src={`${organization?.photoURL}`}
+      src={`${organization?.logoURL}`}
       alt={organization?.name}
-      color={organization?.photoURL ? 'default' : avatar.color}
+      color={organization?.logoURL ? 'default' : avatar.color}
       {...other}
     >
       {avatar.name}

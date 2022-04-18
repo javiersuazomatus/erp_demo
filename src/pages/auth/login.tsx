@@ -1,24 +1,15 @@
-// next
 import NextLink from 'next/link';
-// @mui
 import { styled } from '@mui/material/styles';
 import { Box, Card, Container, Link, Stack, Typography } from '@mui/material';
-// routes
 import { PATH_AUTH } from '../../routes/paths';
-// hooks
-import useAuth from '../../hooks/useAuth';
 import useResponsive from '../../hooks/useResponsive';
-// guards
 import GuestGuard from '../../guards/GuestGuard';
-// components
 import Page from '../../components/Page';
 import Logo from '../../components/Logo';
 import Image from '../../components/Image';
 import AuthFirebaseSocials from '../../sections/auth/AuthFirebaseSocial';
-// sections
 import { LoginForm } from '../../sections/auth/login';
 
-// ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -61,10 +52,8 @@ const ContentStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(12, 0),
 }));
 
-// ----------------------------------------------------------------------
 
 export default function Login() {
-  const { method } = useAuth();
 
   const smUp = useResponsive('up', 'sm');
   const mdUp = useResponsive('up', 'md');
@@ -91,7 +80,6 @@ export default function Login() {
                 Hi, Welcome Back
               </Typography>
               <Image
-                src="https://minimals.cc/assets/illustrations/illustration_login.png"
                 alt="login"
               />
             </SectionStyle>

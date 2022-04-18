@@ -16,6 +16,7 @@ export interface UploadProps extends DropzoneOptions {
   file: CustomFile | string | null;
   helperText?: ReactNode;
   sx?: SxProps<Theme>;
+  labelText?: string;
 }
 
 export interface UploadMultiFileProps extends DropzoneOptions {

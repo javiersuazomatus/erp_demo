@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { Alert, Stack } from '@mui/material';
-import { FormProvider, RHFTextField } from '../../../components/hook-form';
+import { Alert, Stack, Typography } from '@mui/material';
+import { FormProvider, RHFTextField, RHFUploadAvatar } from '../../../components/hook-form';
 import { LoadingButton } from '@mui/lab';
 import slugify from '../../../utils/slugify';
 import { createOrganization } from '../../../clients/organization';
@@ -11,13 +11,9 @@ import { loadOrganizations } from '../../../redux/slices/organization';
 import { useRouter } from 'next/router';
 import { PATH_DASHBOARD } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
-
-type FormValuesProps = {
-  id: string;
-  name: string;
-  legalName: string;
-  afterSubmit?: string;
-};
+import { fData } from '../../../utils/formatNumber';
+import { useCallback } from 'react';
+import { OrganizationFormValues } from '../../../@types/organization';
 
 export default function NewOrganizationForm() {
   const dispatch = useDispatch();
@@ -37,7 +33,7 @@ export default function NewOrganizationForm() {
   });
 
 
-  const methods = useForm<FormValuesProps>({
+  const methods = useForm<OrganizationFormValues>({
     resolver: yupResolver(NewOrganizationSchema),
     defaultValues,
   });
@@ -55,12 +51,29 @@ export default function NewOrganizationForm() {
     setValue('id', slugify(value));
   };
 
-  const onSubmit = async (data: FormValuesProps) => {
+  const handleDrop = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      if (file) {
+        setValue(
+          'logo',
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        );
+      }
+    },
+    [setValue],
+  );
+
+  const onSubmit = async (data: OrganizationFormValues) => {
     try {
       await createOrganization({
         id: data.id,
         name: data.name,
-        photoURL: null,
+        legalName: data.legalName,
+        logo: data.logo,
       }, user?.id);
       dispatch(loadOrganizations(user?.id, data.id));
       replace(PATH_DASHBOARD.general.app);
@@ -82,6 +95,28 @@ export default function NewOrganizationForm() {
         <RHFTextField name='name' label='Name' onChange={onNameChange} />
         <RHFTextField name='id' label='ID' disabled />
         <RHFTextField name='legalName' label='Legal Name' />
+        <RHFUploadAvatar
+          name='logo'
+          accept='image/*'
+          maxSize={3145728}
+          onDrop={handleDrop}
+          labelText={'logo'}
+          helperText={
+            <Typography
+              variant='caption'
+              sx={{
+                mt: 2,
+                mx: 'auto',
+                display: 'block',
+                textAlign: 'center',
+                color: 'text.secondary',
+              }}
+            >
+              Allowed *.jpeg, *.jpg, *.png, *.gif
+              <br /> max size of {fData(3145728)}
+            </Typography>
+          }
+        />
 
         <LoadingButton
           fullWidth
