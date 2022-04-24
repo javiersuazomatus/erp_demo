@@ -7,7 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import slugify from '../../../utils/slugify';
 import { createOrganization } from '../../../clients/organization';
 import { useDispatch } from '../../../redux/store';
-import { loadOrganizations } from '../../../redux/slices/organization';
+import { loadUserOrganizations } from '../../../redux/slices/organization';
 import { useRouter } from 'next/router';
 import { PATH_DASHBOARD } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
@@ -75,7 +75,7 @@ export default function NewOrganizationForm() {
         legalName: data.legalName,
         logo: data.logo,
       }, user?.id);
-      dispatch(loadOrganizations(user?.id, data.id));
+      dispatch(loadUserOrganizations(user?.id, data.id));
       replace(PATH_DASHBOARD.general.app);
     } catch (error) {
       console.error(error);

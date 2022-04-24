@@ -63,8 +63,7 @@ const slice = createSlice({
     // DELETE EVENT
     deleteEventSuccess(state, action) {
       const { eventId } = action.payload;
-      const deleteEvent = state.events.filter((event) => event.id !== eventId);
-      state.events = deleteEvent;
+      state.events = state.events.filter((event) => event.id !== eventId);
     },
 
     // SELECT EVENT

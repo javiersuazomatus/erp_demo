@@ -58,7 +58,7 @@ export default function LoginForm() {
     } catch (error) {
       console.error(error);
       setError('afterSubmit', {
-        message: error.toString()
+        message: error.toString(),
       });
     }
   };

@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Organization, OrganizationState, OrganizationUser } from '../../@types/organization';
-import { dispatch } from '../store';
+import { Organization, OrganizationState } from '../../@types/organization';
+import { store, dispatch } from '../store';
 import { getOrganization, getOrganizationUsers } from '../../clients/organization';
 
 const initialState: OrganizationState = {
   isLoading: false,
   error: null,
-  organizations: [],
-  defaultOrganization: null,
-  organization: null,
+  organizations: null,
+  currentOrganization: null
 };
 
 const slice = createSlice({
@@ -27,10 +26,13 @@ const slice = createSlice({
 
     loadOrganizationsSuccess(state, action) {
       console.log('loadOrganizationsSuccess');
-      console.log({ action });
-      state.organizations = action.payload.organizations;
-      state.defaultOrganization = action.payload.defaultOrganization;
-      state.organization = action.payload.organization;
+      state.organizations = action.payload;
+      state.isLoading = false;
+    },
+
+    loadCurrentOrganizationSuccess(state, action) {
+      console.log('loadCurrentOrganizationSuccess');
+      state.currentOrganization = action.payload;
       state.isLoading = false;
     },
   },
@@ -38,24 +40,46 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export function loadOrganizations(userId: string, defaultOrganizationId: string | null) {
+export function loadUserOrganizations(userId: string) {
   return async () => {
-    console.log('loadOrganizations', {userId, defaultOrganizationId});
+    console.log('loadOrganizations', { userId });
     dispatch(slice.actions.startLoading());
     try {
-      const organizations: OrganizationUser[] = await getOrganizationUsers(userId);
-      const defaultOrganization: OrganizationUser | null = organizations
-        .find(organization => defaultOrganizationId == organization.id) || null;
+      const organizationsList: Organization[] = await getOrganizationUsers(userId);
 
-      console.log({ defaultOrganization });
-      const organization: Organization | null = defaultOrganization
-        ? await getOrganization(defaultOrganization.id)
-        : null;
+      const organizations = organizationsList
+        .reduce(function(map: Record<string, Organization>, obj: Organization) {
+          map[obj.id] = obj;
+          return map;
+        }, {});
 
-      console.log({ organizations, defaultOrganization, organization });
-      dispatch(slice.actions.loadOrganizationsSuccess({ organizations, defaultOrganization, organization }));
+      dispatch(slice.actions.loadOrganizationsSuccess(organizations));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
   };
 }
+
+export function loadCurrentOrganization(currentOrganizationId: string) {
+  return async () => {
+    console.log('loadCurrentOrganization', { currentOrganizationId });
+    dispatch(slice.actions.startLoading());
+    try {
+      const organizations: Record<string, Organization> = store.getState().organization.organizations;
+
+      if (organizations[currentOrganizationId]) {
+        const currentOrganization: Organization | null =  await getOrganization(currentOrganizationId);
+        dispatch(slice.actions.loadCurrentOrganizationSuccess({
+          ...organizations[currentOrganizationId],
+          ...currentOrganization
+        }));
+      } else {
+        dispatch(slice.actions.loadCurrentOrganizationSuccess(null));
+      }
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+
+

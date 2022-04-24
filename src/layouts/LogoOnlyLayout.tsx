@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { Box, Toolbar } from '@mui/material';
 // components
 import Logo from '../components/Logo';
-import AccountPopover from './dashboard/header/AccountPopover';
+import AccountPopover from './admin/header/AccountPopover';
 
 // ----------------------------------------------------------------------
 

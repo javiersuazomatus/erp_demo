@@ -1,15 +1,9 @@
 import { memo } from 'react';
-// @mui
 import { styled } from '@mui/material/styles';
 import { Container } from '@mui/material';
-// config
 import { HEADER } from '../../../config';
-// components
 import { NavSectionHorizontal } from '../../../components/nav-section';
-//
-import navConfig from './NavConfig';
-
-// ----------------------------------------------------------------------
+import { GroupItem } from '../index';
 
 const RootStyle = styled('div')(({ theme }) => ({
   transition: theme.transitions.create('top', {
@@ -25,9 +19,11 @@ const RootStyle = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
 }));
 
-// ----------------------------------------------------------------------
+type Props = {
+  navConfig: GroupItem[],
+}
 
-function NavbarHorizontal() {
+function NavbarHorizontal({ navConfig }: Props) {
   return (
     <RootStyle>
       <Container maxWidth={false}>

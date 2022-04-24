@@ -1,4 +1,4 @@
-import { Organization, OrganizationFormValues, OrganizationUser } from '../@types/organization';
+import { Organization, OrganizationFormValues } from '../@types/organization';
 import { collection, doc, getDoc, getDocs, query, runTransaction, serverTimestamp, where } from 'firebase/firestore';
 import { DB, STORAGE } from '../datasources/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -12,14 +12,15 @@ export async function getOrganization(organizationId: string): Promise<Organizat
       id: data?.id,
       name: data?.name,
       logoURL: data?.logoURL,
+      detail: data?.detail,
     };
   }
   return null;
 }
 
 export async function createOrganization(formValues: OrganizationFormValues, ownerId: string) {
-  console.log({ formValues })
-  const {logo, ...organization} = formValues;
+  console.log({ formValues });
+  const { logo, ...organization } = formValues;
 
   let logoURL: string | null = null;
 
@@ -66,7 +67,7 @@ export async function createOrganization(formValues: OrganizationFormValues, own
   });
 }
 
-export async function getOrganizationUsers(userId: string): Promise<OrganizationUser[]> {
+export async function getOrganizationUsers(userId: string): Promise<Organization[]> {
   const q = query(
     collection(DB, 'junction_organization_user'),
     where('userId', '==', userId));
@@ -78,10 +79,12 @@ export async function getOrganizationUsers(userId: string): Promise<Organization
       return {
         id: data?.organizationId,
         name: data?.name,
-        estate: data?.estate,
-        occupation: data?.occupation,
         logoURL: data?.photoURL,
-        role: data?.role,
+        user: {
+          estate: data?.estate,
+          occupation: data?.occupation,
+          role: data?.role,
+        },
       };
     });
 }

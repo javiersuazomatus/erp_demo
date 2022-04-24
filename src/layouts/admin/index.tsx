@@ -9,7 +9,7 @@ import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 // config
 import { HEADER, NAVBAR } from '../../config';
 //
-import DashboardHeader from './header';
+import AdminHeader from './header';
 import NavbarVertical from './navbar/NavbarVertical';
 import NavbarHorizontal from './navbar/NavbarHorizontal';
 
@@ -42,11 +42,30 @@ const MainStyle = styled('main', {
 
 // ----------------------------------------------------------------------
 
+type ItemChildren = {
+  title: string,
+  path: string
+}
+
+type Item = {
+  title: string,
+  path: string,
+  icon: JSX.Element,
+  info?: JSX.Element,
+  children?: ItemChildren[]
+}
+
+export type GroupItem = {
+  subheader: string,
+  items: Item[]
+}
+
 type Props = {
   children: ReactNode;
+  navConfig: GroupItem[];
 };
 
-export default function DashboardLayout({ children }: Props) {
+export default function AdminLayout({ children, navConfig }: Props) {
   const { collapseClick, isCollapse } = useCollapseDrawer();
 
   const { themeLayout } = useSettings();
@@ -60,16 +79,16 @@ export default function DashboardLayout({ children }: Props) {
   if (verticalLayout) {
     return (
       <>
-        <DashboardHeader onOpenSidebar={() => setOpen(true)} verticalLayout={verticalLayout} />
+        <AdminHeader onOpenSidebar={() => setOpen(true)} verticalLayout={verticalLayout} />
 
         {isDesktop ? (
-          <NavbarHorizontal />
+          <NavbarHorizontal navConfig={navConfig} />
         ) : (
-          <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
+          <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} navConfig={navConfig} />
         )}
 
         <Box
-          component="main"
+          component='main'
           sx={{
             px: { lg: 2 },
             pt: {
@@ -95,9 +114,9 @@ export default function DashboardLayout({ children }: Props) {
         minHeight: { lg: 1 },
       }}
     >
-      <DashboardHeader isCollapse={isCollapse} onOpenSidebar={() => setOpen(true)} />
+      <AdminHeader isCollapse={isCollapse} onOpenSidebar={() => setOpen(true)} />
 
-      <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
+      <NavbarVertical isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} navConfig={navConfig} />
 
       <MainStyle collapseClick={collapseClick}>{children}</MainStyle>
     </Box>

@@ -1,17 +1,12 @@
-import { ReactNode } from 'react';
-
-// redux
+import { ReactNode, useEffect } from 'react';
 import { useSelector } from '../redux/store';
-
-// components
 import LoadingScreen from '../components/LoadingScreen';
 import Page500 from '../pages/500';
+import { WithoutOrganization } from '../sections/organizations/without';
+import { useDispatch } from 'react-redux';
+import { loadUserOrganizations } from '../redux/slices/organization';
+import useAuth from '../hooks/useAuth';
 
-//routes
-import { useRouter } from 'next/router';
-import { PATH_ORGANIZATIONS } from '../routes/paths';
-
-// ----------------------------------------------------------------------
 
 type Props = {
   children: ReactNode;
@@ -19,10 +14,22 @@ type Props = {
 
 export default function OrganizationGuard({ children }: Props) {
   console.log('OrganizationGuard');
-  const { replace } = useRouter();
 
-  const { organization, isLoading, error } = useSelector((state) => state.organization);
-  console.log({ organization, isLoading, error })
+  const dispatch = useDispatch();
+
+  const { user } = useAuth();
+
+  const { organizations, isLoading, error } = useSelector((state) => state.organization);
+  console.log({ organizations, isLoading, error });
+
+  useEffect(() => {
+      console.log('useEffect', { organizations, user });
+      if (user?.id && !organizations) {
+        dispatch(loadUserOrganizations(user?.id));
+      }
+    },
+    [user],
+  );
 
   if (!isLoading) {
     if (error) {
@@ -30,9 +37,9 @@ export default function OrganizationGuard({ children }: Props) {
       return <Page500 />;
     }
 
-    if (!organization) {
-      console.log('-> push(PATH_ORGANIZATIONS.new)');
-      replace(PATH_ORGANIZATIONS.new);
+    if (!organizations) {
+      console.log('<- return WithoutOrganization');
+      return <WithoutOrganization />;
     } else {
       console.log('<- return children');
       return <>{children}</>;

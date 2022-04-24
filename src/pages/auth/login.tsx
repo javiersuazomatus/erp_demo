@@ -9,6 +9,10 @@ import Logo from '../../components/Logo';
 import Image from '../../components/Image';
 import AuthFirebaseSocials from '../../sections/auth/AuthFirebaseSocial';
 import { LoginForm } from '../../sections/auth/login';
+import LoadingScreen from '../../components/LoadingScreen';
+import AuthGuard from '../../guards/AuthGuard';
+import Layout from '../../layouts';
+import UserAccount from '../account';
 
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -52,68 +56,77 @@ const ContentStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(12, 0),
 }));
 
+Login.getLayout = function getLayout(page: React.ReactElement) {
+  return <GuestGuard>{page}</ GuestGuard>;
+};
+
 
 export default function Login() {
+  console.log('Login()');
 
   const smUp = useResponsive('up', 'sm');
   const mdUp = useResponsive('up', 'md');
 
+  if (window.sessionStorage.getItem('authenticating')) {
+    return <LoadingScreen />;
+  }
+
+  console.log('<-return View');
   return (
-    <GuestGuard>
-      <Page title="Login">
-        <RootStyle>
-          <HeaderStyle>
-            <Logo />
-            {smUp && (
-              <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-                Don’t have an account? {''}
+    <Page title='Login'>
+      <RootStyle>
+        <HeaderStyle>
+          <Logo />
+          {smUp && (
+            <Typography variant='body2' sx={{ mt: { md: -2 } }}>
+              Don’t have an account? {''}
+              <NextLink href={PATH_AUTH.register} passHref>
+                <Link variant='subtitle2'>Get started</Link>
+              </NextLink>
+            </Typography>
+          )}
+        </HeaderStyle>
+
+        {mdUp && (
+          <SectionStyle>
+            <Typography variant='h3' sx={{ px: 5, mt: 10, mb: 5 }}>
+              Hi, Welcome Back
+            </Typography>
+            <Image
+              src="/illustrations/illustration_login.png"
+              alt='login'
+            />
+          </SectionStyle>
+        )}
+
+        <Container maxWidth='sm'>
+          <ContentStyle>
+            <Stack direction='row' alignItems='center' sx={{ mb: 5 }}>
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography variant='h4' gutterBottom>
+                  Sign in to Minimal
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  Enter your details below.
+                </Typography>
+              </Box>
+            </Stack>
+
+            <AuthFirebaseSocials />
+
+            <LoginForm />
+
+            {!smUp && (
+              <Typography variant='body2' align='center' sx={{ mt: 3 }}>
+                Don’t have an account?{' '}
                 <NextLink href={PATH_AUTH.register} passHref>
-                  <Link variant="subtitle2">Get started</Link>
+                  <Link variant='subtitle2'>Get started</Link>
                 </NextLink>
               </Typography>
             )}
-          </HeaderStyle>
-
-          {mdUp && (
-            <SectionStyle>
-              <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-                Hi, Welcome Back
-              </Typography>
-              <Image
-                alt="login"
-              />
-            </SectionStyle>
-          )}
-
-          <Container maxWidth="sm">
-            <ContentStyle>
-              <Stack direction="row" alignItems="center" sx={{ mb: 5 }}>
-                <Box sx={{ flexGrow: 1 }}>
-                  <Typography variant="h4" gutterBottom>
-                    Sign in to Minimal
-                  </Typography>
-                  <Typography sx={{ color: 'text.secondary' }}>
-                    Enter your details below.
-                  </Typography>
-                </Box>
-              </Stack>
-
-              <AuthFirebaseSocials />
-
-              <LoginForm />
-
-              {!smUp && (
-                <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-                  Don’t have an account?{' '}
-                  <NextLink href={PATH_AUTH.register} passHref>
-                    <Link variant="subtitle2">Get started</Link>
-                  </NextLink>
-                </Typography>
-              )}
-            </ContentStyle>
-          </Container>
-        </RootStyle>
-      </Page>
-    </GuestGuard>
+          </ContentStyle>
+        </Container>
+      </RootStyle>
+    </Page>
   );
 }

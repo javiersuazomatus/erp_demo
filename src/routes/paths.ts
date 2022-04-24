@@ -1,12 +1,14 @@
 // ----------------------------------------------------------------------
 
-function path(root: string, sublink: string) {
-  return `${root}${sublink}`;
+function path(...elements: string[]) {
+  return elements.join('');
 }
+
 
 const ROOTS_AUTH = '/auth';
 const ROOTS_DASHBOARD = '/dashboard';
-const ROOTS_ORGANIZATIONS = '/organizations';
+const ROOTS_ORGANIZATION = '/organization';
+const ROOTS_ORGANIZATION_DETAIL = (organizationId: string) => path(ROOTS_ORGANIZATION,'/', organizationId);
 
 // ----------------------------------------------------------------------
 
@@ -33,10 +35,19 @@ export const PATH_PAGE = {
   components: '/components'
 };
 
-export const PATH_ORGANIZATIONS = {
-  root: ROOTS_ORGANIZATIONS,
-  new: path(ROOTS_ORGANIZATIONS, '/new'),
-  manage: path(ROOTS_ORGANIZATIONS, '/manage'),
+export const PATH_ORGANIZATION = {
+  root: ROOTS_ORGANIZATION,
+  new: path(ROOTS_ORGANIZATION, '/new'),
+  list: path(ROOTS_ORGANIZATION, '/list'),
+  detail: {
+    dashboard: (organizationId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/dashboard'),
+    users: {
+      list: (organizationId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/list'),
+      new: (organizationId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/new'),
+      profile: (organizationId: string, userId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/', userId ,'/profile'),
+      editById: (organizationId: string, userId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/', userId ,'/edit'),
+    },
+  },
 }
 
 export const PATH_DASHBOARD = {

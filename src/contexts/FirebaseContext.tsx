@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signInWithRedirect,
   signOut,
   TwitterAuthProvider,
   updateEmail,
@@ -18,7 +19,7 @@ import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/a
 import { AUTH, DB, STORAGE } from '../datasources/firebase';
 import { useDispatch } from '../redux/store';
 import { cleanRoot } from '../redux/rootReducer';
-import { loadOrganizations } from '../redux/slices/organization';
+import { loadUserOrganizations } from '../redux/slices/organization';
 import { FormValuesProps } from '../sections/@dashboard/user/account/AccountGeneral';
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
@@ -79,6 +80,9 @@ function AuthProvider({ children }: AuthProviderProps) {
     () =>
       onAuthStateChanged(AUTH, async (user) => {
         console.log('onAuthStateChanged()');
+        if (window.sessionStorage.getItem("authenticating")) {
+          window.sessionStorage.removeItem("authenticating")
+        }
         console.log({ user });
         if (user) {
           const userRef = doc(DB, 'users', user.uid);
@@ -86,10 +90,20 @@ function AuthProvider({ children }: AuthProviderProps) {
 
           if (docSnap.exists()) {
             setProfile(docSnap.data());
-            const { defaultOrganizationId } = docSnap.data();
-            if (defaultOrganizationId) {
-              reduxDispatch(loadOrganizations(user.uid, defaultOrganizationId));
+            // const { defaultOrganizationId } = docSnap.data();
+            // if (defaultOrganizationId) {
+            //   reduxDispatch(loadOrganizations(user.uid, defaultOrganizationId));
+            // }
+          } else {
+            const userProfile = {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              createdAt: serverTimestamp(),
+              updatedAt: serverTimestamp(),
             }
+            await setDoc(userRef, userProfile);
+            setProfile(userProfile);
           }
           dispatch({
             type: Types.Initial,
@@ -122,21 +136,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         }
       });
 
-  const loginWithGoogle = () => signInWithPopup(AUTH, googleProvider)
-    .then(async (result) => {
-      const userRef = doc(collection(DB, 'users'), result.user?.uid);
-      const docSnap = await getDoc(userRef);
-
-      if (!docSnap.exists()) {
-        await setDoc(userRef, {
-          uid: result.user?.uid,
-          email: result.user?.email,
-          displayName: result.user?.displayName,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
-        });
-      }
-    });
+  const loginWithGoogle = () => signInWithRedirect(AUTH, googleProvider);
 
   // TODO: implement
   const loginWithFacebook = () => signInWithPopup(AUTH, facebookProvider);
@@ -235,7 +235,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           zipCode: profile?.zipCode || '',
           about: profile?.about || '',
           isPublic: profile?.isPublic || false,
-          organization: profile?.organization || '',
+          defaultOrganizationId: profile?.defaultOrganizationId || '',
         },
         login,
         loginWithGoogle,

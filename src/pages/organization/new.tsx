@@ -1,12 +1,12 @@
 import Page from '../../components/Page';
 import { Box, Card, Container, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import SeoIllustration from '../../assets/illustration_seo';
+import { SeverErrorIllustration } from '../../assets';
 import AuthGuard from '../../guards/AuthGuard';
 import Logo from '../../components/Logo';
 import useResponsive from '../../hooks/useResponsive';
 import { NewOrganizationForm } from '../../sections/organizations/new';
-import AccountPopover from '../../layouts/dashboard/header/AccountPopover';
+import AccountPopover from '../../layouts/admin/header/AccountPopover';
 
 /*const RootStyle = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -75,7 +75,7 @@ export default function NewOrganization() {
               <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                 Manage the job more effectively with Minimal
               </Typography>
-              <SeoIllustration sx={{ height: 260, my: { xs: 5, sm: 10 } }} />
+              <SeverErrorIllustration sx={{ height: 260, my: { xs: 5, sm: 10 } }} />
             </SectionStyle>
           )}
 
@@ -84,10 +84,10 @@ export default function NewOrganization() {
               <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flexGrow: 1 }}>
                   <Typography variant="h4" gutterBottom>
-                    Welcome!
+                    Get started!
                   </Typography>
                   <Typography sx={{ color: 'text.secondary' }}>
-                    Get started creating an account for you organization.
+                    Create an account for you organization.
                   </Typography>
                 </Box>
               </Box>

@@ -4,6 +4,7 @@ import { Button, Divider, Grid, Typography } from '@mui/material';
 import Iconify from '../../components/Iconify';
 //hooks
 import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -12,8 +13,10 @@ export default function AuthFirebaseSocial() {
 
   const handleLoginGoogle = async () => {
     try {
+      window.sessionStorage.setItem("authenticating", "1");
       await loginWithGoogle?.();
     } catch (error) {
+      window.sessionStorage.removeItem("authenticating");
       console.error(error);
     }
   };

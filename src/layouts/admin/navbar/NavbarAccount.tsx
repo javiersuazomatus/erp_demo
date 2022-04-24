@@ -1,16 +1,11 @@
-// next
 import NextLink from 'next/link';
-// @mui
 import { styled } from '@mui/material/styles';
 import { Box, Link, Typography } from '@mui/material';
-// redux
 import { useSelector } from '../../../redux/store';
-// routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
-// components
 import OrganizationAvatar from '../../../components/OrganizationAvatar';
+import { Organization } from '../../../@types/organization';
 
-// ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -23,18 +18,18 @@ const RootStyle = styled('div')(({ theme }) => ({
   }),
 }));
 
-// ----------------------------------------------------------------------
 
 type Props = {
   isCollapse: boolean | undefined;
 };
 
 export default function NavbarAccount({ isCollapse }: Props) {
-  const { organization } = useSelector((state) => state.organization);
+  const { currentOrganization }: { currentOrganization: Organization } =
+    useSelector((state) => state.organization);
 
   return (
     <NextLink href={PATH_DASHBOARD.user.account} passHref>
-      <Link underline="none" color="inherit">
+      <Link underline='none' color='inherit'>
         <RootStyle
           sx={{
             ...(isCollapse && {
@@ -57,8 +52,8 @@ export default function NavbarAccount({ isCollapse }: Props) {
               }),
             }}
           >
-            <Typography variant="subtitle2" noWrap>
-              {organization?.name}
+            <Typography variant='subtitle2' noWrap>
+              {currentOrganization.name}
             </Typography>
           </Box>
         </RootStyle>

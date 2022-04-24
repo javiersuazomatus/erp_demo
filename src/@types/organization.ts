@@ -1,24 +1,24 @@
 export type Organization = {
   id: string;
   name: string;
-  logoURL: string | null;
+  logoURL?: string;
+  user?: {
+    role: string;
+    estate: string;
+    occupation: string
+  }
+  detail?: OrganizationDetail;
 }
 
-export type OrganizationUser = {
-  id: string;
-  name: string;
-  estate: string;
-  occupation: string
-  logoURL: string | null;
-  role: string;
+export type OrganizationDetail = {
+  address?: string;
 }
 
 export type OrganizationState = {
   isLoading: boolean;
   error: Error | string | null;
-  organizations: OrganizationUser[];
-  defaultOrganization: OrganizationUser | null;
-  organization: Organization | null;
+  organizations: Record<string, Organization> | null;
+  currentOrganization: Organization | null;
 }
 
 export type OrganizationFormValues = {

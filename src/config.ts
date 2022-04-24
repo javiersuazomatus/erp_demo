@@ -1,6 +1,6 @@
 import { SettingsValueProps } from './components/settings/type';
 // routes
-import { PATH_DASHBOARD } from './routes/paths';
+import { PATH_DASHBOARD, PATH_ORGANIZATION } from './routes/paths';
 
 // API
 // ----------------------------------------------------------------------
@@ -29,7 +29,7 @@ export const AUTH0_API = {
 export const MAPBOX_API = process.env.MAPBOX;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
-export const PATH_AFTER_LOGIN = PATH_DASHBOARD.general.app; // as '/dashboard/app'
+export const PATH_AFTER_LOGIN = PATH_ORGANIZATION.root;
 
 // LAYOUT
 // ----------------------------------------------------------------------

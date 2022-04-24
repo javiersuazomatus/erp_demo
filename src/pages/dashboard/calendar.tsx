@@ -39,7 +39,7 @@ Calendar.getLayout = function getLayout(page: React.ReactElement) {
 const selectedEventSelector = (state: RootState) => {
   const { events, selectedEventId } = state.calendar;
   if (selectedEventId) {
-    return events.find((_event) => _event.id === selectedEventId);
+    return events.find((_event: { id: any; }) => _event.id === selectedEventId);
   }
   return null;
 };

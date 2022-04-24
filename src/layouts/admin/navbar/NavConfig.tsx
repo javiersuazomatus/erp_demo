@@ -3,6 +3,7 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 // components
 import Label from '../../../components/Label';
 import SvgIconStyle from '../../../components/SvgIconStyle';
+import { GroupItem } from '../index';
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +26,7 @@ const ICONS = {
   booking: getIcon('ic_booking'),
 };
 
-const navConfig = [
+const navDefaultConfig : GroupItem[] = [
   // GENERAL
   // ----------------------------------------------------------------------
   {
@@ -103,7 +104,7 @@ const navConfig = [
         path: PATH_DASHBOARD.mail.root,
         icon: ICONS.mail,
         info: (
-          <Label variant="outlined" color="error">
+          <Label variant='outlined' color='error'>
             +32
           </Label>
         ),
@@ -119,4 +120,4 @@ const navConfig = [
   },
 ];
 
-export default navConfig;
+export default navDefaultConfig;

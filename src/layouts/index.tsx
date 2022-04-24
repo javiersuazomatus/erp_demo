@@ -3,18 +3,20 @@ import { ReactNode } from 'react';
 import AuthGuard from '../guards/AuthGuard';
 // components
 import MainLayout from './main';
-import DashboardLayout from './dashboard';
+import AdminLayout, { GroupItem } from './admin';
 import LogoOnlyLayout from './LogoOnlyLayout';
 import OrganizationGuard from '../guards/OrganizationGuard';
+import navDefaultConfig from './admin/navbar/NavConfig'
 
 // ----------------------------------------------------------------------
 
 type Props = {
   children: ReactNode;
-  variant?: 'main' | 'dashboard' | 'logoOnly';
+  variant?: 'main' | 'admin' | 'logoOnly';
+  navConfig?: GroupItem[]
 };
 
-export default function Layout({ variant = 'dashboard', children }: Props) {
+export default function Layout({ variant = 'admin', children, navConfig }: Props) {
   if (variant === 'logoOnly') {
     return <LogoOnlyLayout> {children} </LogoOnlyLayout>;
   }
@@ -26,7 +28,7 @@ export default function Layout({ variant = 'dashboard', children }: Props) {
   return (
     <AuthGuard>
       <OrganizationGuard>
-        <DashboardLayout> {children} </DashboardLayout>
+        <AdminLayout navConfig={navConfig || navDefaultConfig}> {children} </AdminLayout>
       </OrganizationGuard>
     </AuthGuard>
   );

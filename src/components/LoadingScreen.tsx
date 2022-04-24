@@ -1,9 +1,10 @@
 import { m } from 'framer-motion';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 //
 import Logo from './Logo';
+import { mt } from 'date-fns/locale';
 
 // ----------------------------------------------------------------------
 

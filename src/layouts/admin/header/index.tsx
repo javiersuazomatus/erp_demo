@@ -63,7 +63,7 @@ type Props = {
   verticalLayout?: boolean;
 };
 
-export default function DashboardHeader({
+export default function AdminHeader({
   onOpenSidebar,
   isCollapse = false,
   verticalLayout = false,
