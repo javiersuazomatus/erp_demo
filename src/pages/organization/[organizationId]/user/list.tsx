@@ -1,5 +1,5 @@
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NextLink from 'next/link';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -18,23 +18,26 @@ import {
 } from '@mui/material';
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 import useSettings from '../../../../hooks/useSettings';
-import { UserManager } from '../../../../@types/user';
-import { _userList } from '../../../../_mock';
 import OrganizationLayout from '../../../../layouts/OrganizationLayout';
 import Page from '../../../../components/Page';
-import Label from '../../../../components/Label';
+import Label, { LabelColor } from '../../../../components/Label';
 import Iconify from '../../../../components/Iconify';
 import Scrollbar from '../../../../components/Scrollbar';
 import SearchNotFound from '../../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../../components/HeaderBreadcrumbs';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../../../sections/@dashboard/user/list';
+import { getOrganizationCollaborators } from '../../../../clients/organization';
+import { Collaborator, CollaboratorEstate } from '../../../../@types/organization';
+import LoadingScreen from '../../../../components/LoadingScreen';
+import Page500 from '../../../500';
+import { useSelector } from '../../../../redux/store';
 
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'organization', label: 'Organization', alignRight: false },
+  { id: 'occupation', label: 'Occupation', alignRight: false },
   { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
+  // { id: 'isVerified', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
 ];
@@ -46,16 +49,34 @@ UserList.getLayout = function getLayout(page: React.ReactElement) {
 
 
 export default function UserList() {
+
+  const { currentOrganization } = useSelector((state) => state.organization);
+
   const theme = useTheme();
   const { themeStretch } = useSettings();
-
-  const [userList, setUserList] = useState(_userList);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [selected, setSelected] = useState<string[]>([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [collaborators, setCollaborators] = useState<Collaborator[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getOrganizationCollaborators(currentOrganization.id)
+      .then(result => {
+        console.log({result})
+        setCollaborators(result)
+      })
+      .catch(e => setError(e))
+      .finally(() => setIsLoading(false));
+  }, [currentOrganization]);
+
+  if (isLoading) return <LoadingScreen />
+  if (error) return <Page500 />
 
   const handleRequestSort = (property: string) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -65,7 +86,7 @@ export default function UserList() {
 
   const handleSelectAllClick = (checked: boolean) => {
     if (checked) {
-      const newSelecteds = userList.map((n) => n.name);
+      const newSelecteds = collaborators.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -101,20 +122,20 @@ export default function UserList() {
   };
 
   const handleDeleteUser = (userId: string) => {
-    const deleteUser = userList.filter((user) => user.id !== userId);
+    const deleteUser = collaborators.filter((user) => user.id !== userId);
     setSelected([]);
-    setUserList(deleteUser);
+    setCollaborators(deleteUser);
   };
 
   const handleDeleteMultiUser = (selected: string[]) => {
-    const deleteUsers = userList.filter((user) => !selected.includes(user.name));
+    const deleteUsers = collaborators.filter((user) => !selected.includes(user.name));
     setSelected([]);
-    setUserList(deleteUsers);
+    setCollaborators(deleteUsers);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userList.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - collaborators.length) : 0;
 
-  const filteredUsers = applySortFilter(userList, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(collaborators, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && Boolean(filterName);
 
@@ -152,7 +173,7 @@ export default function UserList() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={userList.length}
+                  rowCount={collaborators.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -161,7 +182,7 @@ export default function UserList() {
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name, role, status, organization, avatarUrl, isVerified } = row;
+                      const { id, name, role, estate, occupation, photoURL } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -177,20 +198,20 @@ export default function UserList() {
                             <Checkbox checked={isItemSelected} onClick={() => handleClick(name)} />
                           </TableCell>
                           <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar alt={name} src={avatarUrl} sx={{ mr: 2 }} />
+                            <Avatar alt={name} src={photoURL} sx={{ mr: 2 }} />
                             <Typography variant='subtitle2' noWrap>
                               {name}
                             </Typography>
                           </TableCell>
-                          <TableCell align='left'>{organization}</TableCell>
+                          <TableCell align='left'>{occupation}</TableCell>
                           <TableCell align='left'>{role}</TableCell>
-                          <TableCell align='left'>{isVerified ? 'Yes' : 'No'}</TableCell>
+                          {/*<TableCell align='left'>{isVerified ? 'Yes' : 'No'}</TableCell>*/}
                           <TableCell align='left'>
                             <Label
                               variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                              color={(status === 'banned' && 'error') || 'success'}
+                              color={getEstateColor(estate)}
                             >
-                              {sentenceCase(status)}
+                              {sentenceCase(estate)}
                             </Label>
                           </TableCell>
 
@@ -222,7 +243,7 @@ export default function UserList() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component='div'
-            count={userList.length}
+            count={collaborators.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={(e, page) => setPage(page)}
@@ -254,7 +275,7 @@ function getComparator(order: string, orderBy: string) {
 }
 
 function applySortFilter(
-  array: UserManager[],
+  array: Collaborator[],
   comparator: (a: any, b: any) => number,
   query: string,
 ) {
@@ -268,4 +289,18 @@ function applySortFilter(
     return array.filter((_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
   return stabilizedThis.map((el) => el[0]);
+}
+
+function getEstateColor(estate: CollaboratorEstate): LabelColor {
+  switch (estate) {
+    case CollaboratorEstate.Invited:
+      return 'info'
+    case CollaboratorEstate.Active:
+      return 'success'
+    case CollaboratorEstate.Banned:
+    case CollaboratorEstate.Deleted:
+      return 'error'
+    default:
+      return 'warning'
+  }
 }

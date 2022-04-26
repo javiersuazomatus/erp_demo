@@ -19,7 +19,6 @@ import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/a
 import { AUTH, DB, STORAGE } from '../datasources/firebase';
 import { useDispatch } from '../redux/store';
 import { cleanRoot } from '../redux/rootReducer';
-import { loadUserOrganizations } from '../redux/slices/organization';
 import { FormValuesProps } from '../sections/@dashboard/user/account/AccountGeneral';
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
@@ -224,10 +223,10 @@ function AuthProvider({ children }: AuthProviderProps) {
         user: {
           id: state?.user?.uid,
           email: state?.user?.email,
-          photoURL: state?.user?.photoURL || profile?.photoURL,
-          displayName: state?.user?.displayName || profile?.displayName,
+          photoURL: profile?.photoURL || state?.user?.photoURL,
+          displayName: profile?.displayName || state?.user?.displayName,
           role: ADMIN_EMAILS.includes(state?.user?.email) ? 'admin' : 'user',
-          phoneNumber: state?.user?.phoneNumber || profile?.phoneNumber || '',
+          phoneNumber: profile?.phoneNumber || state?.user?.phoneNumber,
           country: profile?.country || '',
           address: profile?.address || '',
           state: profile?.state || '',

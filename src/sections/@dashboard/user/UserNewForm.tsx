@@ -58,7 +58,7 @@ export default function UserNewForm({ isEdit = false, currentUser }: Props) {
       state: currentUser?.state || '',
       city: currentUser?.city || '',
       zipCode: currentUser?.zipCode || '',
-      avatarUrl: currentUser?.avatarUrl || '',
+      avatarUrl: currentUser?.photoURL || '',
       isVerified: currentUser?.isVerified || true,
       status: currentUser?.status,
       organization: currentUser?.organization || '',

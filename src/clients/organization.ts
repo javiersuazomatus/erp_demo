@@ -1,4 +1,4 @@
-import { Organization, OrganizationFormValues } from '../@types/organization';
+import { Collaborator, Organization, OrganizationFormValues } from '../@types/organization';
 import { collection, doc, getDoc, getDocs, query, runTransaction, serverTimestamp, where } from 'firebase/firestore';
 import { DB, STORAGE } from '../datasources/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -67,7 +67,7 @@ export async function createOrganization(formValues: OrganizationFormValues, own
   });
 }
 
-export async function getOrganizationUsers(userId: string): Promise<Organization[]> {
+export async function getUserOrganizations(userId: string): Promise<Organization[]> {
   const q = query(
     collection(DB, 'junction_organization_user'),
     where('userId', '==', userId));
@@ -85,6 +85,26 @@ export async function getOrganizationUsers(userId: string): Promise<Organization
           occupation: data?.occupation,
           role: data?.role,
         },
+      };
+    });
+}
+
+export async function getOrganizationCollaborators(organizationId: string): Promise<Collaborator[]> {
+  const q = query(
+    collection(DB, 'junction_organization_user'),
+    where('organizationId', '==', organizationId));
+  const junctions = await getDocs(q);
+  return junctions.docs
+    .filter(junction => junction.exists)
+    .map(doc => {
+      const data = doc.data();
+      return {
+        id: data?.userId,
+        name:  data?.userName,
+        photoURL: data?.userPhotoURL,
+        estate: data?.estate,
+        occupation: data?.occupation,
+        role: data?.role,
       };
     });
 }

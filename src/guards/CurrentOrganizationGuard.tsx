@@ -4,7 +4,6 @@ import LoadingScreen from '../components/LoadingScreen';
 import Page500 from '../pages/500';
 import { useDispatch } from 'react-redux';
 import { loadCurrentOrganization } from '../redux/slices/organization';
-import useAuth from '../hooks/useAuth';
 import Page404 from '../pages/404';
 import { useRouter } from 'next/router';
 
@@ -18,7 +17,6 @@ export default function CurrentOrganizationGuard({ children }: Props) {
 
   const dispatch = useDispatch();
 
-  const { user } = useAuth();
   const { query } = useRouter();
 
   const { organizationId } = query;

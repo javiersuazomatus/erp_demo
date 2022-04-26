@@ -57,6 +57,7 @@ export type Profile = {
 };
 
 export type UserManager = {
+  photoURL: string;
   id: string;
   avatarUrl: string;
   name: string;

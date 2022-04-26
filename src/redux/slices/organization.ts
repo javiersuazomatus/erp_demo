@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Organization, OrganizationState } from '../../@types/organization';
 import { store, dispatch } from '../store';
-import { getOrganization, getOrganizationUsers } from '../../clients/organization';
+import { getOrganization, getUserOrganizations } from '../../clients/organization';
 
 const initialState: OrganizationState = {
   isLoading: false,
@@ -45,7 +45,7 @@ export function loadUserOrganizations(userId: string) {
     console.log('loadOrganizations', { userId });
     dispatch(slice.actions.startLoading());
     try {
-      const organizationsList: Organization[] = await getOrganizationUsers(userId);
+      const organizationsList: Organization[] = await getUserOrganizations(userId);
 
       const organizations = organizationsList
         .reduce(function(map: Record<string, Organization>, obj: Organization) {

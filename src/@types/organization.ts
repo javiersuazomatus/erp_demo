@@ -1,3 +1,10 @@
+export enum CollaboratorEstate {
+  Invited = "invited",
+  Active = "active",
+  Banned = "banned",
+  Deleted = "deleted",
+}
+
 export type Organization = {
   id: string;
   name: string;
@@ -5,9 +12,18 @@ export type Organization = {
   user?: {
     role: string;
     estate: string;
-    occupation: string
+    occupation: string;
   }
   detail?: OrganizationDetail;
+}
+
+export type Collaborator = {
+  id: string;
+  name: string;
+  photoURL?: string;
+  role: string;
+  estate: CollaboratorEstate;
+  occupation: string
 }
 
 export type OrganizationDetail = {
