@@ -6,22 +6,19 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signInWithPopup,
   signInWithRedirect,
   signOut,
   TwitterAuthProvider,
-  updateEmail,
-  updateProfile,
 } from 'firebase/auth';
-import { collection, doc, DocumentData, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { DocumentData } from 'firebase/firestore';
 import { ActionMap, AuthState, AuthUser, FirebaseContextType } from '../@types/auth';
-import { AUTH, DB, STORAGE } from '../datasources/firebase';
+import { AUTH } from '../datasources/firebase';
 import { useDispatch } from '../redux/store';
 import { cleanRoot } from '../redux/rootReducer';
-import { FormValuesProps } from '../sections/@dashboard/user/account/AccountGeneral';
 import pickBy from 'lodash/pickBy';
 import isEmpty from 'lodash/isEmpty';
+import { createUserProfile, getUserProfile, updateUserProfile } from '../clients/user';
+import { UserFormValues, UserProfile } from '../@types/userProfile';
 
 // ----------------------------------------------------------------------
 
@@ -84,24 +81,15 @@ function AuthProvider({ children }: AuthProviderProps) {
         }
         console.log({ user });
         if (user) {
-          const userRef = doc(DB, 'users', user.uid);
-          const docSnap = await getDoc(userRef);
-
-          if (docSnap.exists()) {
-            setProfile(docSnap.data());
-            // const { defaultOrganizationId } = docSnap.data();
-            // if (defaultOrganizationId) {
-            //   reduxDispatch(loadOrganizations(user.uid, defaultOrganizationId));
-            // }
+          const userProfile: UserProfile | null = await getUserProfile(user.uid)
+          if (userProfile) {
+            setProfile(userProfile);
           } else {
-            const userProfile = {
+            const userProfile: UserProfile = await createUserProfile({
               uid: user.uid,
-              email: user.email,
-              displayName: user.displayName,
-              createdAt: serverTimestamp(),
-              updatedAt: serverTimestamp(),
-            }
-            await setDoc(userRef, userProfile);
+              displayName: user.displayName || '',
+              email: user.email || '',
+            })
             setProfile(userProfile);
           }
           dispatch({
@@ -138,22 +126,20 @@ function AuthProvider({ children }: AuthProviderProps) {
   const loginWithGoogle = () => signInWithRedirect(AUTH, googleProvider);
 
   // TODO: implement
-  const loginWithFacebook = () => signInWithPopup(AUTH, facebookProvider);
+  const loginWithFacebook = () => signInWithRedirect(AUTH, facebookProvider);
 
   // TODO: implement
-  const loginWithTwitter = () => signInWithPopup(AUTH, twitterProvider);
+  const loginWithTwitter = () => signInWithRedirect(AUTH, twitterProvider);
 
   const register = (email: string, password: string, firstName: string, lastName: string) =>
     createUserWithEmailAndPassword(AUTH, email, password)
       .then(async (res) => {
-        const userRef = doc(collection(DB, 'users'), res.user?.uid);
-        await setDoc(userRef, {
+        const userProfile = createUserProfile({
           uid: res.user?.uid,
           email,
           displayName: `${firstName} ${lastName}`,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
-        });
+        })
+        setProfile(userProfile);
       })
       .catch(error => {
         switch (error.code) {
@@ -164,52 +150,25 @@ function AuthProvider({ children }: AuthProviderProps) {
         }
       });
 
-  const update = async (user: FormValuesProps) => {
-    console.log(' +++++++++++++++++ update +++++++++++++++++');
-    console.log({ user });
-    const { photoFile, ...formValues } = user;
+  const update = async (formValues: UserFormValues) => {
+    console.log('updateUserProfile', { formValues })
+    await updateUserProfile(formValues);
     const userData = pickBy(formValues, attr => !isEmpty(attr));
-    console.log(userData);
-
-    if (AUTH.currentUser) {
-      let photoURL;
-
-      if (photoFile instanceof File) {
-        const extension = photoFile.name.split('.').pop();
-        const avatarRef = ref(STORAGE, `users/${AUTH.currentUser?.uid}/avatar.${extension}`);
-        await uploadBytes(avatarRef, photoFile);
-        photoURL = await getDownloadURL(avatarRef);
-      } else {
-        photoURL = AUTH.currentUser.photoURL;
-      }
-
-      await updateProfile(AUTH.currentUser, {
-        displayName: user?.displayName || AUTH.currentUser.displayName,
-        photoURL: photoURL,
-      });
-
-      if (AUTH.currentUser.email != user?.email) {
-        await updateEmail(AUTH.currentUser, user?.email);
-      }
-
-      const userRef = doc(collection(DB, 'users'), state.user?.uid);
-      await updateDoc(userRef, {
-        ...userData,
-        photoURL,
-        uid: AUTH.currentUser?.uid,
-        updatedAt: serverTimestamp(),
-      });
-
-      dispatch({
-        type: Types.Initial,
-        payload: {
-          isAuthenticated: true,
-          user: { ...state?.user, ...userData, photoURL },
+    dispatch({
+      type: Types.Initial,
+      payload: {
+        isAuthenticated: true,
+        user: {
+          ...state?.user,
+          ...userData,
         },
-      });
+      },
+    });
 
-      setProfile({ profile, ...userData, photoURL });
-    }
+    setProfile({
+      ...profile,
+      ...userData,
+    });
   };
 
 

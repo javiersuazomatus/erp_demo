@@ -6,6 +6,7 @@ import { WithoutOrganization } from '../sections/organizations/without';
 import { useDispatch } from 'react-redux';
 import { loadUserOrganizations } from '../redux/slices/organization';
 import useAuth from '../hooks/useAuth';
+import isEmpty from 'lodash/isEmpty'
 
 
 type Props = {
@@ -23,7 +24,6 @@ export default function OrganizationGuard({ children }: Props) {
   console.log({ organizations, isLoading, error });
 
   useEffect(() => {
-      console.log('useEffect', { organizations, user });
       if (user?.id && !organizations) {
         dispatch(loadUserOrganizations(user?.id));
       }
@@ -37,7 +37,7 @@ export default function OrganizationGuard({ children }: Props) {
       return <Page500 />;
     }
 
-    if (!organizations) {
+    if (isEmpty(organizations)) {
       console.log('<- return WithoutOrganization');
       return <WithoutOrganization />;
     } else {

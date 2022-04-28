@@ -1,7 +1,7 @@
 // @mui
 import { Box, Button, Card, Paper, Stack, Typography } from '@mui/material';
 // @types
-import { UserAddressBook } from '../../../../@types/user';
+import { UserAddressBook } from '../../../../@types/userProfile';
 // components
 import Iconify from '../../../../components/Iconify';
 

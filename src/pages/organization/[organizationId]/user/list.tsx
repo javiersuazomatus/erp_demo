@@ -26,8 +26,8 @@ import Scrollbar from '../../../../components/Scrollbar';
 import SearchNotFound from '../../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../../components/HeaderBreadcrumbs';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../../../sections/@dashboard/user/list';
-import { getOrganizationCollaborators } from '../../../../clients/organization';
-import { Collaborator, CollaboratorEstate } from '../../../../@types/organization';
+import { getOrganizationUsers } from '../../../../clients/organization';
+import { OrganizationUser, UserEstate } from '../../../../@types/organization';
 import LoadingScreen from '../../../../components/LoadingScreen';
 import Page500 from '../../../500';
 import { useSelector } from '../../../../redux/store';
@@ -61,16 +61,13 @@ export default function UserList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [collaborators, setCollaborators] = useState<Collaborator[]>([]);
+  const [users, setUsers] = useState<OrganizationUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getOrganizationCollaborators(currentOrganization.id)
-      .then(result => {
-        console.log({result})
-        setCollaborators(result)
-      })
+    getOrganizationUsers(currentOrganization.id)
+      .then(result => setUsers(result))
       .catch(e => setError(e))
       .finally(() => setIsLoading(false));
   }, [currentOrganization]);
@@ -86,7 +83,7 @@ export default function UserList() {
 
   const handleSelectAllClick = (checked: boolean) => {
     if (checked) {
-      const newSelecteds = collaborators.map((n) => n.name);
+      const newSelecteds = users.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -122,20 +119,20 @@ export default function UserList() {
   };
 
   const handleDeleteUser = (userId: string) => {
-    const deleteUser = collaborators.filter((user) => user.id !== userId);
+    const deleteUser = users.filter((user) => user.id !== userId);
     setSelected([]);
-    setCollaborators(deleteUser);
+    setUsers(deleteUser);
   };
 
   const handleDeleteMultiUser = (selected: string[]) => {
-    const deleteUsers = collaborators.filter((user) => !selected.includes(user.name));
+    const deleteUsers = users.filter((user) => !selected.includes(user.name));
     setSelected([]);
-    setCollaborators(deleteUsers);
+    setUsers(deleteUsers);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - collaborators.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
 
-  const filteredUsers = applySortFilter(collaborators, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(users, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && Boolean(filterName);
 
@@ -173,7 +170,7 @@ export default function UserList() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={collaborators.length}
+                  rowCount={users.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -216,7 +213,7 @@ export default function UserList() {
                           </TableCell>
 
                           <TableCell align='right'>
-                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name} />
+                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={id} />
                           </TableCell>
                         </TableRow>
                       );
@@ -243,7 +240,7 @@ export default function UserList() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component='div'
-            count={collaborators.length}
+            count={users.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={(e, page) => setPage(page)}
@@ -275,7 +272,7 @@ function getComparator(order: string, orderBy: string) {
 }
 
 function applySortFilter(
-  array: Collaborator[],
+  array: OrganizationUser[],
   comparator: (a: any, b: any) => number,
   query: string,
 ) {
@@ -291,14 +288,13 @@ function applySortFilter(
   return stabilizedThis.map((el) => el[0]);
 }
 
-function getEstateColor(estate: CollaboratorEstate): LabelColor {
+function getEstateColor(estate: UserEstate): LabelColor {
   switch (estate) {
-    case CollaboratorEstate.Invited:
+    case UserEstate.Invited:
       return 'info'
-    case CollaboratorEstate.Active:
+    case UserEstate.Active:
       return 'success'
-    case CollaboratorEstate.Banned:
-    case CollaboratorEstate.Deleted:
+    case UserEstate.Blocked:
       return 'error'
     default:
       return 'warning'

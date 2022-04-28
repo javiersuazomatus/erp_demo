@@ -2,7 +2,7 @@ import { useState } from 'react';
 // @mui
 import { Avatar, Box, Button, Card, Grid, Typography } from '@mui/material'; // @types
 // @types
-import { Follower } from '../../../../@types/user';
+import { Follower } from '../../../../@types/userProfile';
 // components
 import Iconify from '../../../../components/Iconify';
 

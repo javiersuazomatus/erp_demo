@@ -1,7 +1,8 @@
-import { Collaborator, Organization, OrganizationFormValues } from '../@types/organization';
+import { OrganizationUser, Organization, OrganizationFormValues, UserEstate } from '../@types/organization';
 import { collection, doc, getDoc, getDocs, query, runTransaction, serverTimestamp, where } from 'firebase/firestore';
-import { DB, STORAGE } from '../datasources/firebase';
+import { DB, AUTH, STORAGE } from '../datasources/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import pickBy from 'lodash/pickBy';
 
 export async function getOrganization(organizationId: string): Promise<Organization | null> {
   const organizationRef = doc(DB, 'organizations', organizationId);
@@ -20,48 +21,47 @@ export async function getOrganization(organizationId: string): Promise<Organizat
 
 export async function createOrganization(formValues: OrganizationFormValues, ownerId: string) {
   console.log({ formValues });
-  const { logo, ...organization } = formValues;
 
-  let logoURL: string | null = null;
-
-  if (logo instanceof File) {
-    const extension = logo.name.split('.').pop();
-    const avatarRef = ref(STORAGE, `organizations/${organization.id}/logo.${extension}`);
-    await uploadBytes(avatarRef, logo);
-    logoURL = await getDownloadURL(avatarRef);
+  if (formValues.logoURL instanceof File) {
+    const extension = formValues.logoURL?.name.split('.').pop();
+    const avatarRef = ref(STORAGE, `organizations/${formValues.id}/logo.${extension}`);
+    await uploadBytes(avatarRef, formValues.logoURL);
+    formValues.logoURL = await getDownloadURL(avatarRef);
   }
 
-  const compsRef = doc(collection(DB, 'organizations'), organization.id);
+  const orgsRef = doc(collection(DB, 'organizations'), formValues.id);
   await runTransaction(DB, async (transaction) => {
-    const docSnap = await transaction.get(compsRef);
+    const docSnap = await transaction.get(orgsRef);
     if (docSnap.exists()) {
       throw 'An organization with this name already exist';
     }
 
-    transaction.set(compsRef, {
-      ...organization,
-      logoURL,
+    transaction.set(orgsRef, {
+      ...pickBy(formValues, attr => attr),
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
 
-    const { id, name } = organization;
-    const jucRef = doc(collection(DB, 'junction_organization_user'), `${organization.id}_${ownerId}`);
-    transaction.set(jucRef, {
-      organizationId: id,
-      userId: ownerId,
-      name,
-      logoURL,
+    console.log({ ownerOccupation: formValues.ownerOccupation})
+
+    const jouRef = doc(collection(DB, 'junction_organization_user'), `${formValues.id}_${ownerId}`);
+    transaction.set(jouRef, pickBy({
+      organizationId: formValues.id,
+      name: formValues.name,
+      logoURL: formValues.logoURL,
       estate: 'active',
-      occupation: 'owner',
-      rol: 'owner',
+      occupation: formValues.ownerOccupation,
+      role: 'owner',
+      userId: ownerId,
+      useName: AUTH.currentUser?.displayName,
+      userPhotoURL: AUTH.currentUser?.photoURL,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
-    });
+    }, attr => attr));
 
     const userRef = doc(collection(DB, 'users'), ownerId);
     transaction.update(userRef, {
-      defaultOrganizationId: organization.id,
+      defaultOrganizationId: formValues.id,
       updatedAt: serverTimestamp(),
     });
   });
@@ -81,6 +81,8 @@ export async function getUserOrganizations(userId: string): Promise<Organization
         name: data?.name,
         logoURL: data?.photoURL,
         user: {
+          id: data?.id,
+          name: data?.name,
           estate: data?.estate,
           occupation: data?.occupation,
           role: data?.role,
@@ -89,7 +91,7 @@ export async function getUserOrganizations(userId: string): Promise<Organization
     });
 }
 
-export async function getOrganizationCollaborators(organizationId: string): Promise<Collaborator[]> {
+export async function getOrganizationUsers(organizationId: string): Promise<OrganizationUser[]> {
   const q = query(
     collection(DB, 'junction_organization_user'),
     where('organizationId', '==', organizationId));

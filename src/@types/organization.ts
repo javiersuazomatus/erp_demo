@@ -1,28 +1,23 @@
-export enum CollaboratorEstate {
+export enum UserEstate {
   Invited = "invited",
   Active = "active",
-  Banned = "banned",
-  Deleted = "deleted",
+  Blocked = "blocked",
 }
 
 export type Organization = {
   id: string;
   name: string;
   logoURL?: string;
-  user?: {
-    role: string;
-    estate: string;
-    occupation: string;
-  }
+  user?: OrganizationUser
   detail?: OrganizationDetail;
 }
 
-export type Collaborator = {
+export type OrganizationUser = {
   id: string;
   name: string;
   photoURL?: string;
   role: string;
-  estate: CollaboratorEstate;
+  estate: UserEstate;
   occupation: string
 }
 
@@ -41,6 +36,7 @@ export type OrganizationFormValues = {
   id: string;
   name: string;
   legalName: string;
-  logo?: File;
+  logoURL?: File | any;
   afterSubmit?: string;
+  ownerOccupation: string;
 };

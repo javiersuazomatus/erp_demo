@@ -9,7 +9,7 @@ import { createOrganization } from '../../../clients/organization';
 import { useDispatch } from '../../../redux/store';
 import { loadUserOrganizations } from '../../../redux/slices/organization';
 import { useRouter } from 'next/router';
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_ORGANIZATION } from '../../../routes/paths';
 import useAuth from '../../../hooks/useAuth';
 import { fData } from '../../../utils/formatNumber';
 import { useCallback } from 'react';
@@ -29,9 +29,9 @@ export default function NewOrganizationForm() {
   const NewOrganizationSchema = Yup.object().shape({
     id: Yup.string().required('ID required'),
     name: Yup.string().required('Name required'),
-    legalName: Yup.string().required('Legal Name required'),
+    legalName: Yup.string().required('Legal name required'),
+    ownerOccupation: Yup.string().required('Position or occupation required')
   });
-
 
   const methods = useForm<OrganizationFormValues>({
     resolver: yupResolver(NewOrganizationSchema),
@@ -57,7 +57,7 @@ export default function NewOrganizationForm() {
 
       if (file) {
         setValue(
-          'logo',
+          'logoURL',
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           }),
@@ -73,10 +73,11 @@ export default function NewOrganizationForm() {
         id: data.id,
         name: data.name,
         legalName: data.legalName,
-        logo: data.logo,
+        logoURL: data.logoURL,
+        ownerOccupation: data.ownerOccupation,
       }, user?.id);
-      dispatch(loadUserOrganizations(user?.id, data.id));
-      replace(PATH_DASHBOARD.general.app);
+      dispatch(loadUserOrganizations(user?.id));
+      replace(PATH_ORGANIZATION.detail.dashboard(data.id));
     } catch (error) {
       console.error(error);
       setError('afterSubmit', {
@@ -117,6 +118,8 @@ export default function NewOrganizationForm() {
             </Typography>
           }
         />
+        <RHFTextField name='ownerOccupation' label='Position or Occupation' />
+
 
         <LoadingButton
           fullWidth

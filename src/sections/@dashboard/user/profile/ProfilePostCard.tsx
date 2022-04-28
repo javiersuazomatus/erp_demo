@@ -17,7 +17,7 @@ import {
   Typography,
 } from '@mui/material';
 // @types
-import { UserPost } from '../../../../@types/user';
+import { UserPost } from '../../../../@types/userProfile';
 // hooks
 import useAuth from '../../../../hooks/useAuth';
 // utils

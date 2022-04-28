@@ -14,7 +14,7 @@ import { fData } from '../../../utils/formatNumber';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // @types
-import { UserManager } from '../../../@types/user';
+import { UserManager } from '../../../@types/userProfile';
 // _mock
 import { countries } from '../../../_mock';
 // components

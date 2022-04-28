@@ -1,7 +1,7 @@
 // @mui
 import { Avatar, Box, Card, Grid, IconButton, InputAdornment, Link, Typography } from '@mui/material';
 // @types
-import { Friend } from '../../../../@types/user';
+import { Friend } from '../../../../@types/userProfile';
 // components
 import Iconify from '../../../../components/Iconify';
 import InputStyle from '../../../../components/InputStyle';

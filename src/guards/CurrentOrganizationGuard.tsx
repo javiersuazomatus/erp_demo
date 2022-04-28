@@ -26,7 +26,6 @@ export default function CurrentOrganizationGuard({ children }: Props) {
   console.log({ currentOrganization, isLoading, error });
 
   useEffect(() => {
-      console.log('useEffect', { currentOrganization });
       if (orgId && (!currentOrganization || currentOrganization.id !== orgId)) {
         dispatch(loadCurrentOrganization(orgId));
       }

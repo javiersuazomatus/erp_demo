@@ -1,4 +1,28 @@
-// ----------------------------------------------------------------------
+export type UserFormValues = {
+  displayName: string;
+  email: string;
+  photoURL: File | any;
+  phoneNumber: string | null;
+  country: string | null;
+  address: string | null;
+  state: string | null;
+  city: string | null;
+  zipCode: string | null;
+  about: string | null;
+  isPublic: boolean;
+};
+
+
+export type UserProfile = {
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL?: string;
+  defaultOrganizationId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 
 export type UserInvoice = {
   id: string;
@@ -57,7 +81,6 @@ export type Profile = {
 };
 
 export type UserManager = {
-  photoURL: string;
   id: string;
   avatarUrl: string;
   name: string;

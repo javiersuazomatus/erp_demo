@@ -4,7 +4,7 @@ import { Button, Link, Stack, Typography } from '@mui/material';
 import { fDate } from '../../../../utils/formatTime';
 import { fCurrency } from '../../../../utils/formatNumber';
 // @types
-import { UserInvoice } from '../../../../@types/user';
+import { UserInvoice } from '../../../../@types/userProfile';
 // components
 import Iconify from '../../../../components/Iconify';
 

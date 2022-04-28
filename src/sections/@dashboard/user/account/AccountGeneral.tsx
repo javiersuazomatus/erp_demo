@@ -9,20 +9,7 @@ import useAuth from '../../../../hooks/useAuth';
 import { fData } from '../../../../utils/formatNumber';
 import { countries } from '../../../../_mock';
 import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../../components/hook-form';
-
-export type FormValuesProps = {
-  displayName: string;
-  email: string;
-  photoFile: File | any;
-  phoneNumber: string | null;
-  country: string | null;
-  address: string | null;
-  state: string | null;
-  city: string | null;
-  zipCode: string | null;
-  about: string | null;
-  isPublic: boolean;
-};
+import { UserFormValues } from '../../../../@types/userProfile';
 
 export default function AccountGeneral() {
   const { enqueueSnackbar } = useSnackbar();
@@ -36,7 +23,7 @@ export default function AccountGeneral() {
   const defaultValues = {
     displayName: user?.displayName,
     email: user?.email,
-    photoFile: user?.photoURL,
+    photoURL: user?.photoURL,
     phoneNumber: user?.phoneNumber,
     country: user?.country,
     address: user?.address,
@@ -47,7 +34,7 @@ export default function AccountGeneral() {
     isPublic: user?.isPublic,
   };
 
-  const methods = useForm<FormValuesProps>({
+  const methods = useForm<UserFormValues>({
     resolver: yupResolver(UpdateUserSchema),
     defaultValues,
   });
@@ -58,7 +45,7 @@ export default function AccountGeneral() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async (data: FormValuesProps) => {
+  const onSubmit = async (data: UserFormValues) => {
     try {
       console.log({ data });
       await update(data);
@@ -75,7 +62,7 @@ export default function AccountGeneral() {
 
       if (file) {
         setValue(
-          'photoFile',
+          'photoURL',
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           }),
@@ -91,7 +78,7 @@ export default function AccountGeneral() {
         <Grid item xs={12} md={4}>
           <Card sx={{ py: 10, px: 3, textAlign: 'center' }}>
             <RHFUploadAvatar
-              name='photoFile'
+              name='photoURL'
               accept='image/*'
               maxSize={3145728}
               onDrop={handleDrop}

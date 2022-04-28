@@ -5,7 +5,7 @@ import { Avatar, Box, Card, Divider, Stack, Typography } from '@mui/material';
 import cssStyles from '../../../../utils/cssStyles';
 import { fShortenNumber } from '../../../../utils/formatNumber';
 // @types
-import { UserData } from '../../../../@types/user';
+import { UserData } from '../../../../@types/userProfile';
 // components
 import Image from '../../../../components/Image';
 import SocialsButton from '../../../../components/SocialsButton';

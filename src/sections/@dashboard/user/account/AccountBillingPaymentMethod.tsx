@@ -2,7 +2,7 @@
 import { Box, Button, Card, Collapse, IconButton, Paper, Stack, TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // @types
-import { CreditCard } from '../../../../@types/user';
+import { CreditCard } from '../../../../@types/userProfile';
 // components
 import Image from '../../../../components/Image';
 import Iconify from '../../../../components/Iconify';

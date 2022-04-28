@@ -23,7 +23,7 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 // hooks
 import useSettings from '../../../hooks/useSettings';
 // @types
-import { UserManager } from '../../../@types/user';
+import { UserManager } from '../../../@types/userProfile';
 // _mock_
 import { _userList } from '../../../_mock';
 // layouts
