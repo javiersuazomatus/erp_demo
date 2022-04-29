@@ -26,8 +26,8 @@ import Scrollbar from '../../../../components/Scrollbar';
 import SearchNotFound from '../../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../../components/HeaderBreadcrumbs';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../../../sections/@dashboard/user/list';
-import { getOrganizationUsers } from '../../../../clients/organization';
-import { OrganizationUser, UserEstate } from '../../../../@types/organization';
+import { getOrganizationUsers, updateOrganizationUser } from '../../../../clients/organization';
+import { OrganizationUser, UserState } from '../../../../@types/organization';
 import LoadingScreen from '../../../../components/LoadingScreen';
 import Page500 from '../../../500';
 import { useSelector } from '../../../../redux/store';
@@ -118,10 +118,18 @@ export default function UserList() {
     setPage(0);
   };
 
-  const handleDeleteUser = (userId: string) => {
-    const deleteUser = users.filter((user) => user.id !== userId);
-    setSelected([]);
-    setUsers(deleteUser);
+  const handleDeleteUser = async (userId: string) => {
+    console.log('handleDeleteUser');
+    await updateOrganizationUser(currentOrganization.id, userId, {
+      state: UserState.Deleted,
+    });
+    const userIndex = users.findIndex((user) => user.id == userId);
+    const usersCopy = [...users];
+    usersCopy[userIndex] = {
+      ...users[userIndex],
+      state: UserState.Deleted,
+    }
+    setUsers(usersCopy)
   };
 
   const handleDeleteMultiUser = (selected: string[]) => {
@@ -178,8 +186,8 @@ export default function UserList() {
                 <TableBody>
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      const { id, name, role, estate, occupation, photoURL } = row;
+                    .map((row, index) => {
+                      const { id, name, role, state, occupation, photoURL } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -206,14 +214,14 @@ export default function UserList() {
                           <TableCell align='left'>
                             <Label
                               variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-                              color={getEstateColor(estate)}
+                              color={getStateColor(state)}
                             >
-                              {sentenceCase(estate)}
+                              {sentenceCase(state)}
                             </Label>
                           </TableCell>
 
                           <TableCell align='right'>
-                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={id} />
+                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userId={id} />
                           </TableCell>
                         </TableRow>
                       );
@@ -288,13 +296,14 @@ function applySortFilter(
   return stabilizedThis.map((el) => el[0]);
 }
 
-function getEstateColor(estate: UserEstate): LabelColor {
-  switch (estate) {
-    case UserEstate.Invited:
+function getStateColor(state: UserState): LabelColor {
+  switch (state) {
+    case UserState.Invited:
       return 'info'
-    case UserEstate.Active:
+    case UserState.Active:
       return 'success'
-    case UserEstate.Blocked:
+    case UserState.Blocked:
+    case UserState.Deleted:
       return 'error'
     default:
       return 'warning'

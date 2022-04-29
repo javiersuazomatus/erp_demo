@@ -30,7 +30,7 @@ OrganizationsList.getLayout = function getLayout(page: React.ReactElement) {
 
 export default function OrganizationsList() {
   return (
-    <Page title='Orgs List' sx={{ height: 1 }}>
+    <Page title='Organizations' sx={{ height: 1 }}>
       <RootStyle>
         <Container component={MotionContainer}>
           <Box sx={{ maxWidth: 480, margin: 'auto', textAlign: 'center' }}>

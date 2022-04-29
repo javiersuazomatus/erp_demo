@@ -1,5 +1,16 @@
-import { OrganizationUser, Organization, OrganizationFormValues, UserEstate } from '../@types/organization';
-import { collection, doc, getDoc, getDocs, query, runTransaction, serverTimestamp, where } from 'firebase/firestore';
+import { OrganizationUser, Organization, OrganizationFormValues, UserState } from '../@types/organization';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  query,
+  runTransaction,
+  serverTimestamp,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { DB, AUTH, STORAGE } from '../datasources/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import pickBy from 'lodash/pickBy';
@@ -19,7 +30,7 @@ export async function getOrganization(organizationId: string): Promise<Organizat
   return null;
 }
 
-export async function createOrganization(formValues: OrganizationFormValues, ownerId: string) {
+export async function createOrganization(formValues: OrganizationFormValues) {
   console.log({ formValues });
 
   if (formValues.logoURL instanceof File) {
@@ -44,22 +55,22 @@ export async function createOrganization(formValues: OrganizationFormValues, own
 
     console.log({ ownerOccupation: formValues.ownerOccupation})
 
-    const jouRef = doc(collection(DB, 'junction_organization_user'), `${formValues.id}_${ownerId}`);
+    const jouRef = doc(collection(DB, 'junction_organization_user'), `${formValues.id}_${AUTH.currentUser?.uid}`);
     transaction.set(jouRef, pickBy({
       organizationId: formValues.id,
       name: formValues.name,
       logoURL: formValues.logoURL,
-      estate: 'active',
+      state: 'active',
       occupation: formValues.ownerOccupation,
       role: 'owner',
-      userId: ownerId,
-      useName: AUTH.currentUser?.displayName,
+      userId: AUTH.currentUser?.uid,
+      userName: AUTH.currentUser?.displayName,
       userPhotoURL: AUTH.currentUser?.photoURL,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     }, attr => attr));
 
-    const userRef = doc(collection(DB, 'users'), ownerId);
+    const userRef = doc(collection(DB, 'users'), AUTH.currentUser?.uid);
     transaction.update(userRef, {
       defaultOrganizationId: formValues.id,
       updatedAt: serverTimestamp(),
@@ -83,7 +94,7 @@ export async function getUserOrganizations(userId: string): Promise<Organization
         user: {
           id: data?.id,
           name: data?.name,
-          estate: data?.estate,
+          state: data?.state,
           occupation: data?.occupation,
           role: data?.role,
         },
@@ -104,10 +115,28 @@ export async function getOrganizationUsers(organizationId: string): Promise<Orga
         id: data?.userId,
         name:  data?.userName,
         photoURL: data?.userPhotoURL,
-        estate: data?.estate,
+        state: data?.state,
         occupation: data?.occupation,
         role: data?.role,
       };
     });
 }
+
+export async function createOrganizationUser(organizationId: string, userId: string, data: Partial<OrganizationUser>) {
+  const jouRef = doc(collection(DB, 'junction_organization_user'), `${organizationId}_${userId}`);
+  await setDoc(jouRef, {
+    ...data,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  });
+}
+
+export async function updateOrganizationUser(organizationId: string, userId: string, data: Partial<OrganizationUser>) {
+  const jouRef = doc(collection(DB, 'junction_organization_user'), `${organizationId}_${userId}`);
+  await updateDoc(jouRef, {
+    ...data,
+    updatedAt: serverTimestamp(),
+  });
+}
+
 

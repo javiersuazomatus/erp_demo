@@ -75,7 +75,7 @@ export default function NewOrganizationForm() {
         legalName: data.legalName,
         logoURL: data.logoURL,
         ownerOccupation: data.ownerOccupation,
-      }, user?.id);
+      });
       dispatch(loadUserOrganizations(user?.id));
       replace(PATH_ORGANIZATION.detail.dashboard(data.id));
     } catch (error) {
@@ -97,7 +97,7 @@ export default function NewOrganizationForm() {
         <RHFTextField name='id' label='ID' disabled />
         <RHFTextField name='legalName' label='Legal Name' />
         <RHFUploadAvatar
-          name='logo'
+          name='logoURL'
           accept='image/*'
           maxSize={3145728}
           onDrop={handleDrop}

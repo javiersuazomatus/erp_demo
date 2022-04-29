@@ -20,8 +20,6 @@ import isEmpty from 'lodash/isEmpty';
 import { createUserProfile, getUserProfile, updateUserProfile } from '../clients/user';
 import { UserFormValues, UserProfile } from '../@types/userProfile';
 
-// ----------------------------------------------------------------------
-
 const ADMIN_EMAILS = ['demo@minimals.cc'];
 
 const initialState: AuthState = {
@@ -58,8 +56,6 @@ const reducer = (state: AuthState, action: FirebaseActions) => {
 };
 
 const AuthContext = createContext<FirebaseContextType | null>(null);
-
-// ----------------------------------------------------------------------
 
 type AuthProviderProps = {
   children: ReactNode;

@@ -47,18 +47,10 @@ const organizationNavConfig = (organizationId: string ) : GroupItem[] => [
   // MANAGEMENT
   // ----------------------------------------------------------------------
   {
-    subheader: 'organization',
+    subheader: 'configuration',
     items: [
       // MANAGEMENT : USER
-      {
-        title: 'users',
-        path: PATH_DASHBOARD.user.root,
-        icon: ICONS.user,
-        children: [
-          { title: 'list', path: PATH_ORGANIZATION.detail.users.list(organizationId) },
-          { title: 'create', path: PATH_ORGANIZATION.detail.users.new(organizationId) },
-        ],
-      },
+      { title: 'users', path: PATH_ORGANIZATION.detail.users.list(organizationId), icon: ICONS.user, },
 
       // MANAGEMENT : E-COMMERCE
       {

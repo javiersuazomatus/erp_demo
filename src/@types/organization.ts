@@ -1,7 +1,8 @@
-export enum UserEstate {
+export enum UserState {
   Invited = "invited",
   Active = "active",
   Blocked = "blocked",
+  Deleted = "deleted"
 }
 
 export type Organization = {
@@ -17,7 +18,7 @@ export type OrganizationUser = {
   name: string;
   photoURL?: string;
   role: string;
-  estate: UserEstate;
+  state: UserState;
   occupation: string
 }
 

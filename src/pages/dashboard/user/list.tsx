@@ -207,7 +207,7 @@ export default function UserList() {
                           </TableCell>
 
                           <TableCell align="right">
-                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userName={name} />
+                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userId={name} />
                           </TableCell>
                         </TableRow>
                       );

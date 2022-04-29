@@ -14,10 +14,10 @@ import MenuPopover from '../../../../components/MenuPopover';
 
 type Props = {
   onDelete: VoidFunction;
-  userName: string;
+  userId: string;
 };
 
-export default function UserMoreMenu({ onDelete, userName }: Props) {
+export default function UserMoreMenu({ onDelete, userId }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -58,7 +58,7 @@ export default function UserMoreMenu({ onDelete, userName }: Props) {
           Delete
         </MenuItem>
 
-        <NextLink href={`${PATH_DASHBOARD.user.root}/${paramCase(userName)}/edit`}>
+        <NextLink href={`${PATH_DASHBOARD.user.root}/${paramCase(userId)}/edit`}>
           <MenuItem>
             <Iconify icon={'eva:edit-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
             Edit
