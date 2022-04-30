@@ -1,23 +1,21 @@
 import { paramCase } from 'change-case';
 import { useState } from 'react';
-// next
 import NextLink from 'next/link';
-// @mui
 import { IconButton, MenuItem } from '@mui/material';
-// routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
-// components
 import Iconify from '../../../../components/Iconify';
 import MenuPopover from '../../../../components/MenuPopover';
+import { UserState } from '../../../../@types/organization';
 
-// ----------------------------------------------------------------------
 
 type Props = {
   onDelete: VoidFunction;
+  onActivate: VoidFunction;
   userId: string;
+  userState: UserState
 };
 
-export default function UserMoreMenu({ onDelete, userId }: Props) {
+export default function UserMoreMenu({ onDelete, onActivate, userId, userState }: Props) {
   const [open, setOpen] = useState<HTMLElement | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -46,17 +44,26 @@ export default function UserMoreMenu({ onDelete, userId }: Props) {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        arrow="right-top"
+        arrow='right-top'
         sx={{
           mt: -1,
           width: 160,
           '& .MuiMenuItem-root': { px: 1, typography: 'body2', borderRadius: 0.75 },
         }}
       >
-        <MenuItem onClick={onDelete} sx={{ color: 'error.main' }}>
+        {userState == UserState.Active && <MenuItem
+          onClick={onDelete}
+          sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ ...ICON }} />
           Delete
-        </MenuItem>
+        </MenuItem>}
+
+        {userState == UserState.Deleted && <MenuItem
+          onClick={onActivate}
+          sx={{ color: 'success.main' }}>
+          <Iconify icon={'eva:checkmark-circle-2-outline'} sx={{ ...ICON }} />
+          Activate
+        </MenuItem>}
 
         <NextLink href={`${PATH_DASHBOARD.user.root}/${paramCase(userId)}/edit`}>
           <MenuItem>

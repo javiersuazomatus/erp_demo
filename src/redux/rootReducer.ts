@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 // slices
 import organizationReducer from './slices/organization';
+import organizationUserReducer from './slices/organization-user';
 import mailReducer from './slices/mail';
 import chatReducer from './slices/chat';
 import productReducer from './slices/product';
@@ -52,6 +53,7 @@ const productPersistConfig = {
 const appReducer = combineReducers({
   // organizations: persistReducer(organization, organizationReducer),
   organization: organizationReducer,
+  organizationUser: organizationUserReducer,
   mail: mailReducer,
   chat: chatReducer,
   calendar: calendarReducer,

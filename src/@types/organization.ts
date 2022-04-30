@@ -41,3 +41,10 @@ export type OrganizationFormValues = {
   afterSubmit?: string;
   ownerOccupation: string;
 };
+
+export type OrganizationUserState = {
+  isLoading: boolean;
+  error: Error | string | null;
+  users: OrganizationUser[];
+  currentUser: OrganizationUser | null;
+}

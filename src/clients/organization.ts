@@ -1,17 +1,17 @@
-import { OrganizationUser, Organization, OrganizationFormValues, UserState } from '../@types/organization';
+import { Organization, OrganizationFormValues, OrganizationUser } from '../@types/organization';
 import {
   collection,
   doc,
   getDoc,
   getDocs,
-  setDoc,
   query,
   runTransaction,
   serverTimestamp,
+  setDoc,
   updateDoc,
   where,
 } from 'firebase/firestore';
-import { DB, AUTH, STORAGE } from '../datasources/firebase';
+import { AUTH, DB, STORAGE } from '../datasources/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import pickBy from 'lodash/pickBy';
 
@@ -120,6 +120,23 @@ export async function getOrganizationUsers(organizationId: string): Promise<Orga
         role: data?.role,
       };
     });
+}
+
+export async function getOrganizationUser(organizationId: string, userId: string): Promise<OrganizationUser | null> {
+  const jouRef = doc(collection(DB, 'junction_organization_user'), `${organizationId}_${userId}`);
+  const docSnap = await getDoc(jouRef);
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    return {
+      id: data?.userId,
+      name:  data?.userName,
+      photoURL: data?.userPhotoURL,
+      state: data?.state,
+      occupation: data?.occupation,
+      role: data?.role,
+    };
+  }
+  return null;
 }
 
 export async function createOrganizationUser(organizationId: string, userId: string, data: Partial<OrganizationUser>) {

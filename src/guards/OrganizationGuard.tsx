@@ -24,7 +24,7 @@ export default function OrganizationGuard({ children }: Props) {
   console.log({ organizations, isLoading, error });
 
   useEffect(() => {
-      if (user?.id && !organizations) {
+      if (user?.id && organizations == null) {
         dispatch(loadUserOrganizations(user?.id));
       }
     },

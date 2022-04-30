@@ -16,7 +16,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { PATH_DASHBOARD } from '../../../../routes/paths';
+import { PATH_DASHBOARD, PATH_ORGANIZATION } from '../../../../routes/paths';
 import useSettings from '../../../../hooks/useSettings';
 import OrganizationLayout from '../../../../layouts/OrganizationLayout';
 import Page from '../../../../components/Page';
@@ -26,11 +26,14 @@ import Scrollbar from '../../../../components/Scrollbar';
 import SearchNotFound from '../../../../components/SearchNotFound';
 import HeaderBreadcrumbs from '../../../../components/HeaderBreadcrumbs';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../../../sections/@dashboard/user/list';
-import { getOrganizationUsers, updateOrganizationUser } from '../../../../clients/organization';
-import { OrganizationUser, UserState } from '../../../../@types/organization';
+import { OrganizationUser, OrganizationUserState, UserState } from '../../../../@types/organization';
 import LoadingScreen from '../../../../components/LoadingScreen';
 import Page500 from '../../../500';
 import { useSelector } from '../../../../redux/store';
+import { useDispatch } from 'react-redux';
+import { loadOrgUsers, refreshOrgUsers } from '../../../../redux/slices/organization-user';
+import { updateOrganizationUser } from '../../../../clients/organization';
+import { useSnackbar } from 'notistack';
 
 
 const TABLE_HEAD = [
@@ -50,8 +53,10 @@ UserList.getLayout = function getLayout(page: React.ReactElement) {
 
 export default function UserList() {
 
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { currentOrganization } = useSelector((state) => state.organization);
-
+  const { users, isLoading, error }: OrganizationUserState = useSelector((state) => state.organizationUser);
   const theme = useTheme();
   const { themeStretch } = useSettings();
   const [page, setPage] = useState(0);
@@ -61,19 +66,18 @@ export default function UserList() {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [users, setUsers] = useState<OrganizationUser[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [users, setUsers] = useState<OrganizationUser[]>([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
-    getOrganizationUsers(currentOrganization.id)
-      .then(result => setUsers(result))
-      .catch(e => setError(e))
-      .finally(() => setIsLoading(false));
-  }, [currentOrganization]);
+    if (currentOrganization && users?.length == 0) {
+      dispatch(loadOrgUsers(currentOrganization.id));
+    }
+  }, [currentOrganization, users]);
 
-  if (isLoading) return <LoadingScreen />
-  if (error) return <Page500 />
+  if (isLoading) return <LoadingScreen />;
+  if (error) return <Page500 />;
 
   const handleRequestSort = (property: string) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -118,24 +122,24 @@ export default function UserList() {
     setPage(0);
   };
 
-  const handleDeleteUser = async (userId: string) => {
+  const handleChangeStateUser = async (userId: string, state: UserState) => {
     console.log('handleDeleteUser');
-    await updateOrganizationUser(currentOrganization.id, userId, {
-      state: UserState.Deleted,
-    });
-    const userIndex = users.findIndex((user) => user.id == userId);
-    const usersCopy = [...users];
-    usersCopy[userIndex] = {
-      ...users[userIndex],
-      state: UserState.Deleted,
+    try {
+      await updateOrganizationUser(currentOrganization.id, userId, {state});
+      const userIndex = users.findIndex(user => user.id == userId);
+      const usersCopy = [...users];
+      usersCopy[userIndex] = { ...usersCopy[userIndex], state};
+      dispatch(refreshOrgUsers(usersCopy))
+    } catch (error) {
+      console.log({ error });
+      enqueueSnackbar(error.toString(), { variant: 'error' });
     }
-    setUsers(usersCopy)
   };
 
   const handleDeleteMultiUser = (selected: string[]) => {
     const deleteUsers = users.filter((user) => !selected.includes(user.name));
     setSelected([]);
-    setUsers(deleteUsers);
+    // setUsers(deleteUsers);
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0;
@@ -150,7 +154,7 @@ export default function UserList() {
         <HeaderBreadcrumbs
           heading='User List'
           links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
+            { name: 'Dashboard', href: PATH_ORGANIZATION.detail.dashboard(currentOrganization.id) },
             { name: 'User', href: PATH_DASHBOARD.user.root },
             { name: 'List' },
           ]}
@@ -186,7 +190,7 @@ export default function UserList() {
                 <TableBody>
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
+                    .map((row) => {
                       const { id, name, role, state, occupation, photoURL } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -221,7 +225,12 @@ export default function UserList() {
                           </TableCell>
 
                           <TableCell align='right'>
-                            <UserMoreMenu onDelete={() => handleDeleteUser(id)} userId={id} />
+                            <UserMoreMenu
+                              onDelete={() => handleChangeStateUser(id, UserState.Deleted)}
+                              onActivate={() => handleChangeStateUser(id, UserState.Active)}
+                              userId={id}
+                              userState={state}
+                            />
                           </TableCell>
                         </TableRow>
                       );
@@ -299,13 +308,13 @@ function applySortFilter(
 function getStateColor(state: UserState): LabelColor {
   switch (state) {
     case UserState.Invited:
-      return 'info'
+      return 'info';
     case UserState.Active:
-      return 'success'
+      return 'success';
     case UserState.Blocked:
     case UserState.Deleted:
-      return 'error'
+      return 'error';
     default:
-      return 'warning'
+      return 'warning';
   }
 }
