@@ -5,19 +5,25 @@ export enum UserState {
   Deleted = "deleted"
 }
 
+export enum UserRole {
+  Owner = "owner",
+  Admin = "admin",
+  Collaborator = "collaborator",
+}
+
 export type Organization = {
   id: string;
   name: string;
   logoURL?: string;
-  user?: OrganizationUser
   detail?: OrganizationDetail;
 }
 
 export type OrganizationUser = {
   id: string;
   name: string;
+  email: string;
   photoURL?: string;
-  role: string;
+  role: UserRole;
   state: UserState;
   occupation: string
 }

@@ -58,6 +58,10 @@ export function refreshOrgUsers(users: OrganizationUser[]) {
   return async () => dispatch(slice.actions.loadUsersSuccess(users));
 }
 
+export function refreshCurrentUser(user: OrganizationUser) {
+  return async () => dispatch(slice.actions.loadCurrentUserSuccess(user));
+}
+
 export function loadCurrentUser(userId: string) {
   return async () => {
     console.log('loadCurrentUser', userId);

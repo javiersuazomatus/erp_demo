@@ -31,7 +31,7 @@ import LoadingScreen from '../../../../components/LoadingScreen';
 import Page500 from '../../../500';
 import { useSelector } from '../../../../redux/store';
 import { useDispatch } from 'react-redux';
-import { loadOrgUsers, refreshOrgUsers } from '../../../../redux/slices/organization-user';
+import { loadOrgUsers, refreshCurrentUser, refreshOrgUsers } from '../../../../redux/slices/organization-user';
 import { updateOrganizationUser } from '../../../../clients/organization';
 import { useSnackbar } from 'notistack';
 
@@ -56,7 +56,12 @@ export default function UserList() {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const { currentOrganization } = useSelector((state) => state.organization);
-  const { users, isLoading, error }: OrganizationUserState = useSelector((state) => state.organizationUser);
+  const {
+    users,
+    currentUser,
+    isLoading,
+    error,
+  }: OrganizationUserState = useSelector((state) => state.organizationUser);
   const theme = useTheme();
   const { themeStretch } = useSettings();
   const [page, setPage] = useState(0);
@@ -65,10 +70,6 @@ export default function UserList() {
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  // const [users, setUsers] = useState<OrganizationUser[]>([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState(null);
 
   useEffect(() => {
     if (currentOrganization && users?.length == 0) {
@@ -123,13 +124,16 @@ export default function UserList() {
   };
 
   const handleChangeStateUser = async (userId: string, state: UserState) => {
-    console.log('handleDeleteUser');
+    console.log('handleChangeStateUser');
     try {
-      await updateOrganizationUser(currentOrganization.id, userId, {state});
+      await updateOrganizationUser(currentOrganization.id, userId, { state });
       const userIndex = users.findIndex(user => user.id == userId);
       const usersCopy = [...users];
-      usersCopy[userIndex] = { ...usersCopy[userIndex], state};
-      dispatch(refreshOrgUsers(usersCopy))
+      usersCopy[userIndex] = { ...usersCopy[userIndex], state };
+      dispatch(refreshOrgUsers(usersCopy));
+      if (currentUser) {
+        dispatch(refreshCurrentUser(usersCopy[userIndex]));
+      }
     } catch (error) {
       console.log({ error });
       enqueueSnackbar(error.toString(), { variant: 'error' });
@@ -152,16 +156,15 @@ export default function UserList() {
     <Page title='User: List'>
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading='User List'
+          heading='Users'
           links={[
-            { name: 'Dashboard', href: PATH_ORGANIZATION.detail.dashboard(currentOrganization.id) },
-            { name: 'User', href: PATH_DASHBOARD.user.root },
+            { name: 'Home', href: PATH_ORGANIZATION.detail.dashboard(currentOrganization.id) },
             { name: 'List' },
           ]}
           action={
             <NextLink href={PATH_DASHBOARD.user.newUser} passHref>
               <Button variant='contained' startIcon={<Iconify icon={'eva:plus-fill'} />}>
-                New User
+                Invite to Join
               </Button>
             </NextLink>
           }

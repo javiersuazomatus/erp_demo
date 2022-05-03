@@ -45,7 +45,7 @@ export const PATH_ORGANIZATION = {
       list: (organizationId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/list'),
       new: (organizationId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/new'),
       profile: (organizationId: string, userId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/', userId ,'/profile'),
-      editById: (organizationId: string, userId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/', userId ,'/edit'),
+      edit: (organizationId: string, userId: string) => path(ROOTS_ORGANIZATION_DETAIL(organizationId), '/user/', userId ,'/edit'),
     },
   },
 }

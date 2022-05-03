@@ -65,6 +65,7 @@ export async function createOrganization(formValues: OrganizationFormValues) {
       role: 'owner',
       userId: AUTH.currentUser?.uid,
       userName: AUTH.currentUser?.displayName,
+      userEmail: AUTH.currentUser?.email,
       userPhotoURL: AUTH.currentUser?.photoURL,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
@@ -91,13 +92,6 @@ export async function getUserOrganizations(userId: string): Promise<Organization
         id: data?.organizationId,
         name: data?.name,
         logoURL: data?.photoURL,
-        user: {
-          id: data?.id,
-          name: data?.name,
-          state: data?.state,
-          occupation: data?.occupation,
-          role: data?.role,
-        },
       };
     });
 }
@@ -114,6 +108,7 @@ export async function getOrganizationUsers(organizationId: string): Promise<Orga
       return {
         id: data?.userId,
         name:  data?.userName,
+        email: data?.userEmail,
         photoURL: data?.userPhotoURL,
         state: data?.state,
         occupation: data?.occupation,
@@ -130,6 +125,7 @@ export async function getOrganizationUser(organizationId: string, userId: string
     return {
       id: data?.userId,
       name:  data?.userName,
+      email: data?.userEmail,
       photoURL: data?.userPhotoURL,
       state: data?.state,
       occupation: data?.occupation,
