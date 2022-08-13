@@ -229,8 +229,9 @@ export default function UserList() {
 
                           <TableCell align='right'>
                             <UserMoreMenu
-                              onDelete={() => handleChangeStateUser(id, UserState.Deleted)}
                               onActivate={() => handleChangeStateUser(id, UserState.Active)}
+                              onBlock={() => handleChangeStateUser(id, UserState.Blocked)}
+                              onDelete={() => handleChangeStateUser(id, UserState.Deleted)}
                               userId={id}
                               userState={state}
                             />

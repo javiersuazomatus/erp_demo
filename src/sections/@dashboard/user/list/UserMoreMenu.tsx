@@ -1,8 +1,7 @@
-import { paramCase } from 'change-case';
 import { useState } from 'react';
 import NextLink from 'next/link';
 import { CircularProgress, IconButton, MenuItem } from '@mui/material';
-import { PATH_DASHBOARD, PATH_ORGANIZATION } from '../../../../routes/paths';
+import { PATH_ORGANIZATION } from '../../../../routes/paths';
 import Iconify from '../../../../components/Iconify';
 import MenuPopover from '../../../../components/MenuPopover';
 import { UserState } from '../../../../@types/organization';
@@ -11,16 +10,18 @@ import { useSelector } from '../../../../redux/store';
 
 type Props = {
   onDelete: VoidFunction;
+  onBlock: VoidFunction;
   onActivate: VoidFunction;
   userId: string;
   userState: UserState
 };
 
-export default function UserMoreMenu({ onDelete, onActivate, userId, userState }: Props) {
+export default function UserMoreMenu({ onActivate, onBlock, onDelete, userId, userState }: Props) {
   const { currentOrganization } = useSelector((state) => state.organization);
 
   const [open, setOpen] = useState<HTMLElement | null>(null);
   const [isActivating, setIsActivating] = useState<boolean | null>(null);
+  const [isBlocking, setIsBlocking] = useState<boolean | null>(null);
   const [isDeleting, setIsDeleting] = useState<boolean | null>(null);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -61,21 +62,14 @@ export default function UserMoreMenu({ onDelete, onActivate, userId, userState }
           '& .MuiMenuItem-root': { px: 1, typography: 'body2', borderRadius: 0.75 },
         }}
       >
-        {userState == UserState.Active && <MenuItem
-          onClick={async () => {
-            setIsDeleting(true);
-            await onDelete();
-            setIsDeleting(false);
-          }}
-          sx={{ color: 'error.main' }}>
-          {isDeleting
-            ? <CircularProgress size='1rem' sx={{ ...PROGRESS}} />
-            : <Iconify icon={'eva:trash-2-outline'} sx={{ ...ICON }} />
-          }
-          Delete
-        </MenuItem>}
+        <NextLink href={PATH_ORGANIZATION.detail.users.edit(currentOrganization.id, userId)}>
+          <MenuItem>
+            <Iconify icon={'eva:edit-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
+            Edit
+          </MenuItem>
+        </NextLink>
 
-        {userState == UserState.Deleted && <MenuItem
+        { [UserState.Deleted, UserState.Blocked].includes(userState) && <MenuItem
           onClick={async () => {
             setIsActivating(true);
             await onActivate();
@@ -89,12 +83,33 @@ export default function UserMoreMenu({ onDelete, onActivate, userId, userState }
           Activate
         </MenuItem>}
 
-        <NextLink href={PATH_ORGANIZATION.detail.users.edit(currentOrganization.id, userId)}>
-          <MenuItem>
-            <Iconify icon={'eva:edit-fill'} sx={{ mr: 2, width: 24, height: 24 }} />
-            Edit
-          </MenuItem>
-        </NextLink>
+        {userState == UserState.Active && <MenuItem
+          onClick={async () => {
+            setIsBlocking(true);
+            await onBlock();
+            setIsBlocking(false);
+          }}>
+          {isBlocking
+            ? <CircularProgress size='1rem' sx={{ ...PROGRESS}} />
+            : <Iconify icon={'eva:close-circle-outline'} sx={{ ...ICON }} />
+          }
+          Block
+        </MenuItem>}
+
+
+        {userState == UserState.Active && <MenuItem
+          onClick={async () => {
+            setIsDeleting(true);
+            await onDelete();
+            setIsDeleting(false);
+          }}
+          sx={{ color: 'error.main' }}>
+          {isDeleting
+            ? <CircularProgress size='1rem' sx={{ ...PROGRESS}} />
+            : <Iconify icon={'eva:trash-2-outline'} sx={{ ...ICON }} />
+          }
+          Delete
+        </MenuItem>}
       </MenuPopover>
     </>
   );

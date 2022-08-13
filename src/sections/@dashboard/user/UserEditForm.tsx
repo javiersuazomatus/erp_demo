@@ -9,9 +9,8 @@ import { Box, Card, FormControlLabel, Grid, Stack, Switch, Typography } from '@m
 import { PATH_DASHBOARD } from '../../../routes/paths';
 import { UserManager } from '../../../@types/userProfile';
 import Label from '../../../components/Label';
-import { FormProvider, RHFSelect, RHFSwitch, RHFTextField } from '../../../components/hook-form';
+import { FormProvider, RHFSelect, RHFTextField } from '../../../components/hook-form';
 import { OrganizationUser, UserRole } from '../../../@types/organization';
-import MyAvatar from '../../../components/MyAvatar';
 import Avatar from '../../../components/Avatar';
 import createAvatar from '../../../utils/createAvatar';
 
@@ -19,11 +18,10 @@ import createAvatar from '../../../utils/createAvatar';
 type FormValuesProps = UserManager;
 
 type Props = {
-  isEdit?: boolean;
   currentUser?: OrganizationUser;
 };
 
-export default function UserEditForm({ isEdit = false, currentUser }: Props) {
+export default function UserEditForm({ currentUser }: Props) {
   const { push } = useRouter();
 
   const { enqueueSnackbar } = useSnackbar();
@@ -42,8 +40,6 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
 
   const defaultValues = useMemo(
     () => ({
-      name: currentUser?.name || '',
-      email: currentUser?.email || '',
       state: currentUser?.state || '',
       role: currentUser?.role || '',
       avatarUrl: currentUser?.photoURL || '',
@@ -70,19 +66,16 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
   const values = watch();
 
   useEffect(() => {
-    if (isEdit && currentUser) {
+    if (currentUser) {
       reset(defaultValues);
     }
-    if (!isEdit) {
-      reset(defaultValues);
-    }
-  }, [isEdit, currentUser]);
+  }, [currentUser]);
 
   const onSubmit = async (data: FormValuesProps) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!');
+      enqueueSnackbar('Update success!');
       push(PATH_DASHBOARD.user.list);
     } catch (error) {
       console.error(error);
@@ -109,15 +102,13 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
-          <Card sx={{ py: 10, px: 3 }}>
-            {isEdit && (
-              <Label
-                color={values.state !== 'active' ? 'error' : 'success'}
-                sx={{ textTransform: 'uppercase', position: 'absolute', top: 24, right: 24 }}
-              >
-                {values.state}
-              </Label>
-            )}
+          <Card sx={{ pt: 10, pb: 3, px: 3 }}>
+            <Label
+              color={values.state !== 'active' ? 'error' : 'success'}
+              sx={{ textTransform: 'uppercase', position: 'absolute', top: 24, right: 24 }}
+            >
+              {values.state}
+            </Label>
             <Avatar
               src={`${currentUser?.photoURL}`}
               alt={currentUser?.name}
@@ -156,7 +147,7 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
               }}>
               {currentUser?.email}
             </Typography>
-            {isEdit && (
+            {(
               <FormControlLabel
                 labelPlacement='start'
                 control={
@@ -187,22 +178,6 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
                 sx={{ mx: 0, mb: 3, width: 1, justifyContent: 'space-between' }}
               />
             )}
-
-            <RHFSwitch
-              name='isVerified'
-              labelPlacement='start'
-              label={
-                <>
-                  <Typography variant='subtitle2' sx={{ mb: 0.5 }}>
-                    Email Verified
-                  </Typography>
-                  <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-                    Disabling this will automatically send the user a verification email
-                  </Typography>
-                </>
-              }
-              sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
-            />
           </Card>
         </Grid>
 
@@ -216,10 +191,6 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
                 gridTemplateColumns: { xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' },
               }}
             >
-              <RHFTextField name='name' label='Full Name' />
-              <RHFTextField name='email' label='Email Address' />
-              <RHFTextField name='phoneNumber' label='Phone Number' />
-
               <RHFSelect name='role' label='Role' placeholder='Role'>
                 {(Object.values(UserRole)).map((key) => (
                   <option key={key} value={key}>
@@ -227,19 +198,31 @@ export default function UserEditForm({ isEdit = false, currentUser }: Props) {
                   </option>
                 ))}
               </RHFSelect>
-
-              <RHFTextField name='state' label='State/Region' />
+              <RHFTextField name='phoneNumber' label='Phone Number' />
               <RHFTextField name='city' label='City' />
               <RHFTextField name='address' label='Address' />
               <RHFTextField name='zipCode' label='Zip/Code' />
-              <RHFTextField name='role' label='Role' />
             </Box>
 
             <Stack alignItems='flex-end' sx={{ mt: 3 }}>
               <LoadingButton type='submit' variant='contained' loading={isSubmitting}>
-                {!isEdit ? 'Create User' : 'Save Changes'}
+                Save Changes
               </LoadingButton>
             </Stack>
+          </Card>
+          <Card sx={{ p: 3, mt: 3 }}>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={4} sm={2}>
+                <LoadingButton color="error" type='submit' variant='contained' loading={isSubmitting}>
+                  Delete
+                </LoadingButton>
+              </Grid>
+              <Grid item  xs={8} sm={10}>
+                <Typography variant='body2' sx={{ color: 'text.secondary' }}>
+                  The user can only be activated again by means of a new invitation.
+                </Typography>
+              </Grid>
+            </Grid>
           </Card>
         </Grid>
       </Grid>
